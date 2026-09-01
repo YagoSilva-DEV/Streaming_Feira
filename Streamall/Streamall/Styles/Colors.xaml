@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BackgroundColorLogin">#0B0F14</Color>
+
+    <Color x:Key="SurfaceColorLogin">#191C20</Color>
+
+    <Color x:Key="BorderColorLogin">#30343A</Color>
+
+    <Color x:Key="TextPrimaryLogin">#F1F1F3</Color>
+
+    <Color x:Key="TextSecondaryLogin">#8E8F96</Color>
+
+    <Color x:Key="PrimaryPurpleLogin">#7644DA</Color>
+
+    <Color x:Key="PrimaryBlueLogin">#394BDB</Color>
+
+    <Color x:Key="LogoPurpleLogin">#7055E8</Color>
+
+    <SolidColorBrush x:Key="BackgroundColorLoginBrush" Color="{StaticResource BackgroundColorLogin}"/>
+    <SolidColorBrush x:Key="SurfaceColorLoginBrush" Color="{StaticResource SurfaceColorLogin}"/>
+    <SolidColorBrush x:Key="BorderColorLoginBrush" Color="{StaticResource BorderColorLogin}"/>
+    <SolidColorBrush x:Key="TextPrimaryLoginBrush" Color="{StaticResource TextPrimaryLogin}"/>
+    <SolidColorBrush x:Key="TextSecondaryLoginBrush" Color="{StaticResource TextSecondaryLogin}"/>
+    <SolidColorBrush x:Key="PrimaryPurpleLoginBrush" Color="{StaticResource PrimaryPurpleLogin}"/>
+    <SolidColorBrush x:Key="PrimaryBlueLoginBrush" Color="{StaticResource PrimaryBlueLogin}"/>
+    <SolidColorBrush x:Key="LogoPurpleLoginBrush" Color="{StaticResource TextPrimaryLogin}"/>
+</ResourceDictionary>

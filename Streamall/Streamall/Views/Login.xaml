@@ -1,0 +1,60 @@
+﻿<Window x:Class="Streamall.Views.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Streamall.Views"
+        xmlns:TextBoxController="clr-namespace:Streamall.Views.UserControls.LoginPage"
+        xmlns:SecundaryButton="clr-namespace:Streamall.Views.UserControls.LoginPage"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        BorderBrush="White"
+         Opacity="0.8"
+        Background="{StaticResource BackgroundColorLoginBrush}"
+        Title="Login" Height="500" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="STREAMALL" Style="{StaticResource StyleTextBlockLogoLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1" Text="Entre para continuar" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="15" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <TextBoxController:TextBoxController Placeholder="Nome de usuario" />
+            <TextBoxController:TextBoxController Placeholder="Email" Grid.Row="1"/>
+            <TextBoxController:TextBoxController Placeholder="Senha" Grid.Row="2"/>
+            <Button Grid.Row="3" Style="{StaticResource StylePrimaryButtonLogin}" Content="Login" Margin="0,20,0,0" Cursor="Hand"/>
+        </Grid>
+
+        <TextBlock Grid.Row="2" Text="-------- ou continue com --------" Foreground="{StaticResource TextSecondaryLoginBrush}" Style="{StaticResource StyleTextBlockLogin}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+        </Grid>
+        
+        
+    </Grid>
+</Window>
