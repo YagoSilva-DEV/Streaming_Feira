@@ -30,5 +30,20 @@ namespace Streamall.Views
         {
             DragMove();
         }
+
+        private void txtName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbBlockName.Visibility = (string.IsNullOrWhiteSpace(txtName.Text)) ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbBlockEmail.Visibility = (string.IsNullOrWhiteSpace(txtEmail.Text)) ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void txtPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbBlockPassword.Visibility = (string.IsNullOrWhiteSpace(txtPassword.Text)) ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }

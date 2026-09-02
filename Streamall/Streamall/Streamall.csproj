@@ -119,14 +119,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\DTO\AdiministradorDTO.cs" />
+    <Compile Include="Models\DTO\ClienteDTO.cs" />
+    <Compile Include="Models\DTO\UsuarioDTO.cs" />
+    <Compile Include="Models\Enums\TipoUsuario.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\LoginPage\TextBoxController.xaml.cs">
-      <DependentUpon>TextBoxController.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -153,10 +154,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\LoginPage\TextBoxController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,8 +193,8 @@
     <Folder Include="BLL\Services\" />
     <Folder Include="DAL\Interfaces\" />
     <Folder Include="DAL\Repository\" />
-    <Folder Include="Models\DTO\" />
     <Folder Include="Models\Entities\" />
+    <Folder Include="Views\UserControls\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\JohnWick%282014%29.png" />
