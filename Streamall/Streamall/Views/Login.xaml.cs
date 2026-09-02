@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Streamall.ViewModels;
 
 namespace Streamall.Views
 {
@@ -21,6 +22,7 @@ namespace Streamall.Views
     {
         public Login()
         {
+            DataContext = new LoginViewModel();
             InitializeComponent();
         }
 

@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views"
         xmlns:TextBoxController="clr-namespace:Streamall.Views.UserControls.LoginPage"
-        xmlns:SecundaryButton="clr-namespace:Streamall.Views.UserControls.LoginPage"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -13,48 +12,98 @@
         BorderBrush="White"
          Opacity="0.8"
         Background="{StaticResource BackgroundColorLoginBrush}"
-        Title="Login" Height="500" Width="450">
+        Title="Login" Height="400" Width="600">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height=".5*"/>
-            <RowDefinition Height="2*"/>
-        </Grid.RowDefinitions>
 
+        <Rectangle
+        HorizontalAlignment="Center"
+        Width="50"
+        IsHitTestVisible="False" Panel.ZIndex="1">
+
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,0">
+                    <GradientStop Color="#0000" Offset="0"/>
+                    <GradientStop Color="{StaticResource SurfaceColorLogin}" Offset="0.5"/>
+                    <GradientStop Color="#0000" Offset="1"/>
+
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+
+        </Rectangle>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="6*"/>
-                <RowDefinition Height="4*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="STREAMALL" Style="{StaticResource StyleTextBlockLogoLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock Grid.Row="1" Text="Entre para continuar" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="STREAMALL" Style="{StaticResource StyleTextBlockLogoLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" Text="Entre para continuar" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="15" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBoxController:TextBoxController Placeholder="Nome de Usuário" />
+                    <TextBoxController:TextBoxController Placeholder="Email" Grid.Row="1"/>
+                    <TextBoxController:TextBoxController Placeholder="Senha" Grid.Row="2"/>
+                    <Button Grid.Row="3" Style="{StaticResource StylePrimaryButtonLogin}" Content="Login" Margin="0,20,0,0" Cursor="Hand"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Ainda não tem conta?" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Hyperlink Command="{Binding OpenRegisterCommand}">
+                        <Hyperlink.Style>
+                            <Style TargetType="Hyperlink">
+                                <Setter Property="Foreground" Value="DodgerBlue"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="{StaticResource PrimaryPurpleLoginBrush}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Hyperlink.Style>
+                        Criar uma conta
+                    </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Image Source="{Binding ImageSourceFile}" HorizontalAlignment="Center" Stretch="UniformToFill" Opacity="0.6"/>
+
+                <Button Style="{StaticResource StyleSecundaryButtonLogin}" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="10,0,0,0"
+ Panel.ZIndex="10" Content="◀" Command="{Binding PrevImageCommand}" Cursor="Hand"/>
+
+
+                <Button Style="{StaticResource StyleSecundaryButtonLogin}" VerticalAlignment="Center" HorizontalAlignment="Right"  Margin="0,0,10,0"
+Panel.ZIndex="10" Content="▶" Command="{Binding NextImageCommand}" Cursor="Hand"/>
+            </Grid>
         </Grid>
-
-        <Grid Grid.Row="1" Margin="15" VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="4*"/>
-            </Grid.RowDefinitions>
-
-            <TextBoxController:TextBoxController Placeholder="Nome de usuario" />
-            <TextBoxController:TextBoxController Placeholder="Email" Grid.Row="1"/>
-            <TextBoxController:TextBoxController Placeholder="Senha" Grid.Row="2"/>
-            <Button Grid.Row="3" Style="{StaticResource StylePrimaryButtonLogin}" Content="Login" Margin="0,20,0,0" Cursor="Hand"/>
-        </Grid>
-
-        <TextBlock Grid.Row="2" Text="-------- ou continue com --------" Foreground="{StaticResource TextSecondaryLoginBrush}" Style="{StaticResource StyleTextBlockLogin}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-        <Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        
-        
     </Grid>
 </Window>

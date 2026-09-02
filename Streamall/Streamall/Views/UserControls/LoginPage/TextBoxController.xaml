@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="350">
     <Grid>
-        <TextBox x:Name="txtInput" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtInput_TextChanged"/>
+        <TextBox x:Name="txtInput" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtInput_TextChanged" Height="35"/>
         <TextBlock x:Name="tbText" Style="{StaticResource StyleTextBlockLogin}" Text="{Binding Placeholder}" IsHitTestVisible="False"/>
     </Grid>
 </UserControl>
