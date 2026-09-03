@@ -82,7 +82,7 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Ainda não tem conta?" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <TextBlock Grid.Column="1" Style="{StaticResource MaterialDesignTextBlock}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Hyperlink Command="{Binding OpenRegisterCommand}" Style="{StaticResource StyleHyperlinkLogin}">     
                         Criar uma conta
                     </Hyperlink>

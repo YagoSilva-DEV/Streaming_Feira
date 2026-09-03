@@ -79,24 +79,14 @@ namespace Streamall.ViewModels
         #region Métodos de Login, seja de cliente ou administrador
         private void EnterAsClient()
         {
-            _user = new ClienteDTO
-            {
-                NomeUsuario = _userName,
-                Email = _emailUser,
-                Senha = _senha
-            };
+            _user = new ClienteDTO(_userName, _senha, _emailUser);
 
             //chamar o método de login do cliente, passando o objeto _usuario como parâmetro
         }
 
         private void EnterAsAdmin()
         {
-            _user = new AdiministradorDTO
-            {
-                NomeUsuario = _userName,
-                Email = _emailUser,
-                Senha = _senha
-            };
+            _user = new AdiministradorDTO(_userName, _senha, _emailUser);
             //chamar o método de login do administrador, passando o objeto _usuario como parâmetro
         }
         #endregion
