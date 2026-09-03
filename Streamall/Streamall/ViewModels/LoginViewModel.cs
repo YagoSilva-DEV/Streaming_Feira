@@ -3,11 +3,15 @@ using Streamall.Models.DTO;
 using Streamall.MVVM;
 using System;
 using System.IO;
+using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
+using System.Windows;
 
 namespace Streamall.ViewModels
 {
     internal class LoginViewModel : ViewModelBase
     {
+        private readonly UsuarioServiceBLL _usuarioServiceBLL;
         #region Carrossel de imagens na tela de login
         private int _count = 0;
         private string _imageSourceFile;
@@ -74,6 +78,8 @@ namespace Streamall.ViewModels
         {
             _fullPathFiles = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, @"..\..\Assets"));
             ImageSourceFile = _fullPathFiles[_count];
+
+            _usuarioServiceBLL = new UsuarioServiceBLL(new UsuarioRepositoryDAL());
         }
 
         #region Métodos de Login, seja de cliente ou administrador

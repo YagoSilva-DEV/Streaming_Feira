@@ -3,6 +3,7 @@ using Streamall.Models.DTO;
 using Streamall.Models.Entities;
 using Streamall.DAL.Interfaces;
 using System;
+using Streamall.Exceptions;
 
 namespace Streamall.BLL.Services
 {
@@ -18,7 +19,10 @@ namespace Streamall.BLL.Services
         {
             Usuario _usario = new Cliente(usuarioDTO.NomeUsuario, usuarioDTO.Senha, usuarioDTO.Email);
 
-            return _usuarioDAL.EnterAsClientDAL(_usario);
+            if(!_usuarioDAL.EnterAsClientDAL(_usario))
+                throw new LoginInvalidoException("Usuário ou senha inválidos.");
+
+            return true;
         }
     }
 }
