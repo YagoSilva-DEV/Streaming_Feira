@@ -11,7 +11,7 @@ namespace Streamall.ViewModels
 {
     internal class LoginViewModel : ViewModelBase
     {
-        private readonly UsuarioServiceBLL _usuarioServiceBLL;
+        private readonly UserServiceBLL _userServiceBLL;
         #region Carrossel de imagens na tela de login
         private int _count = 0;
         private string _imageSourceFile;
@@ -44,31 +44,31 @@ namespace Streamall.ViewModels
             }
         }
 
-        private string _emailUser;
+        private string _userEmail;
 
-        public string EmailUser
+        public string UserEmail
         {
-            get { return _emailUser; }
+            get { return _userEmail; }
             set 
             { 
-                _emailUser = value;
+                _userEmail = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _senha;
+        private string _password;
 
-        public string Senha
+        public string Password
         {
-            get { return _senha; }
+            get { return _password ; }
             set 
             {
-                _senha = value;
+                _password = value;
                 OnPropertyChanged();
             }
         }
 
-        private UsuarioDTO _user;
+        private UserDTO _user;
 
         public RelayCommand EnterAsClientCommand => new RelayCommand(execute => EnterAsClient());
         public RelayCommand EnterAsAdminCommand => new RelayCommand(execute => EnterAsAdmin());
@@ -79,20 +79,20 @@ namespace Streamall.ViewModels
             _fullPathFiles = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, @"..\..\Assets"));
             ImageSourceFile = _fullPathFiles[_count];
 
-            _usuarioServiceBLL = new UsuarioServiceBLL(new UsuarioRepositoryDAL());
+            _userServiceBLL = new UserServiceBLL(new UserRepositoryDAL());
         }
 
         #region Métodos de Login, seja de cliente ou administrador
         private void EnterAsClient()
         {
-            _user = new ClienteDTO(_userName, _senha, _emailUser);
+            _user = new ClientDTO(_userName, _password, _userEmail);
 
             //chamar o método de login do cliente, passando o objeto _usuario como parâmetro
         }
 
         private void EnterAsAdmin()
         {
-            _user = new AdiministradorDTO(_userName, _senha, _emailUser);
+            _user = new AdministratorDTO(_userName, _password, _userEmail);
             //chamar o método de login do administrador, passando o objeto _usuario como parâmetro
         }
         #endregion

@@ -185,19 +185,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BLL\Interfaces\IUsuarioBLL.cs" />
-    <Compile Include="BLL\Services\UsuarioServiceBLL.cs" />
-    <Compile Include="DAL\ConexaoDAL.cs" />
-    <Compile Include="DAL\Interfaces\IUsuarioDAL.cs" />
-    <Compile Include="DAL\Repository\UsuarioRepositoryDAL.cs" />
+    <Compile Include="BLL\Interfaces\IUserBLL.cs" />
+    <Compile Include="BLL\Services\UserServiceBLL.cs" />
+    <Compile Include="DAL\DataBaseConnectionDAL.cs" />
+    <Compile Include="DAL\Interfaces\IUserDAL.cs" />
+    <Compile Include="DAL\Repository\UserRepositoryDAL.cs" />
     <Compile Include="Exceptions\DataBaseException.cs" />
-    <Compile Include="Exceptions\LoginInvalidoException.cs" />
-    <Compile Include="Models\DTO\AdiministradorDTO.cs" />
-    <Compile Include="Models\DTO\ClienteDTO.cs" />
-    <Compile Include="Models\DTO\UsuarioDTO.cs" />
-    <Compile Include="Models\Entities\Cliente.cs" />
-    <Compile Include="Models\Entities\Usuario.cs" />
-    <Compile Include="Models\Enums\TipoUsuario.cs" />
+    <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Models\DTO\AdiministratorDTO.cs" />
+    <Compile Include="Models\DTO\ClientDTO.cs" />
+    <Compile Include="Models\DTO\UserDTO.cs" />
+    <Compile Include="Models\Entities\Client.cs" />
+    <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\Enums\UserType.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

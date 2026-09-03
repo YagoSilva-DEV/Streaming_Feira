@@ -6,19 +6,19 @@ using Streamall.Exceptions;
 
 namespace Streamall.DAL.Repository
 {
-    internal class UsuarioRepositoryDAL : IUsuarioDAL
+    internal class UserRepositoryDAL : IUserDAL
     {
-        private readonly ConexaoDAL _conexaoDAL;
+        private readonly DataBaseConnectionDAL _conexaoDAL;
 
-        public UsuarioRepositoryDAL()
+        public UserRepositoryDAL()
         {
-            _conexaoDAL = new ConexaoDAL();
+            _conexaoDAL = new DataBaseConnectionDAL();
         }
-        public bool EnterAsClientDAL(Usuario usuario)
+        public bool EnterAsClientDAL(User usuario)
         {
             try
             {
-                using (SqlConnection conn = _conexaoDAL.Conectar())
+                using (SqlConnection conn = _conexaoDAL.Connect())
                 {
                     conn.Open();
                     string sql = @"SELECT * FROM Tb_Usuario
@@ -27,9 +27,9 @@ namespace Streamall.DAL.Repository
                                     senha_hash_usuario = @senha_hash_usuario";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@nome_usuario", usuario.NomeUsuario);
+                        cmd.Parameters.AddWithValue("@nome_usuario", usuario.UserName);
                         cmd.Parameters.AddWithValue("@email_usuario", usuario.Email);
-                        cmd.Parameters.AddWithValue("@senha_hash_usuario", usuario.Senha);
+                        cmd.Parameters.AddWithValue("@senha_hash_usuario", usuario.Password);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             return reader.HasRows;

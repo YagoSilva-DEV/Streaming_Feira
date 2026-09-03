@@ -4,11 +4,11 @@ using Microsoft.Data.SqlClient;
 
 namespace Streamall.DAL
 {
-    internal class ConexaoDAL
+    internal class DataBaseConnectionDAL  
     {
         private readonly IConfiguration _configuration;
 
-        public ConexaoDAL()
+        public DataBaseConnectionDAL()
         {
             //Comentarios para os desenvolvedores:
             _configuration = new ConfigurationBuilder()//Instancia a classe ConfigurationBuilder para ler o arquivo appsettings.json
@@ -20,7 +20,7 @@ namespace Streamall.DAL
                 .Build();//Constrói a configuração
         }
 
-        public SqlConnection Conectar()
+        public SqlConnection Connect()
         {
             return new SqlConnection(_configuration.GetConnectionString("Streamall"));
         }
