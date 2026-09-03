@@ -1,13 +1,8 @@
-﻿using Streamall.MVVM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.IO;
+﻿
 using Streamall.Models.DTO;
-using System.Runtime.Remoting.Proxies;
+using Streamall.MVVM;
+using System;
+using System.IO;
 
 namespace Streamall.ViewModels
 {
