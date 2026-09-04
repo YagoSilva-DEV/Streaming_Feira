@@ -7,6 +7,7 @@ using Streamall.BLL.Services;
 using Streamall.DAL.Repository;
 using System.Windows;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Streamall.ViewModels
 {
@@ -26,10 +27,6 @@ namespace Streamall.ViewModels
             }
         }
         private string[] _fullPathFiles;
-
-        public RelayCommand NextImageCommand => new RelayCommand(execute => NextImage());
-        public RelayCommand PrevImageCommand => new RelayCommand(execute => PrevImage());
-
         #endregion
 
         #region Criação dos atributos necessários para o login do usuário
@@ -78,11 +75,13 @@ namespace Streamall.ViewModels
         public LoginViewModel()
         {
             _fullPathFiles = new string[10];
-            _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").Take(10).ToArray();//Pega apenas os 10 primeiros arquivos da Assets
+            _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
+            _userServiceBLL = new UserServiceBLL(new UserRepositoryDAL());
             ImageSourceFile = _fullPathFiles[_count];
 
-            _userServiceBLL = new UserServiceBLL(new UserRepositoryDAL());
+            _ = CarouselImageReplace();
         }
+
 
         #region Métodos de Login, seja de cliente ou administrador
         private void EnterAsClient()
@@ -100,16 +99,15 @@ namespace Streamall.ViewModels
         #endregion
 
         #region Métodos de navegação de imagens para o carrossel
-        private void NextImage()
+        private async Task CarouselImageReplace()
         {
-            _count = (_count == _fullPathFiles.Length - 1) ? 0 : _count + 1;
-            ImageSourceFile = _fullPathFiles[_count];
-        }
+            while (true)
+            {
+                await Task.Delay(3000);
+                _count = (_count == _fullPathFiles.Length - 1) ? 0 : _count + 1;
 
-        private void PrevImage()
-        {
-            _count = (_count == 0) ? _fullPathFiles.Length - 1 : _count - 1;
-            ImageSourceFile = _fullPathFiles[_count];
+                ImageSourceFile = _fullPathFiles[_count];
+            }
         }
         #endregion
         
