@@ -9,11 +9,11 @@ namespace Streamall.Models.DTO
 {
     internal class ClientDTO : UserDTO
     {
-        public ClientDTO(string nomeUsuario, string senha, string email) : base(nomeUsuario, senha, email)
+        public ClientDTO(string userName, string password, string email) : base(userName, password, email)
         {
         }
 
-        public ClientDTO(int idUsuario, string nomeCompleto, string nomeUsuario, string senha, string email, UserType tipoUsuario) : base(idUsuario, nomeCompleto, nomeUsuario, senha, email, tipoUsuario)
+        public ClientDTO(int userId, string fullName, string userName, string password, string email, UserType userType) : base(userId, fullName, userName, password, email, userType)
         {
         }
     }

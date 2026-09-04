@@ -4,6 +4,6 @@ namespace Streamall.BLL.Interfaces
 {
     internal interface IUserBLL
     {
-        bool EnterAsClientBLL(UserDTO usuarioDTO);
+        bool EnterAsClientBLL(UserDTO userDTO);
     }
 }

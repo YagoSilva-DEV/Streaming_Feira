@@ -6,6 +6,7 @@ using System.IO;
 using Streamall.BLL.Services;
 using Streamall.DAL.Repository;
 using System.Windows;
+using System.Linq;
 
 namespace Streamall.ViewModels
 {
@@ -76,7 +77,8 @@ namespace Streamall.ViewModels
         #endregion
         public LoginViewModel()
         {
-            _fullPathFiles = Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, @"..\..\Assets"));
+            _fullPathFiles = new string[10];
+            _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").Take(10).ToArray();//Pega apenas os 10 primeiros arquivos da Assets
             ImageSourceFile = _fullPathFiles[_count];
 
             _userServiceBLL = new UserServiceBLL(new UserRepositoryDAL());

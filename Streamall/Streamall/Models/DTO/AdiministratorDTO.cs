@@ -9,11 +9,11 @@ namespace Streamall.Models.DTO
 {
     internal class AdministratorDTO : UserDTO
     {
-        public AdministratorDTO(string nomeUsuario, string senha, string email) : base(nomeUsuario, senha, email)
+        public AdministratorDTO(string userName, string password, string email) : base(userName, password, email)
         {
         }
 
-        public AdministratorDTO(int idUsuario, string nomeCompleto, string nomeUsuario, string senha, string email, UserType tipoUsuario) : base(idUsuario, nomeCompleto, nomeUsuario, senha, email, tipoUsuario)
+        public AdministratorDTO(int userId, string fullName, string userName, string password, string email, UserType userType) : base(userId, fullName, userName, password, email, userType)
         {
         }
     }

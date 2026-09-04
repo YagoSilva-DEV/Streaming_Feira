@@ -9,6 +9,6 @@ namespace Streamall.DAL.Interfaces
 {
     internal interface IUserDAL
     {
-        bool EnterAsClientDAL(User usuario);
+        bool EnterAsClientDAL(User user);
     }
 }

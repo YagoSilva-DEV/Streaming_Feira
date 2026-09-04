@@ -10,16 +10,16 @@ namespace Streamall.BLL.Services
     internal class UserServiceBLL : IUserBLL
     {
         private readonly IUserDAL _userDAL;
-        public UserServiceBLL(IUserDAL userDal)
+        public UserServiceBLL(IUserDAL userDAL)
         {
-            _userDAL = userDal;
+            _userDAL = userDAL;
         }
 
-        public bool EnterAsClientBLL(UserDTO usuarioDTO)
+        public bool EnterAsClientBLL(UserDTO userDTO)
         {
-            User _usario = new Client(usuarioDTO.UserName, usuarioDTO.Password, usuarioDTO.Email);
+            User _user = new Client(userDTO.UserName, userDTO.Password, userDTO.Email);
 
-            if(!_userDAL.EnterAsClientDAL(_usario))
+            if(!_userDAL.EnterAsClientDAL(_user))
                 throw new InvalidLoginException("Usuário ou senha inválidos.");
 
             return true;
