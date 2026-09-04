@@ -17,13 +17,13 @@ namespace Streamall.Models.Entities
             //Construtor para validação de login
 
             if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password) && string.IsNullOrEmpty(email))
-                throw new InvalidLoginException("Os campos de login não podem estar vazios");
+                throw new InvalidLoginException("Os campos de login estão vazios");
             if (string.IsNullOrWhiteSpace(userName))
                 throw new InvalidLoginException("Insira o nome de usuário");
-            if (string.IsNullOrWhiteSpace(password))
-                throw new InvalidLoginException("Insira a senha");
             if (string.IsNullOrWhiteSpace(email))
                 throw new InvalidLoginException("Insira o email");
+            if (string.IsNullOrWhiteSpace(password))
+                throw new InvalidLoginException("Insira a senha");
 
             UserName = userName;
             Password = password;

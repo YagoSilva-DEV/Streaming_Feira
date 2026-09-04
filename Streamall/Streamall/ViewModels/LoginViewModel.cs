@@ -8,12 +8,25 @@ using Streamall.DAL.Repository;
 using System.Windows;
 using System.Linq;
 using System.Threading.Tasks;
+using Streamall.Exceptions;
 
 namespace Streamall.ViewModels
 {
     internal class LoginViewModel : ViewModelBase
     {
-        private readonly UserServiceBLL _userServiceBLL;
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set 
+            {
+                _errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private readonly ClientServiceBLL _userServiceBLL;
         #region Carrossel de imagens na tela de login
         private int _count = 0;
         private string _imageSourceFile;
@@ -76,7 +89,7 @@ namespace Streamall.ViewModels
         {
             _fullPathFiles = new string[10];
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
-            _userServiceBLL = new UserServiceBLL(new UserRepositoryDAL());
+            _userServiceBLL = new ClientServiceBLL(new ClientRepositoryDAL());
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
@@ -88,7 +101,23 @@ namespace Streamall.ViewModels
         {
             _user = new ClientDTO(_userName, _password, _userEmail);
 
-            //chamar o método de login do cliente, passando o objeto _usuario como parâmetro
+            try
+            {
+                _userServiceBLL.EnterAsClientBLL(_user);
+                MessageBox.Show("Login realizado com sucesso!");
+            }
+            catch (InvalidLoginException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (DataBaseException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
 
         private void EnterAsAdmin()

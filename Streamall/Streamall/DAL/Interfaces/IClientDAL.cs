@@ -7,7 +7,7 @@ using Streamall.Models.Entities;
 
 namespace Streamall.DAL.Interfaces
 {
-    internal interface IUserDAL
+    internal interface IClientDAL
     {
         bool EnterAsClientDAL(User user);
     }

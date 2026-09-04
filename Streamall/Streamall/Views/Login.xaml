@@ -71,8 +71,13 @@
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
                         <Button Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Cliente" Margin="0,20,0,0" Cursor="Hand" Command="{Binding EnterAsClientCommand}"/>
                         <Button Grid.Column="1" Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Admin" Margin="0,20,0,0" Cursor="Hand"/>
+                        <TextBlock Grid.Row="1" Text="{Binding ErrorMessage}" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="2" FontSize="12"/>
                     </Grid>
                 </Grid>
 

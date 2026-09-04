@@ -7,22 +7,21 @@ using Streamall.Exceptions;
 
 namespace Streamall.BLL.Services
 {
-    internal class UserServiceBLL : IUserBLL
+    internal class ClientServiceBLL : IClientBLL
     {
-        private readonly IUserDAL _userDAL;
-        public UserServiceBLL(IUserDAL userDAL)
+        private User _user;
+        private readonly IClientDAL _userDAL;
+        public ClientServiceBLL(IClientDAL userDAL)
         {
             _userDAL = userDAL;
         }
 
-        public bool EnterAsClientBLL(UserDTO userDTO)
+        public void EnterAsClientBLL(UserDTO userDTO)
         {
-            User _user = new Client(userDTO.UserName, userDTO.Password, userDTO.Email);
+            _user = new Client(userDTO.UserName, userDTO.Password, userDTO.Email);
 
             if(!_userDAL.EnterAsClientDAL(_user))
                 throw new InvalidLoginException("Usuário ou senha inválidos.");
-
-            return true;
         }
     }
 }
