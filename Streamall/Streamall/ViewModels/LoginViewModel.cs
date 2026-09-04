@@ -26,7 +26,8 @@ namespace Streamall.ViewModels
             }
         }
 
-        private readonly ClientServiceBLL _userServiceBLL;
+        private readonly ClientServiceBLL _clientServiceBLL;
+        private readonly AdministratorServiceBLL _administratorServiceBLL;
         #region Carrossel de imagens na tela de login
         private int _count = 0;
         private string _imageSourceFile;
@@ -87,9 +88,9 @@ namespace Streamall.ViewModels
         #endregion
         public LoginViewModel()
         {
-            _fullPathFiles = new string[10];
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
-            _userServiceBLL = new ClientServiceBLL(new ClientRepositoryDAL());
+            _clientServiceBLL = new ClientServiceBLL(new ClientRepositoryDAL());
+            _administratorServiceBLL = new AdministratorServiceBLL(new AdministratorRepositoryDAL());
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
@@ -103,8 +104,9 @@ namespace Streamall.ViewModels
 
             try
             {
-                _userServiceBLL.EnterAsClientBLL(_user);
+                _clientServiceBLL.EnterAsClientBLL(_user);
                 MessageBox.Show("Login realizado com sucesso!");
+                ErrorMessage = string.Empty;
             }
             catch (InvalidLoginException ex)
             {
@@ -123,7 +125,25 @@ namespace Streamall.ViewModels
         private void EnterAsAdmin()
         {
             _user = new AdministratorDTO(_userName, _password, _userEmail);
-            //chamar o método de login do administrador, passando o objeto _usuario como parâmetro
+            try
+            {
+                _administratorServiceBLL.EnterAsAdministratorBLL(_user);
+
+                MessageBox.Show("Login realizado com sucesso!");
+                ErrorMessage = string.Empty;
+            }
+            catch(InvalidLoginException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (DataBaseException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
         }
         #endregion
 

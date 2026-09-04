@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="Montserrat">
+        /Streamall;component/Fonts/#Montserrat
+    </FontFamily>
+
+    <FontFamily x:Key="Righteous">
+        /Streamall;component/Fonts/#Righteous
+    </FontFamily>
+
+</ResourceDictionary>

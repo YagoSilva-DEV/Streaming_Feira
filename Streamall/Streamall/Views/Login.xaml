@@ -9,9 +9,10 @@
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         BorderBrush="White"
-         Opacity="0.8"
         Background="{StaticResource BackgroundColorLoginBrush}"
-        Title="Login" Height="400" Width="600">
+        Title="Login" Height="400" Width="600"
+        ResizeMode="NoResize"
+        >
     <Grid>
 
         <Rectangle
@@ -61,33 +62,30 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Style="{StaticResource StyleTextBoxLogin}" Text="{Binding UserName}" x:Name="txtName" TextChanged="txtName_TextChanged" />
-                    <TextBlock x:Name="tbBlockName" Grid.Row="0" Text="Usuário" Style="{StaticResource StyleTextBlockLogin}"/>
+                    <TextBlock x:Name="tbBlockName" Grid.Row="0" Text="Usuário" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <TextBox Grid.Row="1" Style="{StaticResource StyleTextBoxLogin}" Text="{Binding UserEmail}" x:Name="txtEmail" TextChanged="txtEmail_TextChanged"/>
-                    <TextBlock x:Name="tbBlockEmail" Grid.Row="1" Text="Email" Style="{StaticResource StyleTextBlockLogin}"/>
+                    <TextBlock x:Name="tbBlockEmail" Grid.Row="1" Text="Email" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <TextBox Grid.Row="2" Style="{StaticResource StyleTextBoxLogin}" Text="{Binding Password}" x:Name="txtPassword" TextChanged="txtPassword_TextChanged"/>
-                    <TextBlock x:Name="tbBlockPassword" Grid.Row="2" Text="Senha" Style="{StaticResource StyleTextBlockLogin}"/>
+                    <TextBlock x:Name="tbBlockPassword" Grid.Row="2" Text="Senha" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="5*"/>
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="8*"/>
-                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1.8*"/>
+                            <RowDefinition Height="4.1*"/>
+                            <RowDefinition Height="4.1*"/>
                         </Grid.RowDefinitions>
-                        <Button Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Cliente" Margin="0,20,0,0" Cursor="Hand" Command="{Binding EnterAsClientCommand}"/>
-                        <Button Grid.Column="1" Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Admin" Margin="0,20,0,0" Cursor="Hand"/>
-                        <TextBlock Grid.Row="1" Text="{Binding ErrorMessage}" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="2" FontSize="12"/>
+                        <TextBlock Text="{Binding ErrorMessage}" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="2"/>
+                        <Button Grid.Row="1" Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Cliente" Margin="0,5,0,0" Cursor="Hand" Command="{Binding EnterAsClientCommand}"/>
+                        <Button Grid.Row="2" Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Admin" Margin="0,5,0,0" Cursor="Hand" Command="{Binding EnterAsAdminCommand}"/>
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="Ainda não tem conta?" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Ainda não tem conta?" Style="{StaticResource StyleTextBlockLogin}"/>
+                    <TextBlock Grid.Column="1">
                     <Hyperlink Command="{Binding OpenRegisterCommand}" Style="{StaticResource StyleHyperlinkLogin}">     
                         Criar uma conta
                     </Hyperlink>
