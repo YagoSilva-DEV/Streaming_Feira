@@ -3,12 +3,12 @@ using Streamall.Models.DTO;
 using Streamall.MVVM;
 using System;
 using System.IO;
-using Streamall.BLL.Services;
 using Streamall.DAL.Repository;
 using System.Windows;
 using System.Linq;
 using System.Threading.Tasks;
 using Streamall.Exceptions;
+using Streamall.BLL.Interfaces;
 
 namespace Streamall.ViewModels
 {
@@ -26,8 +26,8 @@ namespace Streamall.ViewModels
             }
         }
 
-        private readonly ClientServiceBLL _clientServiceBLL;
-        private readonly AdministratorServiceBLL _administratorServiceBLL;
+        private readonly IClientBLL _clientServiceBLL;
+        private readonly IAdministratorBLL _administratorServiceBLL;
         #region Carrossel de imagens na tela de login
         private int _count = 0;
         private string _imageSourceFile;
@@ -81,16 +81,15 @@ namespace Streamall.ViewModels
         }
 
         private UserDTO _user;
-
         public RelayCommand EnterAsClientCommand => new RelayCommand(execute => EnterAsClient());
         public RelayCommand EnterAsAdminCommand => new RelayCommand(execute => EnterAsAdmin());
 
         #endregion
-        public LoginViewModel()
+        public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL)
         {
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
-            _clientServiceBLL = new ClientServiceBLL(new ClientRepositoryDAL());
-            _administratorServiceBLL = new AdministratorServiceBLL(new AdministratorRepositoryDAL());
+            _clientServiceBLL = clientServiceBLL;
+            _administratorServiceBLL = administratorServiceBLL;
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
@@ -147,7 +146,7 @@ namespace Streamall.ViewModels
         }
         #endregion
 
-        #region Métodos de navegação de imagens para o carrossel
+        #region Método de navegação de imagens para o carrossel
         private async Task CarouselImageReplace()
         {
             while (true)

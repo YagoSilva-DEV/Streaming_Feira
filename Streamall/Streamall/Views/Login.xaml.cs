@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
 using Streamall.ViewModels;
 
 namespace Streamall.Views
@@ -22,7 +24,7 @@ namespace Streamall.Views
     {
         public Login()
         {
-            DataContext = new LoginViewModel();
+            DataContext = new LoginViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), new AdministratorServiceBLL(new AdministratorRepositoryDAL()));
             InitializeComponent();
         }
 

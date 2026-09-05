@@ -22,7 +22,7 @@ namespace Streamall.BLL.Services
             _user = new Administrator(admin.UserName, admin.Password, admin.Email);
 
             if (!_adminDAL.EnterAsAdministratorDAL(_user))
-                throw new InvalidLoginException("Login ou senha inválidos");
+                throw new InvalidLoginException("Usuário ou senha inválidos");
         }
     }
 }
