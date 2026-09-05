@@ -86,7 +86,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Ainda não tem conta?" Style="{StaticResource StyleTextBlockLogin}"/>
                     <TextBlock Grid.Column="1">
-                    <Hyperlink Command="{Binding OpenRegisterCommand}" Style="{StaticResource StyleHyperlinkLogin}">     
+                    <Hyperlink Command="{Binding NavigateToSignUpCommand}" Style="{StaticResource StyleHyperlinkLogin}">     
                         Criar uma conta
                     </Hyperlink>
                     </TextBlock>

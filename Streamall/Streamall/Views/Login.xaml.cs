@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
+using Streamall.Service;
+using Streamall.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Streamall.BLL.Services;
-using Streamall.DAL.Repository;
-using Streamall.ViewModels;
 
 namespace Streamall.Views
 {
@@ -24,7 +15,7 @@ namespace Streamall.Views
     {
         public Login()
         {
-            DataContext = new LoginViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), new AdministratorServiceBLL(new AdministratorRepositoryDAL()));
+            DataContext = new LoginViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), new AdministratorServiceBLL(new AdministratorRepositoryDAL()), new NavegationService());
             InitializeComponent();
         }
 

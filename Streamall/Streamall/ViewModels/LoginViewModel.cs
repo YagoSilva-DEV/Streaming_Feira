@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Streamall.Exceptions;
 using Streamall.BLL.Interfaces;
+using Streamall.Interface;
 
 namespace Streamall.ViewModels
 {
@@ -19,13 +20,14 @@ namespace Streamall.ViewModels
         public string ErrorMessage
         {
             get { return _errorMessage; }
-            set 
+            set
             {
                 _errorMessage = value;
                 OnPropertyChanged();
             }
         }
 
+        private INavegationService _navegationService;
         private readonly IClientBLL _clientServiceBLL;
         private readonly IAdministratorBLL _administratorServiceBLL;
         #region Carrossel de imagens na tela de login
@@ -49,8 +51,8 @@ namespace Streamall.ViewModels
         public string UserName
         {
             get { return _userName; }
-            set 
-            { 
+            set
+            {
                 _userName = value;
                 OnPropertyChanged();
             }
@@ -61,8 +63,8 @@ namespace Streamall.ViewModels
         public string UserEmail
         {
             get { return _userEmail; }
-            set 
-            { 
+            set
+            {
                 _userEmail = value;
                 OnPropertyChanged();
             }
@@ -72,8 +74,8 @@ namespace Streamall.ViewModels
 
         public string Password
         {
-            get { return _password ; }
-            set 
+            get { return _password; }
+            set
             {
                 _password = value;
                 OnPropertyChanged();
@@ -81,20 +83,21 @@ namespace Streamall.ViewModels
         }
 
         private UserDTO _user;
-        public RelayCommand EnterAsClientCommand => new RelayCommand(execute => EnterAsClient());
-        public RelayCommand EnterAsAdminCommand => new RelayCommand(execute => EnterAsAdmin());
-
         #endregion
-        public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL)
+        public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL, INavegationService navegationService)
         {
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
             _clientServiceBLL = clientServiceBLL;
             _administratorServiceBLL = administratorServiceBLL;
+            _navegationService = navegationService;
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
         }
 
+        public RelayCommand EnterAsClientCommand => new RelayCommand(execute => EnterAsClient());
+        public RelayCommand EnterAsAdminCommand => new RelayCommand(execute => EnterAsAdmin());
+        public RelayCommand NavigateToSignUpCommand => new RelayCommand(execute => _navegationService.Navigate<SignUpViewModel>());
 
         #region Métodos de Login, seja de cliente ou administrador
         private void EnterAsClient()
@@ -131,7 +134,7 @@ namespace Streamall.ViewModels
                 MessageBox.Show("Login realizado com sucesso!");
                 ErrorMessage = string.Empty;
             }
-            catch(InvalidLoginException ex)
+            catch (InvalidLoginException ex)
             {
                 ErrorMessage = ex.Message;
             }
@@ -158,6 +161,6 @@ namespace Streamall.ViewModels
             }
         }
         #endregion
-        
+
     }
 }

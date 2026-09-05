@@ -15,7 +15,6 @@ namespace Streamall.Models.Entities
         public User(string userName, string password, string email)
         {
             //Construtor para validação de login
-
             if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password) && string.IsNullOrEmpty(email))
                 throw new InvalidLoginException("Os campos de login estão vazios");
             if (string.IsNullOrWhiteSpace(userName))
