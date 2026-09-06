@@ -22,17 +22,17 @@ namespace Streamall.DAL.Repository
                 {
                     conn.Open();
                     string sql = @"SELECT 
-                                    nome_usuario, email_usuario, senha_hash_usuario
-                                    FROM Tb_Funcionario f INNER JOIN Tb_Usuario u
-                                    ON f.pk_fk_id_funcionario = u.pk_id_usuario
-                                    WHERE nome_usuario = @nome_usuario AND
-                                    senha_hash_usuario = @senha_hash_usuario AND
-                                    email_usuario = @email_usuario";
+                                    name_user, email_user, password_hash_user
+                                    FROM Tb_Administrator a INNER JOIN Tb_User u
+                                    ON a.pk_fk_id_administrator = u.pk_id_user
+                                    WHERE name_user = @name_user AND
+                                    password_hash_user = @password_hash_user AND
+                                    email_user = @email_user";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@nome_usuario", user.UserName);
-                        cmd.Parameters.AddWithValue("@senha_hash_usuario", user.Password);
-                        cmd.Parameters.AddWithValue("@email_usuario", user.Email);
+                        cmd.Parameters.AddWithValue("@name_user", user.UserName);
+                        cmd.Parameters.AddWithValue("@password_hash_user", user.Password);
+                        cmd.Parameters.AddWithValue("@email_user", user.Email);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             return reader.HasRows;
