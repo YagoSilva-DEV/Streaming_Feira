@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Streamall.Exceptions;
 using Streamall.BLL.Interfaces;
 using Streamall.Interface;
+using System.Threading;
+using Streamall.Views;
 
 namespace Streamall.ViewModels
 {
@@ -30,6 +32,7 @@ namespace Streamall.ViewModels
         private INavegationService _navegationService;
         private readonly IClientBLL _clientServiceBLL;
         private readonly IAdministratorBLL _administratorServiceBLL;
+        private readonly CancellationTokenSource _carouselCancellationTokenSource = new CancellationTokenSource();
         #region Carrossel de imagens na tela de login
         private int _count = 0;
         private string _imageSourceFile;
@@ -81,9 +84,12 @@ namespace Streamall.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private UserDTO _user;
         #endregion
+
+        public RelayCommand EnterAsClientCommand { get; set; }
+        public RelayCommand EnterAsAdminCommand { get; set; }
+        public RelayCommand NavigateToSignUpCommand { get; set; }
+
         public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL, INavegationService navegationService)
         {
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
@@ -93,46 +99,39 @@ namespace Streamall.ViewModels
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
-        }
 
-        public RelayCommand EnterAsClientCommand => new RelayCommand(execute => EnterAsClient());
-        public RelayCommand EnterAsAdminCommand => new RelayCommand(execute => EnterAsAdmin());
-        public RelayCommand NavigateToSignUpCommand => new RelayCommand(execute => _navegationService.Navigate<SignUpViewModel>());
+            EnterAsClientCommand = new RelayCommand(execute => EnterAsClient());
+            EnterAsAdminCommand = new RelayCommand(execute => EnterAsAdmin());
+            NavigateToSignUpCommand = new RelayCommand(execute => _navegationService.Navigate<SignUpViewModel>());
+        }
 
         #region Métodos de Login, seja de cliente ou administrador
         private void EnterAsClient()
         {
-            _user = new ClientDTO(_userName, _password, _userEmail);
+            UserDTO _user = new ClientDTO(_userName, _password, _userEmail);
 
-            try
+            ExecuteLogin(() =>
             {
                 _clientServiceBLL.EnterAsClientBLL(_user);
-                MessageBox.Show("Login realizado com sucesso!");
-                ErrorMessage = string.Empty;
-            }
-            catch (InvalidLoginException ex)
-            {
-                ErrorMessage = ex.Message;
-            }
-            catch (DataBaseException ex)
-            {
-                ErrorMessage = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = ex.Message;
-            }
+            });
         }
 
         private void EnterAsAdmin()
         {
-            _user = new AdministratorDTO(_userName, _password, _userEmail);
-            try
+            UserDTO _user = new AdministratorDTO(_userName, _password, _userEmail);
+            ExecuteLogin(() =>
             {
                 _administratorServiceBLL.EnterAsAdministratorBLL(_user);
+            });
+        }
 
-                MessageBox.Show("Login realizado com sucesso!");
+        private void ExecuteLogin(Action loginAction)
+        {
+            try
+            {
+                loginAction();
                 ErrorMessage = string.Empty;
+                MessageBox.Show("Login realizado com sucesso!");
             }
             catch (InvalidLoginException ex)
             {
@@ -142,9 +141,9 @@ namespace Streamall.ViewModels
             {
                 ErrorMessage = ex.Message;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ErrorMessage = ex.Message;
+                ErrorMessage = "Ocorreu um erro inesperado.";
             }
         }
         #endregion
@@ -152,10 +151,10 @@ namespace Streamall.ViewModels
         #region Método de navegação de imagens para o carrossel
         private async Task CarouselImageReplace()
         {
-            while (true)
+            while (!_carouselCancellationTokenSource.Token.IsCancellationRequested)
             {
-                await Task.Delay(3000);
-                _count = (_count == _fullPathFiles.Length - 1) ? 0 : _count + 1;
+                await Task.Delay(4500);
+                _count = (_count + 1) % _fullPathFiles.Length;
 
                 ImageSourceFile = _fullPathFiles[_count];
             }

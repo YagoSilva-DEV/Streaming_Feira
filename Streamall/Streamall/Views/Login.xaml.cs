@@ -15,7 +15,7 @@ namespace Streamall.Views
     {
         public Login()
         {
-            DataContext = new LoginViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), new AdministratorServiceBLL(new AdministratorRepositoryDAL()), new NavegationService());
+            DataContext = new LoginViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), new AdministratorServiceBLL(new AdministratorRepositoryDAL()), new NavigationService());
             InitializeComponent();
         }
 
