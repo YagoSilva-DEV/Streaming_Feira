@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Streamall.Interface
+namespace Streamall.Navigation.Interface
 {
-    internal interface INavegationService
+    internal interface INavigationService
     {
         void Navigate<TViewModel>();
     }

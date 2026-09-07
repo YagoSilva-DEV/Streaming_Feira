@@ -1,12 +1,12 @@
-﻿using Streamall.Interface;
+﻿using Streamall.Navigation.Interface;
 using Streamall.ViewModels;
 using Streamall.Views;
 using System.Linq;
 using System.Windows;
 
-namespace Streamall.Service
+namespace Streamall.Navigation.Service
 {
-    internal class NavigationService : INavegationService
+    internal class NavigationService : INavigationService
     {
         public void Navigate<TViewModel>()
         {
@@ -22,10 +22,16 @@ namespace Streamall.Service
                 {
                     signUp.Owner = owner;
                     signUp.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    owner.Opacity = 0.3;
                 }
 
 
-                signUp.ShowDialog();
+                var signUpIsActive = signUp.ShowDialog();
+
+                if (signUpIsActive == false)
+                {
+                    owner.Opacity = 1;
+                }
             }
         }
     }

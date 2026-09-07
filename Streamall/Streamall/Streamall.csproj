@@ -205,8 +205,8 @@
     <Compile Include="Models\Enums\UserType.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
-    <Compile Include="Navegation\Interface\INavegationService.cs" />
-    <Compile Include="Navegation\Service\NavigationService.cs" />
+    <Compile Include="Navigation\Interface\INavigationService.cs" />
+    <Compile Include="Navigation\Service\NavigationService.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Views\Login.xaml.cs">

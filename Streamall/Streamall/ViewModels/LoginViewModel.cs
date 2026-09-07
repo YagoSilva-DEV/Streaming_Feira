@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Streamall.Exceptions;
 using Streamall.BLL.Interfaces;
-using Streamall.Interface;
+using Streamall.Navigation.Interface;
 using System.Threading;
 using Streamall.Views;
 
@@ -29,7 +29,7 @@ namespace Streamall.ViewModels
             }
         }
 
-        private INavegationService _navegationService;
+        private INavigationService _navigationService;
         private readonly IClientBLL _clientServiceBLL;
         private readonly IAdministratorBLL _administratorServiceBLL;
         private readonly CancellationTokenSource _carouselCancellationTokenSource = new CancellationTokenSource();
@@ -90,19 +90,19 @@ namespace Streamall.ViewModels
         public RelayCommand EnterAsAdminCommand { get; set; }
         public RelayCommand NavigateToSignUpCommand { get; set; }
 
-        public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL, INavegationService navegationService)
+        public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL, INavigationService navegationService)
         {
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
             _clientServiceBLL = clientServiceBLL;
             _administratorServiceBLL = administratorServiceBLL;
-            _navegationService = navegationService;
+            _navigationService = navegationService;
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
 
             EnterAsClientCommand = new RelayCommand(execute => EnterAsClient());
             EnterAsAdminCommand = new RelayCommand(execute => EnterAsAdmin());
-            NavigateToSignUpCommand = new RelayCommand(execute => _navegationService.Navigate<SignUpViewModel>());
+            NavigateToSignUpCommand = new RelayCommand(execute => _navigationService.Navigate<SignUpViewModel>());
         }
 
         #region Métodos de Login, seja de cliente ou administrador

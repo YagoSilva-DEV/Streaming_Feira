@@ -1,6 +1,6 @@
 ﻿using Streamall.BLL.Services;
 using Streamall.DAL.Repository;
-using Streamall.Service;
+using Streamall.Navigation.Service;
 using Streamall.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
