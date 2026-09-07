@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views"
         mc:Ignorable="d"
-        Title="SignUp" Height="350" Width="500"
-        WindowStartupLocation="CenterOwner">
+        WindowStyle="None"
+        BorderBrush="White"
+        BorderThickness="1"
+        Background="{StaticResource BackgroundColorLoginBrush}"
+        Title="SignUp" Height="350" Width="400">
     <Grid>
         
     </Grid>

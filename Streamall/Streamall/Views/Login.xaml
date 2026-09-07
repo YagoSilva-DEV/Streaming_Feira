@@ -9,6 +9,7 @@
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         BorderBrush="White"
+        BorderThickness="1"
         Background="{StaticResource BackgroundColorLoginBrush}"
         Title="Login" Height="400" Width="600"
         >
