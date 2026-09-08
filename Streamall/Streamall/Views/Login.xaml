@@ -62,7 +62,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Style="{StaticResource StyleTextBoxLogin}" Text="{Binding UserName}" x:Name="txtName" TextChanged="txtName_TextChanged" />
-                    <TextBlock x:Name="tbBlockName" Grid.Row="0" Text="Usuário" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
+                    <TextBlock x:Name="tbBlockName" Text="Usuário" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <TextBox Grid.Row="1" Style="{StaticResource StyleTextBoxLogin}" Text="{Binding UserEmail}" x:Name="txtEmail" TextChanged="txtEmail_TextChanged"/>
                     <TextBlock x:Name="tbBlockEmail" Grid.Row="1" Text="Email" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <TextBox Grid.Row="2" Style="{StaticResource StyleTextBoxLogin}" Text="{Binding Password}" x:Name="txtPassword" TextChanged="txtPassword_TextChanged"/>
@@ -74,8 +74,8 @@
                             <RowDefinition Height="4.1*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="{Binding ErrorMessage}" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" Grid.ColumnSpan="2"/>
-                        <Button Grid.Row="1" Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Cliente" Margin="0,5,0,0" Cursor="Hand" Command="{Binding EnterAsClientCommand}"/>
-                        <Button Grid.Row="2" Style="{StaticResource StylePrimaryButtonLogin}" VerticalAlignment="Center" Content="Admin" Margin="0,5,0,0" Cursor="Hand" Command="{Binding EnterAsAdminCommand}"/>
+                        <Button Grid.Row="1" Style="{StaticResource StylePrimaryButtonLogin}" Content="Cliente" Command="{Binding EnterAsClientCommand}"/>
+                        <Button Grid.Row="2" Style="{StaticResource StylePrimaryButtonLogin}" Content="Admin" Command="{Binding EnterAsAdminCommand}"/>
                     </Grid>
                 </Grid>
 
