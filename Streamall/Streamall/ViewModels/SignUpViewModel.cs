@@ -1,12 +1,9 @@
 ﻿using Streamall.BLL.Interfaces;
 using Streamall.Exceptions;
+using Streamall.Helpers;
 using Streamall.Models.DTO;
 using Streamall.MVVM;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Streamall.ViewModels
@@ -14,6 +11,7 @@ namespace Streamall.ViewModels
     internal class SignUpViewModel : ViewModelBase
     {
         private IClientBLL _clientBLL;
+        private Action _closeWindow;
         private string _fullName;
 
         public string FullName
@@ -71,10 +69,11 @@ namespace Streamall.ViewModels
 
         public RelayCommand SignUpCommand { get; set; }
 
-        public SignUpViewModel(IClientBLL clientBLL)
+        public SignUpViewModel(IClientBLL clientBLL, Action action)
         {
             _clientBLL = clientBLL;
             SignUpCommand = new RelayCommand(execute => SignUp());
+            _closeWindow = action;
         }
 
         private void SignUp()
@@ -84,7 +83,7 @@ namespace Streamall.ViewModels
             try
             {
                 _clientBLL.SignUpAsClientBLL(user);
-                MessageBox.Show("Cadastro Concluido");
+                _closeWindow.Invoke();
             }
             catch(InvalidSignUpException ex)
             {

@@ -1,6 +1,8 @@
 ﻿using Streamall.BLL.Services;
 using Streamall.DAL.Repository;
+using Streamall.Helpers;
 using Streamall.ViewModels;
+using System;
 using System.Windows;
 
 namespace Streamall.Views
@@ -12,8 +14,9 @@ namespace Streamall.Views
     {
         public SignUp()
         {
+            Action signUpSuccessAction = () => { MessageBoxHelper.ShowMessageBoxSuccess("Cadastro realizado com sucesso"); Close(); };
             InitializeComponent();
-            DataContext = new SignUpViewModel(new ClientServiceBLL(new ClientRepositoryDAL()));
+            DataContext = new SignUpViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), signUpSuccessAction);
         }
 
         private void txtFullName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -46,11 +49,6 @@ namespace Streamall.Views
                 tbPassword.Visibility = Visibility.Hidden;
             else
                 tbPassword.Visibility = Visibility.Visible;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
