@@ -46,5 +46,38 @@ namespace Streamall.DAL.Repository
                 throw new DataBaseException("A conexão com o banco de dados falhou.");
             }
         }
+
+        public void SignUpAsClientDAL(User user)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+
+                    string sql = @"INSERT INTO Tb_User
+                                   (complete_name_user, name_user, password_hash_user, email_user, type_user)
+                                   VALUES (@complete_name_user, @name_user, @password_hash_user, @email_user, @type_user)";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@complete_name_user", user.FullName);
+                        cmd.Parameters.AddWithValue("@name_user", user.UserName);
+                        cmd.Parameters.AddWithValue("@password_hash_user", user.Password);
+                        cmd.Parameters.AddWithValue("@email_user", user.Email);
+                        cmd.Parameters.AddWithValue("@type_user", 1);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
+            {
+                throw new InvalidSignUpException("Este nome de usuário já está cadastrado.");
+            }
+            catch(SqlException)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.");
+            }
+        }
     }
 }

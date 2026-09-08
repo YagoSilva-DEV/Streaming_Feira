@@ -10,7 +10,7 @@ namespace Streamall.Models.DTO
     internal abstract class UserDTO
     {
         public int UserId { get; set; }
-        public string NomeCompleto { get; set; }
+        public string FullName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
@@ -23,10 +23,18 @@ namespace Streamall.Models.DTO
             Email = email;
         }
 
-        public UserDTO(int userId, string nomeCompleto, string userName, string password, string email, UserType userType)
+        public UserDTO(string fullName, string userName, string password, string email)
+        {
+            FullName = fullName;
+            UserName = userName;
+            Password = password;
+            Email = email;
+        }
+
+        public UserDTO(int userId, string fullName, string userName, string password, string email, UserType userType)
         {
             UserId = userId;
-            NomeCompleto = nomeCompleto;
+            FullName = fullName;
             UserName = userName;
             Password = password;
             Email = email;

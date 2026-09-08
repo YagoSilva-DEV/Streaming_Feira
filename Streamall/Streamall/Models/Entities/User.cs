@@ -29,6 +29,30 @@ namespace Streamall.Models.Entities
             Email = email;
         }
 
+        public User(string fullName, string userName, string password, string email)
+        {
+            //Construtor para validação de cadastro
+            if (string.IsNullOrEmpty(fullName) && string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password) && string.IsNullOrEmpty(email))
+                throw new InvalidSignUpException("Os campos de cadastro estão vazios");
+            if (string.IsNullOrWhiteSpace(fullName))
+                throw new InvalidSignUpException("Insira o nome completo");
+            if (string.IsNullOrWhiteSpace(userName))
+                throw new InvalidSignUpException("Insira o nome de usuário");
+            if (string.IsNullOrWhiteSpace(email))
+                throw new InvalidSignUpException("Insira o email");
+            VerifyEmail(email);
+
+            if (string.IsNullOrWhiteSpace(password))
+                throw new InvalidSignUpException("Insira a senha");
+            VerifyPassword(password);
+
+
+            FullName = fullName;
+            UserName = userName;
+            Password = password;
+            Email = email;
+        }
+
         public User(int idUsuario, string nomeCompleto, string nomeUsuario, string senha, string email, UserType tipoUsuario)
         {
             UserId = idUsuario;
@@ -37,6 +61,44 @@ namespace Streamall.Models.Entities
             Password = senha;
             Email = email;
             TipoUsuario = tipoUsuario;
+        }
+
+        private void VerifyEmail(string email)
+        {
+            bool hasSign = false;
+            bool hasDot = false;
+            foreach(char ch in email)
+            {
+                if(ch == '@')
+                    hasSign = true;
+                if(ch == '.')
+                    hasDot = true;
+            }
+
+            if (!(hasSign && hasDot))
+                throw new InvalidSignUpException("O endereço email está incorreto");
+        }
+
+        private void VerifyPassword(string password)
+        {
+            if (password.Length <= 8)
+                throw new InvalidSignUpException("Senha deve conter mais que 8 caracteres");
+
+            bool hasUpperCase = false;
+            bool hasLowerCase = false;
+            bool hasNumber = false;
+            foreach (char ch in password)
+            {
+                if (char.IsUpper(ch))
+                    hasUpperCase = true;
+                if (char.IsLower(ch))
+                    hasLowerCase = true;
+                if (char.IsNumber(ch))
+                    hasNumber = true;
+            }
+
+            if (!(hasUpperCase && hasLowerCase && hasNumber))
+                throw new InvalidSignUpException("Use maiúscula, minúscula e número.");
         }
     }
 }

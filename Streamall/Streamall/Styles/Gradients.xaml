@@ -16,4 +16,9 @@
         <GradientStop Color="{StaticResource PrimaryBlueLogin}" Offset="1"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="LogoGradientSignUp" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource TextPrimaryLogin}" Offset="0"/>
+        <GradientStop Color="{StaticResource PrimaryBlueLogin}" Offset="1"/>
+    </LinearGradientBrush>
+
 </ResourceDictionary>

@@ -4,12 +4,12 @@ using Streamall.Models.Entities;
 using Streamall.DAL.Interfaces;
 using System;
 using Streamall.Exceptions;
+using Streamall.Helpers;
 
 namespace Streamall.BLL.Services
 {
     internal class ClientServiceBLL : IClientBLL
     {
-        private User _user;
         private readonly IClientDAL _clientDAL;
         public ClientServiceBLL(IClientDAL clientDAL)
         {
@@ -18,10 +18,17 @@ namespace Streamall.BLL.Services
 
         public void EnterAsClientBLL(UserDTO userDTO)
         {
-            _user = new Client(userDTO.UserName, userDTO.Password, userDTO.Email);
+            User _user = new Client(userDTO.UserName, userDTO.Password, userDTO.Email);
 
-            if(!_clientDAL.EnterAsClientDAL(_user))
+            if (!_clientDAL.EnterAsClientDAL(_user))
                 throw new InvalidLoginException("Usuário ou senha inválidos.");
+        }
+
+        public void SignUpAsClientBLL(UserDTO userDTO)
+        {
+            User user = new Client(userDTO.FullName, userDTO.UserName, userDTO.Password, userDTO.Email);
+            user.Password = PasswordHelper.HashPassword(userDTO.Password);
+            _clientDAL.SignUpAsClientDAL(user);
         }
     }
 }

@@ -27,10 +27,19 @@
 
     </Style>
     <Style TargetType="TextBlock" x:Key="StyleTextBlockTopSignUp">
-        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
-        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
+        <Setter Property="Foreground" Value="{StaticResource LogoGradientSignUp}"/>
+        <Setter Property="FontSize" Value="40"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockError">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="5,0,0,5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
     </Style>
 </ResourceDictionary>

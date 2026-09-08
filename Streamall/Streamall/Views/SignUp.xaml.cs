@@ -1,4 +1,6 @@
-﻿using Streamall.ViewModels;
+﻿using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
+using Streamall.ViewModels;
 using System.Windows;
 
 namespace Streamall.Views
@@ -11,7 +13,7 @@ namespace Streamall.Views
         public SignUp()
         {
             InitializeComponent();
-            DataContext = new SignUpViewModel();
+            DataContext = new SignUpViewModel(new ClientServiceBLL(new ClientRepositoryDAL()));
         }
 
         private void txtFullName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
@@ -44,6 +46,11 @@ namespace Streamall.Views
                 tbPassword.Visibility = Visibility.Hidden;
             else
                 tbPassword.Visibility = Visibility.Visible;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
