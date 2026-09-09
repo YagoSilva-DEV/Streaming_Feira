@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="/Styles/TextBox.xaml"/>
                 <ResourceDictionary Source="/Styles/TextStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/PathIconsSvg.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

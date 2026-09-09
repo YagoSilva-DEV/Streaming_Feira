@@ -13,7 +13,7 @@
             <ColumnDefinition Width="0.9*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1" Background="#0B0F14">
+        <Grid Grid.Column="1" Background="{StaticResource BackgroundColorLoginBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="0.2*"/>

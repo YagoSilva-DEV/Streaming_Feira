@@ -385,4 +385,9 @@
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\packages\Microsoft.Data.SqlClient.SNI.6.0.2\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
