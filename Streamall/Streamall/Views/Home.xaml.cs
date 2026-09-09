@@ -23,5 +23,10 @@ namespace Streamall.Views
         {
             InitializeComponent();
         }
+
+        private void SideBar_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

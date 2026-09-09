@@ -4,9 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views"
+        xmlns:userControls="clr-namespace:Streamall.Views.UserControls"
         mc:Ignorable="d"
         Title="Home" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.9*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1" Background="#0B0F14">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <userControls:Header Grid.Row="0"/>
+        </Grid>
+        <userControls:SideBar Grid.Column="0" />
     </Grid>
 </Window>
