@@ -17,12 +17,5 @@ namespace Streamall.BLL.Services
             _adminDAL = adminDAL;
         }
 
-        public void EnterAsAdministratorBLL(UserDTO admin)
-        {
-            _user = new Administrator(admin.UserName, admin.Password, admin.Email);
-
-            if (!_adminDAL.EnterAsAdministratorDAL(_user))
-                throw new InvalidLoginException("Usuário ou senha inválidos.");
-        }
     }
 }

@@ -30,8 +30,7 @@ namespace Streamall.ViewModels
         }
 
         private INavigationService _navigationService;
-        private readonly IClientBLL _clientServiceBLL;
-        private readonly IAdministratorBLL _administratorServiceBLL;
+        private IUserBLL _userBLL;
         private readonly CancellationTokenSource _carouselCancellationTokenSource = new CancellationTokenSource();
         #region Carrossel de imagens na tela de login
         private int _count = 0;
@@ -86,64 +85,44 @@ namespace Streamall.ViewModels
         }
         #endregion
 
-        public RelayCommand EnterAsClientCommand { get; set; }
-        public RelayCommand EnterAsAdminCommand { get; set; }
+        public RelayCommand LoginCommand { get; set; }
         public RelayCommand NavigateToSignUpCommand { get; set; }
 
-        public LoginViewModel(IClientBLL clientServiceBLL, IAdministratorBLL administratorServiceBLL, INavigationService navegationService)
+        public LoginViewModel(IUserBLL userBLL, INavigationService navegationService)
         {
             _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
-            _clientServiceBLL = clientServiceBLL;
-            _administratorServiceBLL = administratorServiceBLL;
+            _userBLL = userBLL;
             _navigationService = navegationService;
             ImageSourceFile = _fullPathFiles[_count];
 
             _ = CarouselImageReplace();
 
-            EnterAsClientCommand = new RelayCommand(execute => EnterAsClient());
-            EnterAsAdminCommand = new RelayCommand(execute => EnterAsAdmin());
+            LoginCommand = new RelayCommand(execute => Login());
             NavigateToSignUpCommand = new RelayCommand(execute => _navigationService.Navigate<SignUpViewModel>());
         }
 
         #region Métodos de Login, seja de cliente ou administrador
-        private void EnterAsClient()
+        private void Login()
         {
-            UserDTO _user = new ClientDTO(_userName, _password, _userEmail);
+            UserDTO userDTO = new UserDTO(_userName, _password, _userEmail);
 
-            ExecuteLogin(() =>
-            {
-                _clientServiceBLL.EnterAsClientBLL(_user);
-            });
-        }
-
-        private void EnterAsAdmin()
-        {
-            UserDTO _user = new AdministratorDTO(_userName, _password, _userEmail);
-            ExecuteLogin(() =>
-            {
-                _administratorServiceBLL.EnterAsAdministratorBLL(_user);
-            });
-        }
-
-        private void ExecuteLogin(Action loginAction)
-        {
             try
             {
-                loginAction();
                 ErrorMessage = string.Empty;
-                MessageBox.Show("Login realizado com sucesso!");
+                _userBLL.LoginBLL(userDTO);
+                MessageBox.Show("Login concluido");
             }
-            catch (InvalidLoginException ex)
+            catch(InvalidLoginException ex)
             {
                 ErrorMessage = ex.Message;
             }
-            catch (DataBaseException ex)
+            catch(DataBaseException ex)
             {
                 ErrorMessage = ex.Message;
             }
             catch (Exception)
             {
-                ErrorMessage = "Ocorreu um erro inesperado.";
+                ErrorMessage = "Ocorreu um erro inesperado!";
             }
         }
         #endregion

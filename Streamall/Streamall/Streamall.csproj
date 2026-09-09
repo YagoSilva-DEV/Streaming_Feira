@@ -190,13 +190,17 @@
     </ApplicationDefinition>
     <Compile Include="BLL\Interfaces\IAdministratorBLL.cs" />
     <Compile Include="BLL\Interfaces\IClientBLL.cs" />
+    <Compile Include="BLL\Interfaces\IUserBLL.cs" />
     <Compile Include="BLL\Services\AdministratorServiceBLL.cs" />
     <Compile Include="BLL\Services\ClientServiceBLL.cs" />
+    <Compile Include="BLL\Services\UserServiceBLL.cs" />
     <Compile Include="DAL\DataBaseConnectionDAL.cs" />
     <Compile Include="DAL\Interfaces\IAdministratorDAL.cs" />
     <Compile Include="DAL\Interfaces\IClientDAL.cs" />
+    <Compile Include="DAL\Interfaces\IUserDAL.cs" />
     <Compile Include="DAL\Repository\AdministratorRepositoryDAL.cs" />
     <Compile Include="DAL\Repository\ClientRepositoryDAL.cs" />
+    <Compile Include="DAL\Repository\UserRepositoryDAL.cs" />
     <Compile Include="Exceptions\DataBaseException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\InvalidSignUpException.cs" />

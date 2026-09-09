@@ -16,14 +16,6 @@ namespace Streamall.BLL.Services
             _clientDAL = clientDAL;
         }
 
-        public void EnterAsClientBLL(UserDTO userDTO)
-        {
-            User _user = new Client(userDTO.UserName, userDTO.Password, userDTO.Email);
-
-            if (!_clientDAL.EnterAsClientDAL(_user))
-                throw new InvalidLoginException("Usuário ou senha inválidos.");
-        }
-
         public void SignUpAsClientBLL(UserDTO userDTO)
         {
             User user = new Client(userDTO.FullName, userDTO.UserName, userDTO.Password, userDTO.Email);

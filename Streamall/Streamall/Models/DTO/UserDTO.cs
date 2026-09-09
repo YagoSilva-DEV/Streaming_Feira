@@ -7,7 +7,7 @@ using Streamall.Models.Enums;
 
 namespace Streamall.Models.DTO
 {
-    internal abstract class UserDTO
+    internal class UserDTO
     {
         public int UserId { get; set; }
         public string FullName { get; set; }

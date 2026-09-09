@@ -9,7 +9,6 @@ namespace Streamall.DAL.Interfaces
 {
     internal interface IClientDAL
     {
-        bool EnterAsClientDAL(User user);
         int SignUpAsUserDAL(User user);
         void SignUpAsClientDAL(int idUser);
     }
