@@ -14,7 +14,7 @@ namespace Streamall.Views
     {
         public SignUp()
         {
-            Action signUpSuccessAction = () => { MessageBoxHelper.ShowMessageBoxSuccess("Cadastro realizado com sucesso"); Close(); };
+            Action signUpSuccessAction = () => Close();
             InitializeComponent();
             DataContext = new SignUpViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), signUpSuccessAction);
         }

@@ -28,7 +28,9 @@ namespace Streamall.BLL.Services
         {
             User user = new Client(userDTO.FullName, userDTO.UserName, userDTO.Password, userDTO.Email);
             user.Password = PasswordHelper.HashPassword(userDTO.Password);
-            _clientDAL.SignUpAsClientDAL(user);
+            int idUser = _clientDAL.SignUpAsUserDAL(user);
+
+            _clientDAL.SignUpAsClientDAL(idUser);
         }
     }
 }

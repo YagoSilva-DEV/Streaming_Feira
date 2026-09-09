@@ -53,6 +53,7 @@
                     <TextBlock x:Name="tbPassword" Grid.Row="3" Text="Senha" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                 </Grid>
                 <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlockError}" Text="{Binding ErrorMessage}"/>
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlockSuccess}" Text="{Binding SuccessMessage}"/>
                 <Button Content="Cadastrar" Style="{StaticResource StylePrimaryButtonSignUp}" Grid.Row="2" Command="{Binding SignUpCommand}"/>
             </Grid>
         </Grid>

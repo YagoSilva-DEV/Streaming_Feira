@@ -47,7 +47,7 @@ namespace Streamall.DAL.Repository
             }
         }
 
-        public void SignUpAsClientDAL(User user)
+        public int SignUpAsUserDAL(User user)
         {
             try
             {
@@ -57,6 +57,7 @@ namespace Streamall.DAL.Repository
 
                     string sql = @"INSERT INTO Tb_User
                                    (complete_name_user, name_user, password_hash_user, email_user, type_user)
+                                   OUTPUT INSERTED.pk_id_User
                                    VALUES (@complete_name_user, @name_user, @password_hash_user, @email_user, @type_user)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -66,15 +67,39 @@ namespace Streamall.DAL.Repository
                         cmd.Parameters.AddWithValue("@password_hash_user", user.Password);
                         cmd.Parameters.AddWithValue("@email_user", user.Email);
                         cmd.Parameters.AddWithValue("@type_user", 1);
-                        cmd.ExecuteNonQuery();
+
+                        return (int)cmd.ExecuteScalar();
                     }
                 }
             }
             catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
             {
-                throw new InvalidSignUpException("Este nome de usuário já está cadastrado.");
+                throw new InvalidSignUpException("Este nome de usuário já existe.");
             }
-            catch(SqlException)
+            catch (SqlException)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.");
+            }
+        }
+
+        public void SignUpAsClientDAL(int idUser)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO Tb_Client
+                               (pk_fk_id_client)
+                                VALUES(@pk_fk_id_client)";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@pk_fk_id_client", idUser);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException)
             {
                 throw new DataBaseException("A conexão com o banco de dados falhou.");
             }

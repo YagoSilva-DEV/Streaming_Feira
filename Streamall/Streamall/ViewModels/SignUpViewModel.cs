@@ -1,10 +1,9 @@
 ﻿using Streamall.BLL.Interfaces;
 using Streamall.Exceptions;
-using Streamall.Helpers;
 using Streamall.Models.DTO;
 using Streamall.MVVM;
 using System;
-using System.Windows;
+using System.Threading.Tasks;
 
 namespace Streamall.ViewModels
 {
@@ -67,6 +66,19 @@ namespace Streamall.ViewModels
             }
         }
 
+        private string _successMessage;
+
+        public string SuccessMessage
+        {
+            get { return _successMessage; }
+            set 
+            {
+                _successMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public RelayCommand SignUpCommand { get; set; }
 
         public SignUpViewModel(IClientBLL clientBLL, Action action)
@@ -76,13 +88,16 @@ namespace Streamall.ViewModels
             _closeWindow = action;
         }
 
-        private void SignUp()
+        private async Task SignUp()
         {
             UserDTO user = new ClientDTO(_fullName, _userName, _password, _email);
 
             try
             {
                 _clientBLL.SignUpAsClientBLL(user);
+                ErrorMessage = string.Empty;
+                SuccessMessage = "Cadastro concluído com êxito!";
+                await Task.Delay(3000);
                 _closeWindow.Invoke();
             }
             catch(InvalidSignUpException ex)
