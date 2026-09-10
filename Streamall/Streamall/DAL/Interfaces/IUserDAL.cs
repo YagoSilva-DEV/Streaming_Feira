@@ -10,5 +10,6 @@ namespace Streamall.DAL.Interfaces
     internal interface IUserDAL
     {
         bool LoginDAL(User user);
+        User UserData(string userName);
     }
 }

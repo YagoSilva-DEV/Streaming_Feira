@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Streamall.Helpers;
+using System.Data;
+using Streamall.Models.Enums;
 
 namespace Streamall.DAL.Repository
 {
@@ -34,8 +36,8 @@ namespace Streamall.DAL.Repository
                                     AND email_user = @email_user";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@name_user", user.UserName);
-                        cmd.Parameters.AddWithValue("@email_user", user.Email);
+                        cmd.Parameters.Add("@name_user", SqlDbType.VarChar).Value = user.UserName;
+                        cmd.Parameters.Add("@email_user", SqlDbType.VarChar).Value = user.Email;
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (!reader.Read())
@@ -54,6 +56,34 @@ namespace Streamall.DAL.Repository
             catch (SqlException)
             {
                 throw new DataBaseException("A conexão com o banco de dados falhou.");
+            }
+        }
+
+        public User UserData(string userName)
+        {
+            using (SqlConnection conn = _connectionDAL.Connect())
+            {
+                conn.Open();
+
+                string sql = @"SELECT pk_id_User, complete_name_user, password_hash_user, email_user, type_user
+                               FROM Tb_User WHERE name_user = @name_user";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.Add("@name_user", SqlDbType.VarChar).Value = userName;
+
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        reader.Read();
+
+                        int id = (int)reader["pk_id_User"];
+                        string fullName = (string)reader["complete_name_user"];
+                        string storedHashPassword = (string)reader["password_hash_user"];
+                        string email = (string)reader["email_user"];
+                        int typeUser = (int)reader["type_user"];
+
+                        return new User(id, fullName, userName, storedHashPassword, email, (UserType)typeUser);
+                    }
+                }
             }
         }
     }

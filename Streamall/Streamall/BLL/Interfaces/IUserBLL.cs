@@ -9,6 +9,6 @@ namespace Streamall.BLL.Interfaces
 {
     internal interface IUserBLL
     {
-        void LoginBLL(UserDTO userDTO);
+        UserDTO LoginBLL(UserDTO userDTO);
     }
 }

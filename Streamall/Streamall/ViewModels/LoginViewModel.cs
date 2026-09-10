@@ -11,7 +11,7 @@ using Streamall.Exceptions;
 using Streamall.BLL.Interfaces;
 using Streamall.Navigation.Interface;
 using System.Threading;
-using Streamall.Views;
+using Streamall.Models.Enums;
 
 namespace Streamall.ViewModels
 {
@@ -109,8 +109,18 @@ namespace Streamall.ViewModels
             try
             {
                 ErrorMessage = string.Empty;
-                _userBLL.LoginBLL(userDTO);
-                MessageBox.Show("Login concluido");
+                UserDTO userData = _userBLL.LoginBLL(userDTO);
+
+                if (userData.UserType == UserType.ADMINISTRATOR)
+                {
+                    UserDTO admDTO = userData as AdministratorDTO;
+                    //CHAMAR A UI DE ADM
+                }
+                else
+                {
+                    UserDTO clientDTO = userData as ClientDTO;
+                }
+                //MessageBox.Show("Login concluido");
             }
             catch(InvalidLoginException ex)
             {

@@ -8,7 +8,7 @@ namespace Streamall.Models.Enums
 {
     internal enum UserType
     {
-        Cliente,
-        Administrador
+        ADMINISTRATOR,
+        CLIENT
     }
 }

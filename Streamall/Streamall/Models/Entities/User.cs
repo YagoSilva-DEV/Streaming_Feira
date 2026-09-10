@@ -10,7 +10,7 @@ namespace Streamall.Models.Entities
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public UserType TipoUsuario { get; set; }
+        public UserType UserType { get; set; }
 
         public User(string userName, string password, string email)
         {
@@ -53,14 +53,14 @@ namespace Streamall.Models.Entities
             Email = email;
         }
 
-        public User(int idUsuario, string nomeCompleto, string nomeUsuario, string senha, string email, UserType tipoUsuario)
+        public User(int userId, string fullName, string userName, string password, string email, UserType userType)
         {
-            UserId = idUsuario;
-            FullName = nomeCompleto;
-            UserName = nomeUsuario;
-            Password = senha;
+            UserId = userId;
+            FullName = fullName;
+            UserName = userName;
+            Password = password;
             Email = email;
-            TipoUsuario = tipoUsuario;
+            UserType = userType;
         }
 
         private void VerifyEmail(string email)

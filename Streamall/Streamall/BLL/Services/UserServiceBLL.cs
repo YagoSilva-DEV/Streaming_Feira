@@ -20,12 +20,16 @@ namespace Streamall.BLL.Services
             _userDAL = userDAL;
         }
 
-        public void LoginBLL(UserDTO userDTO)
+        public UserDTO LoginBLL(UserDTO userDTO)
         {
             User user = new User(userDTO.UserName, userDTO.Password, userDTO.Email);
 
             if (!_userDAL.LoginDAL(user))
                 throw new InvalidLoginException("A senha está incorreta!");
+
+            User userData = _userDAL.UserData(userDTO.UserName);
+
+            return new UserDTO(userData.UserId, userData.FullName, userData.UserName, userData.Password, userData.Email, userData.UserType);
         }
     }
 }

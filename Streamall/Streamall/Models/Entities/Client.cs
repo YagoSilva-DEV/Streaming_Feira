@@ -12,7 +12,7 @@ namespace Streamall.Models.Entities
         {
         }
 
-        public Client(int userId, string fullName, string userName, string password, string email, UserType tipoUsuario) : base(userId, fullName, userName, password, email, tipoUsuario)
+        public Client(int userId, string fullName, string userName, string password, string email, UserType userType) : base(userId, fullName, userName, password, email, userType)
         {
         }
     }

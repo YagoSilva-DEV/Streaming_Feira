@@ -11,15 +11,11 @@
         Background="{StaticResource BackgroundColorLoginBrush}"
         Title="SignUp" Height="400" Width="380">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".5*"/>
-            <RowDefinition Height="9.5*"/>
-        </Grid.RowDefinitions>
 
-        <Grid Margin="10" VerticalAlignment="Center" Grid.Row="1">
+        <Grid Margin="10" VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.4*"/>
-                <RowDefinition Height="8.6*"/>
+                <RowDefinition Height="1.8*"/>
+                <RowDefinition Height="8.2*"/>
             </Grid.RowDefinitions>
 
             <Grid>
