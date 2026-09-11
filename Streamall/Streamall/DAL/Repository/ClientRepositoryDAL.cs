@@ -3,6 +3,7 @@ using Streamall.Models.Entities;
 using System;
 using Microsoft.Data.SqlClient;
 using Streamall.Exceptions;
+using System.Data;
 
 namespace Streamall.DAL.Repository
 {
@@ -23,17 +24,18 @@ namespace Streamall.DAL.Repository
                     conn.Open();
 
                     string sql = @"INSERT INTO Tb_User
-                                   (complete_name_user, name_user, password_hash_user, email_user, type_user)
+                                   (complete_name_user, name_user, password_hash_user, email_user, type_user, status_user)
                                    OUTPUT INSERTED.pk_id_User
-                                   VALUES (@complete_name_user, @name_user, @password_hash_user, @email_user, @type_user)";
+                                   VALUES (@complete_name_user, @name_user, @password_hash_user, @email_user, @type_user, @status_user)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@complete_name_user", user.FullName);
-                        cmd.Parameters.AddWithValue("@name_user", user.UserName);
-                        cmd.Parameters.AddWithValue("@password_hash_user", user.Password);
-                        cmd.Parameters.AddWithValue("@email_user", user.Email);
-                        cmd.Parameters.AddWithValue("@type_user", 1);
+                        cmd.Parameters.Add("@complete_name_user", SqlDbType.VarChar).Value = user.FullName;
+                        cmd.Parameters.Add("@name_user", SqlDbType.VarChar).Value = user.UserName;
+                        cmd.Parameters.Add("@password_hash_user", SqlDbType.VarChar).Value = user.Password;
+                        cmd.Parameters.Add("@email_user", SqlDbType.VarChar).Value = user.Email;
+                        cmd.Parameters.Add("@type_user", SqlDbType.Int).Value = 1;
+                        cmd.Parameters.Add("@status_user", SqlDbType.Bit).Value = 0;
 
                         return (int)cmd.ExecuteScalar();
                     }
@@ -61,7 +63,7 @@ namespace Streamall.DAL.Repository
                                 VALUES(@pk_fk_id_client)";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@pk_fk_id_client", idUser);
+                        cmd.Parameters.Add("@pk_fk_id_client", SqlDbType.Int).Value = idUser;
                         cmd.ExecuteNonQuery();
                     }
                 }
