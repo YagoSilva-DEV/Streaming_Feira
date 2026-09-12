@@ -36,10 +36,10 @@ namespace Streamall.Navigation.Service
             if (typeof(TView) == typeof(AdministratorHome))
             {
                 Window loginView = Application.Current.Windows
-                    .OfType<Window>()
-                    .FirstOrDefault(w => w.IsActive);
-                AdministratorHome admHome = new AdministratorHome();
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
 
+                AdministratorHome admHome = new AdministratorHome();
                 admHome.WindowState = WindowState.Maximized;
                 admHome.Show();
                 loginView.Close();
