@@ -115,7 +115,7 @@ namespace Streamall.ViewModels
                 if (userData.UserType == UserType.ADMINISTRATOR)
                 {
                     UserDTO admDTO = userData as AdministratorDTO;
-                    //CHAMAR A UI DE ADM
+                    _navigationService.Navigate<AdministratorHome>();
                 }
                 else
                 {
