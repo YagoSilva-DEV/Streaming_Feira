@@ -9,6 +9,6 @@ namespace Streamall.Navigation.Interface
 {
     internal interface INavigationService
     {
-        void Navigate<TViewModel>();
+        void Navigate<TView>();
     }
 }

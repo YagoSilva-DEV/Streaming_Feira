@@ -8,9 +8,9 @@ namespace Streamall.Navigation.Service
 {
     internal class NavigationService : INavigationService
     {
-        public void Navigate<TViewModel>()
+        public void Navigate<TView>()
         {
-            if (typeof(TViewModel) == typeof(SignUpViewModel))
+            if (typeof(TView) == typeof(SignUp))
             {
                 Window owner = Application.Current.Windows
                 .OfType<Window>()

@@ -12,6 +12,7 @@ using Streamall.BLL.Interfaces;
 using Streamall.Navigation.Interface;
 using System.Threading;
 using Streamall.Models.Enums;
+using Streamall.Views;
 
 namespace Streamall.ViewModels
 {
@@ -98,7 +99,7 @@ namespace Streamall.ViewModels
             _ = CarouselImageReplace();
 
             LoginCommand = new RelayCommand(execute => Login());
-            NavigateToSignUpCommand = new RelayCommand(execute => _navigationService.Navigate<SignUpViewModel>());
+            NavigateToSignUpCommand = new RelayCommand(execute => _navigationService.Navigate<SignUp>());
         }
 
         #region Métodos de Login, seja de cliente ou administrador
@@ -119,8 +120,8 @@ namespace Streamall.ViewModels
                 else
                 {
                     UserDTO clientDTO = userData as ClientDTO;
+                    //CHAMAR A UI DE CLIENTE
                 }
-                //MessageBox.Show("Login concluido");
             }
             catch(InvalidLoginException ex)
             {
