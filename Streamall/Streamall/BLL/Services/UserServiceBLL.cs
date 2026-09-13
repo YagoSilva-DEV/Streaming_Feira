@@ -29,7 +29,7 @@ namespace Streamall.BLL.Services
 
             User userData = _userDAL.UserData(userDTO.UserName);
 
-            return new UserDTO(userData.UserId, userData.FullName, userData.UserName, userData.Password, userData.Email, userData.UserType);
+            return new UserDTO(userData);
         }
     }
 }

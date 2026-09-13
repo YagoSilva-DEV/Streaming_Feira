@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Streamall.Models.Enums;
+using Streamall.Models.Entities;
 
 namespace Streamall.Models.DTO
 {
@@ -39,6 +40,18 @@ namespace Streamall.Models.DTO
             Password = password;
             Email = email;
             UserType = userType;
+        }
+
+        public UserDTO(User user)
+        {
+            if (user == null) throw new ArgumentNullException(nameof(user));
+
+            UserId = user.UserId;
+            FullName = user.FullName;
+            UserName = user.UserName;
+            Password = user.Password;
+            Email = user.Email;
+            UserType = user.UserType;
         }
     }
 }

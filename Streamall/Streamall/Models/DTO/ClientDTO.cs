@@ -1,4 +1,5 @@
 ﻿using Streamall.Models.Enums;
+using Streamall.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,10 @@ namespace Streamall.Models.DTO
         }
 
         public ClientDTO(int userId, string fullName, string userName, string password, string email, UserType userType) : base(userId, fullName, userName, password, email, userType)
+        {
+        }
+
+        public ClientDTO(Client client) : base(client)
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using Streamall.Models.Enums;
+﻿using Streamall.Models.Entities;
+using Streamall.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace Streamall.Models.DTO
         }
 
         public AdministratorDTO(int userId, string fullName, string userName, string password, string email, UserType userType) : base(userId, fullName, userName, password, email, userType)
+        {
+        }
+        public AdministratorDTO(Administrator adm) : base(adm)
         {
         }
     }

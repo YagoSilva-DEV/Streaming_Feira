@@ -208,10 +208,23 @@
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Models\DTO\AdministratorDTO.cs" />
     <Compile Include="Models\DTO\ClientDTO.cs" />
+    <Compile Include="Models\DTO\ContentDTO.cs" />
+    <Compile Include="Models\DTO\EpisodeDTO.cs" />
+    <Compile Include="Models\DTO\MovieDTO.cs" />
+    <Compile Include="Models\DTO\SeasonDTO.cs" />
+    <Compile Include="Models\DTO\SeriesDTO.cs" />
+    <Compile Include="Models\DTO\TitleDTO.cs" />
     <Compile Include="Models\DTO\UserDTO.cs" />
     <Compile Include="Models\Entities\Administrator.cs" />
     <Compile Include="Models\Entities\Client.cs" />
+    <Compile Include="Models\Entities\Content.cs" />
+    <Compile Include="Models\Entities\Episode.cs" />
+    <Compile Include="Models\Entities\Movie.cs" />
+    <Compile Include="Models\Entities\Season.cs" />
+    <Compile Include="Models\Entities\Series.cs" />
+    <Compile Include="Models\Entities\Title.cs" />
     <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\UserType.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
@@ -231,6 +244,12 @@
     </Compile>
     <Compile Include="Views\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ContentManagement.xaml.cs">
+      <DependentUpon>ContentManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UserManagement.xaml.cs">
+      <DependentUpon>UserManagement.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\Buttons.xaml">
       <SubType>Designer</SubType>
@@ -268,6 +287,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\ContentManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UserManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -301,9 +328,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\InvocacaoDoMal.png" />
   </ItemGroup>
