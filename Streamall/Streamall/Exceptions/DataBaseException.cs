@@ -10,5 +10,6 @@ namespace Streamall.Exceptions
     internal class DataBaseException : ApplicationException
     {
         public DataBaseException(string message) : base(message) { }
+        public DataBaseException(string message, Exception innerException) : base(message, innerException) { }
     }
 }
