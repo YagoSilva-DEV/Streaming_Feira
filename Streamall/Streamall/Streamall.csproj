@@ -188,14 +188,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BLL\Interfaces\IAdministratorBLL.cs" />
-    <Compile Include="BLL\Interfaces\IClientBLL.cs" />
-    <Compile Include="BLL\Interfaces\IUserBLL.cs" />
-    <Compile Include="BLL\Services\AdministratorServiceBLL.cs" />
-    <Compile Include="BLL\Services\ClientServiceBLL.cs" />
-    <Compile Include="BLL\Services\UserServiceBLL.cs" />
+    <Compile Include="BLL\Interfaces\Contents\IContentBLL.cs" />
+    <Compile Include="BLL\Interfaces\Users\IAdministratorBLL.cs" />
+    <Compile Include="BLL\Interfaces\Users\IClientBLL.cs" />
+    <Compile Include="BLL\Interfaces\Users\IUserBLL.cs" />
+    <Compile Include="BLL\Services\Contents\ContentServiceBLL.cs" />
+    <Compile Include="BLL\Services\Users\AdministratorServiceBLL.cs" />
+    <Compile Include="BLL\Services\Users\ClientServiceBLL.cs" />
+    <Compile Include="BLL\Services\Users\UserServiceBLL.cs" />
     <Compile Include="DAL\DataBaseConnectionDAL.cs" />
-    <Compile Include="DAL\Interfaces\Contents\IContent.cs" />
+    <Compile Include="DAL\Interfaces\Contents\IContentDAL.cs" />
     <Compile Include="DAL\Interfaces\Users\IAdministratorDAL.cs" />
     <Compile Include="DAL\Interfaces\Users\IClientDAL.cs" />
     <Compile Include="DAL\Interfaces\Users\IUserDAL.cs" />

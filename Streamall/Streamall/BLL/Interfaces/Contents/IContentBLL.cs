@@ -1,4 +1,4 @@
-﻿using Streamall.Models.Entities;
+﻿using Streamall.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Streamall.DAL.Interfaces.Contents
+namespace Streamall.BLL.Interfaces.Contents
 {
-    internal interface IContent
+    internal interface IContentBLL
     {
-        IEnumerable<Content> GetContents();
+        IEnumerable<ContentDTO> GetContentDTOs();
     }
 }
