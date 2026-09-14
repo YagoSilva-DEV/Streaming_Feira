@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.Models.Entities
 {
-    internal class Administrator : User
+    public class Administrator : User
     {
         public Administrator(string userName, string password, string email) : base(userName, password, email)
         {

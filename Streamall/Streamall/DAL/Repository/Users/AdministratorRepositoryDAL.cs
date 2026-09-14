@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Streamall.DAL.Repository
 {
-    internal class AdministratorRepositoryDAL : IAdministratorDAL
+    public class AdministratorRepositoryDAL : IAdministratorDAL
     {
         private readonly DataBaseConnectionDAL _connectionDAL;
 

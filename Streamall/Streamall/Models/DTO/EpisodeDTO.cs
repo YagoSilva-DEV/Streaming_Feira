@@ -3,7 +3,7 @@ using Streamall.Models.Entities;
 
 namespace Streamall.Models.DTO
 {
-    internal class EpisodeDTO : TitleDTO
+    public class EpisodeDTO : TitleDTO
     {
         public int SeasonId { get; set; }
         public EpisodeDTO()

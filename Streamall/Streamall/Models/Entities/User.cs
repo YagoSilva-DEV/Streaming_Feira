@@ -3,7 +3,7 @@ using Streamall.Exceptions;
 
 namespace Streamall.Models.Entities
 {
-    internal class User
+    public class User
     {
         public int UserId { get; set; }
         public string FullName { get; set; }

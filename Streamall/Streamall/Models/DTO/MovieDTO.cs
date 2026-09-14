@@ -3,7 +3,7 @@ using Streamall.Models.Entities;
 
 namespace Streamall.Models.DTO
 {
-    internal class MovieDTO : ContentDTO
+    public class MovieDTO : ContentDTO
     {
         public int Duration { get; set; }
 

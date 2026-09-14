@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.ViewModels
 {
-    internal class SignUpViewModel : ViewModelBase
+    public class SignUpViewModel : ViewModelBase
     {
         private IClientBLL _clientBLL;
         private Action _closeWindow;

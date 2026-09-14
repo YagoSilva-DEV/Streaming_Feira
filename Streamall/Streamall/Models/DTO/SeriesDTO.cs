@@ -5,7 +5,7 @@ using Streamall.Models.Entities;
 
 namespace Streamall.Models.DTO
 {
-    internal class SeriesDTO : ContentDTO
+    public class SeriesDTO : ContentDTO
     {
         public int QuantitySeasons { get; set; }
         public List<SeasonDTO> Seasons { get; set; }

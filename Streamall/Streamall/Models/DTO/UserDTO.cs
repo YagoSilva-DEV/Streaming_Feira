@@ -8,7 +8,7 @@ using Streamall.Models.Entities;
 
 namespace Streamall.Models.DTO
 {
-    internal class UserDTO
+    public class UserDTO
     {
         public int UserId { get; set; }
         public string FullName { get; set; }

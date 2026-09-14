@@ -4,7 +4,7 @@ using Streamall.Models.Entities;
 
 namespace Streamall.Models.DTO
 {
-    internal class ContentDTO
+    public class ContentDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

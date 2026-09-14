@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Streamall.Models.DTO;
+using Streamall.ViewModels.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +23,11 @@ namespace Streamall.Views
     {
         public AdministratorHome()
         {
+            InitializeComponent();
+        }
+        public AdministratorHome(UserDTO admDTO)
+        {
+            DataContext = new AdministratorHomeViewModel(admDTO);
             InitializeComponent();
         }
     }

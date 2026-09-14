@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.BLL.Interfaces
 {
-    internal interface IUserBLL
+    public interface IUserBLL
     {
         UserDTO LoginBLL(UserDTO userDTO);
     }

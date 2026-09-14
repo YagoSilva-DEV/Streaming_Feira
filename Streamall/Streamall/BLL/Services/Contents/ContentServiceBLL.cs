@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Streamall.BLL.Services.Contents
 {
-    internal class ContentServiceBLL : IContentBLL
+    public class ContentServiceBLL : IContentBLL
     {
         private readonly IContentDAL _contentDAL;
 

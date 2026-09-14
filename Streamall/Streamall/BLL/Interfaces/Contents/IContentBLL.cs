@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.BLL.Interfaces.Contents
 {
-    internal interface IContentBLL
+    public interface IContentBLL
     {
         IEnumerable<ContentDTO> GetContentDTOs();
     }

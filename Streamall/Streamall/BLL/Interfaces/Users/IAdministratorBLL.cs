@@ -2,7 +2,7 @@
 
 namespace Streamall.BLL.Interfaces
 {
-    internal interface IAdministratorBLL
+    public interface IAdministratorBLL
     {
     }
 }

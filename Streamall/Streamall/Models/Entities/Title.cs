@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.Models.Entities
 {
-    internal abstract class Title
+    public abstract class Title
     {
         public int Id { get; set; }
         public string Name { get; set; }

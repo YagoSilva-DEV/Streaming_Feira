@@ -2,7 +2,7 @@
 
 namespace Streamall.DAL.Interfaces
 {
-    internal interface IAdministratorDAL
+    public interface IAdministratorDAL
     {
     }
 }

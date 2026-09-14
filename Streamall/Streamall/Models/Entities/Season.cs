@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.Models.Entities
 {
-    internal class Season : Title
+    public class Season : Title
     {
         public int SeriesId { get; set; }
         public List<Episode> Episodes { get; set; }

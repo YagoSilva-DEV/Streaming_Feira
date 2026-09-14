@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.DAL.Interfaces.Contents
 {
-    internal interface IContentDAL
+    public interface IContentDAL
     {
         IEnumerable<Content> GetContents();
     }

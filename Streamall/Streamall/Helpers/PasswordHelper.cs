@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.Helpers
 {
-    internal class PasswordHelper
+    public class PasswordHelper
     {
         public static string HashPassword(string password)
         {

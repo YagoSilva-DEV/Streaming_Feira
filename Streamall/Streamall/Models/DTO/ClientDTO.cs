@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.Models.DTO
 {
-    internal class ClientDTO : UserDTO
+    public class ClientDTO : UserDTO
     {
         public ClientDTO(string userName, string password, string email) : base(userName, password, email)
         {

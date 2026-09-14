@@ -2,7 +2,7 @@
 
 namespace Streamall.Models.Entities
 {
-    internal class Client : User
+    public class Client : User
     {
         public Client(string userName, string password, string email) : base(userName, password, email)
         {

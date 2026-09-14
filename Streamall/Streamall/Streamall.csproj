@@ -235,6 +235,7 @@
     <Compile Include="Navigation\Interface\INavigationService.cs" />
     <Compile Include="Navigation\Service\NavigationService.cs" />
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
+    <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
     <Compile Include="ViewModels\Users\LoginViewModel.cs" />
     <Compile Include="ViewModels\Users\SignUpViewModel.cs" />
     <Compile Include="Views\AdministratorHome.xaml.cs">

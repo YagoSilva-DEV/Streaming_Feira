@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.DAL.Interfaces
 {
-    internal interface IUserDAL
+    public interface IUserDAL
     {
         bool LoginDAL(User user);
         User UserData(string userName);

@@ -7,7 +7,7 @@ using System;
 
 namespace Streamall.BLL.Services
 {
-    internal class AdministratorServiceBLL : IAdministratorBLL
+    public class AdministratorServiceBLL : IAdministratorBLL
     {
         private User _user;
         private readonly IAdministratorDAL _adminDAL;

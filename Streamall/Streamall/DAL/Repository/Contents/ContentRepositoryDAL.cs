@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Streamall.DAL.Repository.Contents
 {
-    internal class ContentRepositoryDAL : IContentDAL
+    public class ContentRepositoryDAL : IContentDAL
     {
         private readonly DataBaseConnectionDAL _connectionDAL;
 

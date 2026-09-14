@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.BLL.Services
 {
-    internal class UserServiceBLL : IUserBLL
+    public class UserServiceBLL : IUserBLL
     {
         private IUserDAL _userDAL;
 

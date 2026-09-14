@@ -14,7 +14,7 @@ using Streamall.Models.Enums;
 
 namespace Streamall.DAL.Repository
 {
-    internal class UserRepositoryDAL : IUserDAL
+    public class UserRepositoryDAL : IUserDAL
     {
         private readonly DataBaseConnectionDAL _connectionDAL;
 

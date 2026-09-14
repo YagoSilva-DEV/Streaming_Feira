@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.ViewModels.Contents
 {
-    internal class ContentManagementViewModel : ViewModelBase
+	public class ContentManagementViewModel : ViewModelBase
     {
 		private readonly IContentBLL _contentBLL;
 		public ObservableCollection<ContentDTO> Contents { get; set; }

@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Streamall.Models.Entities
 {
-    internal class Movie : Content
+    public class Movie : Content
     {
         public int Duration { get; set; }
         public Movie(string name, string synopsis, string pathCover, DateTime releaseDate, string gender, string filmMaker, ContentType contentType, int duration) : base(name, synopsis, pathCover, releaseDate, gender, filmMaker, contentType)

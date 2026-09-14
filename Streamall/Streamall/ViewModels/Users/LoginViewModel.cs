@@ -16,7 +16,7 @@ using Streamall.Views;
 
 namespace Streamall.ViewModels
 {
-    internal class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
         private string _errorMessage;
 
@@ -114,8 +114,7 @@ namespace Streamall.ViewModels
 
                 if (userData.UserType == UserType.ADMINISTRATOR)
                 {
-                    UserDTO admDTO = userData as AdministratorDTO;
-                    _navigationService.Navigate<AdministratorHome>();
+                    _navigationService.Navigate<AdministratorHome>(userData);
                 }
                 else
                 {

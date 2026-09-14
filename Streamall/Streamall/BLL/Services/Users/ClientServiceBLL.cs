@@ -8,7 +8,7 @@ using Streamall.Helpers;
 
 namespace Streamall.BLL.Services
 {
-    internal class ClientServiceBLL : IClientBLL
+    public class ClientServiceBLL : IClientBLL
     {
         private readonly IClientDAL _clientDAL;
         public ClientServiceBLL(IClientDAL clientDAL)

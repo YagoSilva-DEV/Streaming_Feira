@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Streamall.DAL.Repository
 {
-    internal class ClientRepositoryDAL : IClientDAL
+    public class ClientRepositoryDAL : IClientDAL
     {
         private readonly DataBaseConnectionDAL _connectionDAL;
 
