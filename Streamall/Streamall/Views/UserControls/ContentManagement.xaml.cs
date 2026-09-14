@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Streamall.BLL.Services.Contents;
+using Streamall.DAL.Repository.Contents;
+using Streamall.ViewModels.Contents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,7 @@ namespace Streamall.Views.UserControls
     {
         public ContentManagement()
         {
+            DataContext = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
             InitializeComponent();
         }
     }

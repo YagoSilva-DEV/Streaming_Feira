@@ -131,10 +131,12 @@ namespace Streamall.ViewModels
             {
                 ErrorMessage = ex.Message;
             }
+            /*
             catch (Exception)
             {
                 ErrorMessage = "Ocorreu um erro inesperado!";
             }
+            */
         }
         #endregion
 

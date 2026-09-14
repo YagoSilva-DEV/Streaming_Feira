@@ -7,6 +7,32 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <ListView ItemsSource="{Binding Contents}"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="{StaticResource BackgroundColorLoginBrush}" BorderBrush="{StaticResource BorderColorLoginBrush}" BorderThickness="1">
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="250">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" Grid.RowSpan="4"/>
+                            <Rectangle Grid.Row="1" Grid.RowSpan="3" Opacity=".85" Fill="{StaticResource BackgroundColorLoginBrush}"/>
+                            <TextBlock Grid.Row="1" Text="{Binding Name}"/>
+                            <TextBlock Grid.Row="2" Text="{Binding Gender}"/>
+                            <TextBlock Grid.Row="3" Text="{Binding ReleaseDate, StringFormat='dd/MM/yyyy'}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

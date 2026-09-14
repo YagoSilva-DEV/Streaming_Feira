@@ -10,7 +10,7 @@ namespace Streamall.Models.DTO
         public string Name { get; set; }
         public string Synopsis { get; set; }
         public string PathCover { get; set; }
-        public DateTime YearRelease { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public string Gender { get; set; }
         public string FilmMaker { get; set; }
         public ContentType ContentType { get; set; }
@@ -27,7 +27,7 @@ namespace Streamall.Models.DTO
             Name = content.Name;
             Synopsis = content.Synopsis;
             PathCover = content.PathCover;
-            YearRelease = content.YearRelease;
+            ReleaseDate = content.ReleaseDate;
             Gender = content.Gender;
             FilmMaker = content.FilmMaker;
             ContentType = content.ContentType;
