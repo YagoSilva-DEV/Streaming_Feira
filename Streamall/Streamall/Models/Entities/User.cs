@@ -21,6 +21,7 @@ namespace Streamall.Models.Entities
                 throw new InvalidLoginException("Insira o nome de usuário");
             if (string.IsNullOrWhiteSpace(email))
                 throw new InvalidLoginException("Insira o email");
+            VerifyEmail(email);
             if (string.IsNullOrWhiteSpace(password))
                 throw new InvalidLoginException("Insira a senha");
 

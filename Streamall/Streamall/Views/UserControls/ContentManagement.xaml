@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <ListView ItemsSource="{Binding Contents}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="{StaticResource BackgroundColorLoginBrush}">
+        <ListView ItemsSource="{Binding Contents}" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  Background="{StaticResource BackgroundColorLoginBrush}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -16,14 +16,14 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="WhiteSmoke" BorderBrush="{StaticResource BorderColorLoginBrush}" BorderThickness="1">
+                    <Border Background="{StaticResource BackgroundColorLoginBrush}" CornerRadius="6" BorderBrush="{StaticResource BorderColorLoginBrush}" BorderThickness="1">
                         <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="250" Height="250">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="9*"/>
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding PathCover}" Stretch="UniformToFill"/>
-                            <TextBlock Grid.Row="1" Text="{Binding Name}" Style="{StaticResource StyleTextBlockContentName}"/>
+                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" Opacity="0.8" Grid.RowSpan="2" ClipToBounds="True"/>
+                            <TextBlock Grid.Row="2" Text="{Binding Name}" Style="{StaticResource StyleTextBlockContentName}" Background="{StaticResource BackgroundColorLoginBrush}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

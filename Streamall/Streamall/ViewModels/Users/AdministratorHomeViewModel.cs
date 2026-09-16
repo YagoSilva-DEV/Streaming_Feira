@@ -31,6 +31,13 @@ namespace Streamall.ViewModels.Users
                 return $"{parts[0][0]}{parts[parts.Length - 1][0]}".ToUpper();
             }
         }
+        public string FullNameAdm
+        {
+            get
+            {
+                return Adm.FullName;
+            }
+        }
 
     }
 }

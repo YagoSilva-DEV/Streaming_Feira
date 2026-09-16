@@ -52,9 +52,17 @@
         <Setter Property="FontWeight" Value="Heavy"/>
     </Style>
     <Style TargetType="TextBlock" x:Key="StyleTextBlockContentName">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockUserInitials">
         <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryBlueLoginBrush}"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="Heavy"/>
