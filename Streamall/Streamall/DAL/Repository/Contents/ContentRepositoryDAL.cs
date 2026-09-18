@@ -6,6 +6,7 @@ using Streamall.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Data;
 
 namespace Streamall.DAL.Repository.Contents
 {
@@ -67,6 +68,27 @@ namespace Streamall.DAL.Repository.Contents
             }
             
             return contents;
+        }
+
+        public void RemoveContent(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM Tb_Content WHERE pk_id_content = @pk_id_content";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@pk_id_content", SqlDbType.Int).Value = id;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
+            }
         }
     }
 }

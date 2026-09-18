@@ -11,5 +11,6 @@ namespace Streamall.DAL.Interfaces.Contents
     public interface IContentDAL
     {
         IEnumerable<Content> GetContents();
+        void RemoveContent(int id);
     }
 }

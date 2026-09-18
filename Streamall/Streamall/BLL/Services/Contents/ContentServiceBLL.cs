@@ -21,5 +21,10 @@ namespace Streamall.BLL.Services.Contents
             //Pega a lista fornecida pela DAL(lista de content), e a retorna transformada em uma lista de contentDTO
             return _contentDAL.GetContents().Select(c => new ContentDTO(c));
         }
+
+        public void RemoveContent(int id)
+        {
+            _contentDAL.RemoveContent(id);
+        }
     }
 }

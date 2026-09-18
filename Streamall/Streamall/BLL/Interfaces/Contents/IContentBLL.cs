@@ -11,5 +11,6 @@ namespace Streamall.BLL.Interfaces.Contents
     public interface IContentBLL
     {
         IEnumerable<ContentDTO> GetContentDTOs();
+        void RemoveContent(int id);
     }
 }
