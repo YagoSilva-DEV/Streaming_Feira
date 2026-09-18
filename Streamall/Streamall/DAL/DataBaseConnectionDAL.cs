@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Streamall.DAL
 {
-    public class DataBaseConnectionDAL  
+    internal class DataBaseConnectionDAL  
     {
         private readonly IConfiguration _configuration;
 

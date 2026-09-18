@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Streamall.Models.Enums
 {
-    public enum UserType
+    internal enum UserType
     {
-        ADMINISTRATOR,
-        CLIENT
+        Cliente,
+        Administrador
     }
 }

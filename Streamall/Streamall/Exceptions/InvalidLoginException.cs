@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Streamall.Exceptions
 {
-    public class InvalidLoginException : ApplicationException
+    internal class InvalidLoginException : ApplicationException
     {
         public InvalidLoginException(string message) : base(message)
         {
