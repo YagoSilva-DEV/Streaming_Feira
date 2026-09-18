@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt-Net-Next, Version=4.2.0.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.2.0\lib\net472\BCrypt-Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=10.0.0.11, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.10.0.11\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -185,32 +188,67 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BLL\Interfaces\IAdministratorBLL.cs" />
-    <Compile Include="BLL\Interfaces\IClientBLL.cs" />
-    <Compile Include="BLL\Services\AdministratorServiceBLL.cs" />
-    <Compile Include="BLL\Services\ClientServiceBLL.cs" />
+    <Compile Include="BLL\Interfaces\Contents\IContentBLL.cs" />
+    <Compile Include="BLL\Interfaces\Users\IAdministratorBLL.cs" />
+    <Compile Include="BLL\Interfaces\Users\IClientBLL.cs" />
+    <Compile Include="BLL\Interfaces\Users\IUserBLL.cs" />
+    <Compile Include="BLL\Services\Contents\ContentServiceBLL.cs" />
+    <Compile Include="BLL\Services\Users\AdministratorServiceBLL.cs" />
+    <Compile Include="BLL\Services\Users\ClientServiceBLL.cs" />
+    <Compile Include="BLL\Services\Users\UserServiceBLL.cs" />
     <Compile Include="DAL\DataBaseConnectionDAL.cs" />
-    <Compile Include="DAL\Interfaces\IAdministratorDAL.cs" />
-    <Compile Include="DAL\Interfaces\IClientDAL.cs" />
-    <Compile Include="DAL\Repository\AdministratorRepositoryDAL.cs" />
-    <Compile Include="DAL\Repository\ClientRepositoryDAL.cs" />
+    <Compile Include="DAL\Interfaces\Contents\IContentDAL.cs" />
+    <Compile Include="DAL\Interfaces\Users\IAdministratorDAL.cs" />
+    <Compile Include="DAL\Interfaces\Users\IClientDAL.cs" />
+    <Compile Include="DAL\Interfaces\Users\IUserDAL.cs" />
+    <Compile Include="DAL\Repository\Contents\ContentRepositoryDAL.cs" />
+    <Compile Include="DAL\Repository\Users\AdministratorRepositoryDAL.cs" />
+    <Compile Include="DAL\Repository\Users\ClientRepositoryDAL.cs" />
+    <Compile Include="DAL\Repository\Users\UserRepositoryDAL.cs" />
     <Compile Include="Exceptions\DataBaseException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\InvalidSignUpException.cs" />
+    <Compile Include="Helpers\MessageBoxHelper.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Models\DTO\AdministratorDTO.cs" />
     <Compile Include="Models\DTO\ClientDTO.cs" />
+    <Compile Include="Models\DTO\ContentDTO.cs" />
+    <Compile Include="Models\DTO\EpisodeDTO.cs" />
+    <Compile Include="Models\DTO\MovieDTO.cs" />
+    <Compile Include="Models\DTO\SeasonDTO.cs" />
+    <Compile Include="Models\DTO\SeriesDTO.cs" />
+    <Compile Include="Models\DTO\TitleDTO.cs" />
     <Compile Include="Models\DTO\UserDTO.cs" />
     <Compile Include="Models\Entities\Administrator.cs" />
     <Compile Include="Models\Entities\Client.cs" />
+    <Compile Include="Models\Entities\Content.cs" />
+    <Compile Include="Models\Entities\Episode.cs" />
+    <Compile Include="Models\Entities\Movie.cs" />
+    <Compile Include="Models\Entities\Season.cs" />
+    <Compile Include="Models\Entities\Series.cs" />
+    <Compile Include="Models\Entities\Title.cs" />
     <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\UserType.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
+<<<<<<< HEAD
     <Compile Include="Navegation\Interface\INavegationService.cs" />
     <Compile Include="Navegation\Service\NavegationService.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="Views\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
+=======
+    <Compile Include="Navigation\Interface\INavigationService.cs" />
+    <Compile Include="Navigation\Service\NavigationService.cs" />
+    <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
+    <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
+    <Compile Include="ViewModels\Users\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Users\SignUpViewModel.cs" />
+    <Compile Include="Views\AdministratorHome.xaml.cs">
+      <DependentUpon>AdministratorHome.xaml</DependentUpon>
+>>>>>>> feature/implementando-tela-adm
     </Compile>
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -222,6 +260,7 @@
     <Compile Include="Views\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Views\UserControls\Carousel.xaml.cs">
       <DependentUpon>Carousel.xaml</DependentUpon>
     </Compile>
@@ -230,6 +269,13 @@
     </Compile>
     <Compile Include="Views\UserControls\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
+=======
+    <Compile Include="Views\UserControls\ContentManagement.xaml.cs">
+      <DependentUpon>ContentManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UserManagement.xaml.cs">
+      <DependentUpon>UserManagement.xaml</DependentUpon>
+>>>>>>> feature/implementando-tela-adm
     </Compile>
     <Page Include="Styles\Buttons.xaml">
       <SubType>Designer</SubType>
@@ -251,7 +297,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Styles\PathIconsSvg.xaml">
+=======
+    <Page Include="Styles\ListViewItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ScrollBar.xaml">
+>>>>>>> feature/implementando-tela-adm
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,7 +317,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\Home.xaml">
+=======
+    <Page Include="Views\AdministratorHome.xaml">
+>>>>>>> feature/implementando-tela-adm
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,6 +333,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Views\UserControls\Carousel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -284,6 +343,13 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\SideBar.xaml">
+=======
+    <Page Include="Views\UserControls\ContentManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UserManagement.xaml">
+>>>>>>> feature/implementando-tela-adm
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -320,7 +386,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup />
+=======
+  <ItemGroup>
+    <Folder Include="Navegation\Interface\" />
+    <Folder Include="Navegation\Service\" />
+  </ItemGroup>
+>>>>>>> feature/implementando-tela-adm
   <ItemGroup>
     <Resource Include="Assets\InvocacaoDoMal.png" />
   </ItemGroup>

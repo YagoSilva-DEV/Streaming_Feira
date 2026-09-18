@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views"
         mc:Ignorable="d"
-        Title="SignUp" Height="450" Width="800">
+        WindowStyle="None"
+        BorderBrush="White"
+        BorderThickness="1"
+        Background="{StaticResource BackgroundColorLoginBrush}"
+        Title="SignUp" Height="400" Width="380">
     <Grid>
-        
+
+        <Grid Margin="10" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.8*"/>
+                <RowDefinition Height="8.2*"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="STREAMALL" Style="{StaticResource StyleTextBlockTopSignUp}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Text="Cadastre-se para continuar" Style="{StaticResource StyleTextBlockLogin}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid Grid.Row="1" VerticalAlignment="Center" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Margin="20,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="2.5*"/>
+                        <RowDefinition Height="2.5*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="txtFullName" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtFullName_TextChanged" Text="{Binding FullName}"/>
+                    <TextBlock x:Name="tbFullName" Text="Nome completo" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
+                    <TextBox Grid.Row="1" x:Name="txtUserName" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtUserName_TextChanged" Text="{Binding UserName}"/>
+                    <TextBlock x:Name="tbUserName" Grid.Row="1" Text="Nome de usuário" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
+                    <TextBox Grid.Row="2" x:Name="txtEmail" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtEmail_TextChanged" Text="{Binding Email}"/>
+                    <TextBlock x:Name="tbEmail" Grid.Row="2" Text="Email" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
+                    <TextBox Grid.Row="3" x:Name="txtPassword" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtPassword_TextChanged" Text="{Binding Password}"/>
+                    <TextBlock x:Name="tbPassword" Grid.Row="3" Text="Senha" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
+                </Grid>
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlockError}" Text="{Binding ErrorMessage}"/>
+                <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlockSuccess}" Text="{Binding SuccessMessage}"/>
+                <Button Content="Cadastrar" Style="{StaticResource StylePrimaryButtonSignUp}" Grid.Row="2" Command="{Binding SignUpCommand}"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
