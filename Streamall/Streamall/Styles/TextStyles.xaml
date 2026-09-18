@@ -67,4 +67,19 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="Heavy"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockTopAdmHome">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockDescriptionTopAdmHome">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="#8A8F9E"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>
