@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views"
-        xmlns:ContentManagement="clr-namespace:Streamall.Views.UserControls"
+        xmlns:contentUserControl="clr-namespace:Streamall.Views.UserControls"
+        xmlns:viewModelContent="clr-namespace:Streamall.ViewModels.Contents"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -12,6 +13,11 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Background="{StaticResource BackgroundColorLoginBrush}"
         Title="AdministratorHome" Height="500" Width="900">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModelContent:ContentManagementViewModel}">
+            <contentUserControl:ContentManagement/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <!-- Sidebar -->
@@ -36,7 +42,7 @@
 
                 <!-- Menu de Navegação -->
                 <StackPanel Grid.Row="1" VerticalAlignment="Center">
-                    <Button Content="Catálogo de Filmes" Style="{StaticResource MenuButtonStyle}" Background="#1E2235" Foreground="#FFFFFF" Margin="0,0,0,5"/>
+                    <Button Content="Catálogo de Filmes" Style="{StaticResource MenuButtonStyle}" Foreground="#FFFFFF" Margin="0,0,0,5" Command="{Binding ShowContentsManagmentCommand}"/>
                     <Button Content="Cadastrar Filme" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
                     <Button Content="Gerenciar Clientes" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
                     <Button Content="Estatísticas" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
@@ -87,7 +93,7 @@
             </Border>
 
             <!-- CONTEÚDO PRINCIPAL -->
-            <ContentManagement:ContentManagement Grid.Row="1"/>
+            <ContentControl Content="{Binding CurrentViewModel}" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

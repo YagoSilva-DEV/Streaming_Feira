@@ -1,21 +1,38 @@
 ﻿using Streamall.Models.DTO;
+using Streamall.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Streamall.ViewModels.Contents;
+using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
+using Streamall.BLL.Services.Contents;
+using Streamall.DAL.Repository.Contents;
+using Streamall.Navigation.Interface;
 
 namespace Streamall.ViewModels.Users
 {
-    public class AdministratorHomeViewModel
+    public class AdministratorHomeViewModel : ViewModelBase
     {
-        public UserDTO Adm { get; set; }
-        public AdministratorHomeViewModel(UserDTO admDTO)
+        private object _currentViewModel;
+        public object CurrentViewModel
         {
-            Adm = admDTO;
+            get { return _currentViewModel; }
+            set 
+            { 
+                _currentViewModel = value;
+                OnPropertyChanged();
+            }
         }
 
+        private INavigationService _navigationService;
+
+        public RelayCommand ShowContentsManagmentCommand { get; set; }
+
+        public UserDTO Adm { get; set; }
         public string NameInitials
         {
             get
@@ -39,5 +56,15 @@ namespace Streamall.ViewModels.Users
             }
         }
 
+        public AdministratorHomeViewModel()
+        {
+        }
+        public AdministratorHomeViewModel(UserDTO admDTO, INavigationService navigationService)
+        {
+            Adm = admDTO;
+            _navigationService = navigationService;
+            _navigationService.AddAdmViewModel(this);
+            ShowContentsManagmentCommand = new RelayCommand(canExecute => _navigationService.ViewModelNavigation<ContentManagementViewModel>());
+        }
     }
 }

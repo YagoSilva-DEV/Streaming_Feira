@@ -25,7 +25,6 @@ namespace Streamall.Views.UserControls
     {
         public ContentManagement()
         {
-            DataContext = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
             InitializeComponent();
         }
     }

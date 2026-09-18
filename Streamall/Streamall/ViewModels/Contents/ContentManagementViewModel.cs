@@ -14,13 +14,28 @@ namespace Streamall.ViewModels.Contents
     {
 		private readonly IContentBLL _contentBLL;
 		public ObservableCollection<ContentDTO> Contents { get; set; }
-
-
-		public ContentManagementViewModel(IContentBLL contentBLL)
+        public RelayCommand RemoveContentCommand { get; set; }
+        public RelayCommand EditContentCommand { get; set; }
+        public ContentManagementViewModel(IContentBLL contentBLL)
 		{
 			_contentBLL = contentBLL;
 
 			Contents = new ObservableCollection<ContentDTO>(_contentBLL.GetContentDTOs());
+			RemoveContentCommand = new RelayCommand(execute => RemoveContent(execute as ContentDTO));
+			EditContentCommand = new RelayCommand(execute => EditContent(execute as ContentDTO));
 		}
-	}
+
+		private void RemoveContent(ContentDTO contentDTO)
+		{
+			int contentId = contentDTO.Id;
+
+			//chamar método para excluir o conteúdo.
+		}
+        private void EditContent(ContentDTO contentDTO)
+        {
+            int contentId = contentDTO.Id;
+
+            //chamar método para editar o conteúdo.
+        }
+    }
 }

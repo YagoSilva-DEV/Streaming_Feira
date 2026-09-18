@@ -1,4 +1,5 @@
 ﻿using Streamall.Models.DTO;
+using Streamall.ViewModels.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace Streamall.Navigation.Interface
 {
     public interface INavigationService
     {
+        void AddAdmViewModel(AdministratorHomeViewModel administratorHomeViewModel);
         void Navigate<TView>();
         void Navigate<TView>(UserDTO admDTO);
+        void ViewModelNavigation<TViewModel>();
     }
 }

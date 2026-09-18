@@ -342,10 +342,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Navegation\Interface\" />
-    <Folder Include="Navegation\Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\InvocacaoDoMal.png" />
   </ItemGroup>

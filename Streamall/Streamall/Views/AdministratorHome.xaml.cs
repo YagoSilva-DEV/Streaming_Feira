@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Streamall.Navigation.Service;
 using System.Windows.Shapes;
 
 namespace Streamall.Views
@@ -23,11 +24,12 @@ namespace Streamall.Views
     {
         public AdministratorHome()
         {
+            DataContext = new AdministratorHomeViewModel();
             InitializeComponent();
         }
         public AdministratorHome(UserDTO admDTO)
         {
-            DataContext = new AdministratorHomeViewModel(admDTO);
+            DataContext = new AdministratorHomeViewModel(admDTO, new NavigationService());
             InitializeComponent();
         }
 
