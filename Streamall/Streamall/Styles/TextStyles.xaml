@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <Style TargetType="TextBlock" x:Key="StyleTextBlockLogoLogin">
         <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
         <Setter Property="FontWeight" Value="Heavy"/>
@@ -25,5 +25,61 @@
             </Trigger>
         </Style.Triggers>
 
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockTopSignUp">
+        <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
+        <Setter Property="Foreground" Value="{StaticResource LogoGradientSignUp}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockError">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="Red"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="5,0,0,5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockSuccess">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryBlueLoginBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Margin" Value="5,0,0,5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockContentName">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockUserInitials">
+        <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockTopAdmHome">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockDescriptionTopAdmHome">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="#8A8F9E"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 </ResourceDictionary>

@@ -1,6 +1,6 @@
 ﻿using Streamall.BLL.Services;
 using Streamall.DAL.Repository;
-using Streamall.Service;
+using Streamall.Navigation.Service;
 using Streamall.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +15,7 @@ namespace Streamall.Views
     {
         public Login()
         {
-            DataContext = new LoginViewModel(new ClientServiceBLL(new ClientRepositoryDAL()), new AdministratorServiceBLL(new AdministratorRepositoryDAL()), new NavegationService());
+            DataContext = new LoginViewModel(new UserServiceBLL(new UserRepositoryDAL()), new NavigationService());
             InitializeComponent();
         }
 

@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Streamall.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Streamall.Models.Entities;
 
 namespace Streamall.DAL.Interfaces
 {
-    internal interface IClientDAL
+    public interface IUserDAL
     {
-        bool EnterAsClientDAL(User user);
+        bool LoginDAL(User user);
+        User UserData(string userName);
     }
 }

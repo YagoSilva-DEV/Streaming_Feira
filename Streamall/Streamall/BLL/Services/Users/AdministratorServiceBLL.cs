@@ -7,7 +7,7 @@ using System;
 
 namespace Streamall.BLL.Services
 {
-    internal class AdministratorServiceBLL : IAdministratorBLL
+    public class AdministratorServiceBLL : IAdministratorBLL
     {
         private User _user;
         private readonly IAdministratorDAL _adminDAL;
@@ -17,12 +17,5 @@ namespace Streamall.BLL.Services
             _adminDAL = adminDAL;
         }
 
-        public void EnterAsAdministratorBLL(UserDTO admin)
-        {
-            _user = new Administrator(admin.UserName, admin.Password, admin.Email);
-
-            if (!_adminDAL.EnterAsAdministratorDAL(_user))
-                throw new InvalidLoginException("Usuário ou senha inválidos");
-        }
     }
 }

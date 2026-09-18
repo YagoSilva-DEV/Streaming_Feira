@@ -2,8 +2,8 @@
 
 namespace Streamall.BLL.Interfaces
 {
-    internal interface IClientBLL
+    public interface IClientBLL
     {
-        void EnterAsClientBLL(UserDTO userDTO);
+        void SignUpAsClientBLL(UserDTO userDTO);
     }
 }

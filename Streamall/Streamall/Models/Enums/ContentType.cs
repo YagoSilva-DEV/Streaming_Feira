@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Streamall.ViewModels
+namespace Streamall.Models.Enums
 {
-    internal class SignUpViewModel
+    public enum ContentType
     {
+        MOVIE,
+        SERIES
     }
 }
