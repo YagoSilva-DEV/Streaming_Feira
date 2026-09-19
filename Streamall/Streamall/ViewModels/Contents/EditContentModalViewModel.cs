@@ -1,4 +1,6 @@
 ﻿using Streamall.BLL.Interfaces.Contents;
+using Streamall.BLL.Services.Contents;
+using Streamall.DAL.Repository.Contents;
 using Streamall.Helpers;
 using Streamall.Models.DTO;
 using Streamall.Models.DTO.ContentsDTO;
@@ -11,80 +13,49 @@ using System.Threading.Tasks;
 
 namespace Streamall.ViewModels.Contents
 {
-    internal class EditContentModalViewModel : ViewModelBase
+    public class EditContentModalViewModel : ViewModelBase
     {
-        public ContentDTO ContentDTO { get; set; }
-        private IContentBLL _contentBLL;
-        private List<GenreDTO> _genres;
-        public List<GenreDTO> Genres
-        {
-            get { return _genres; }
-            set 
-            { 
-                _genres = value;
-                OnPropertyChanged();
-            }
-        }
-        private List<FilmMakerDTO> _filmMakers;
-
-        public List<FilmMakerDTO> FilmMakers
-        {
-            get { return _filmMakers; }
-            set 
-            {
-                _filmMakers = value;
-                OnPropertyChanged();
-            }
-        }
-
-
+        private EditContentControlViewModel _storedEditContentControlViewModel;
         private Action _closeWindow;
-        public RelayCommand CloseWindowCommand { get; set; }
-        public RelayCommand OpenFileDialogCommand { get; set; }
-        private string _newPathCover;
-
-        public string NewPathCover
+        public ContentDTO StoredContentDTO { get; set; }
+        private object _currentViewModel;
+        public RelayCommand SaveCommand { get; set; }
+        public RelayCommand CancelCommand { get; set; }
+        public object CurrentViewModel
         {
-            get { return _newPathCover; }
-            set 
-            { 
-                _newPathCover = value;
-                OnPropertyChanged();
-            }
-        }
-        private string _fileMessage;
-        public string FileMessage
-        {
-            get
-            {
-                if(_fileMessage == null)
-                    return "Nenhuma imagem selecionada";
-                return string.Empty;
-            }
+            get { return _currentViewModel; }
             set
             {
-                _fileMessage = value;
+                _currentViewModel = value;
                 OnPropertyChanged();
             }
         }
 
-        public EditContentModalViewModel(ContentDTO contentDTO, IContentBLL contentBLL, Action closeWindow)
+        public EditContentModalViewModel(ContentDTO contentDTO, Action closeWindow)
         {
-            ContentDTO = contentDTO;
-            _contentBLL = contentBLL;
+            StoredContentDTO = contentDTO;
+            SaveCommand = new RelayCommand(execute => Save());
+            CancelCommand = new RelayCommand(execute => Cancel());
+            CurrentViewModel = new EditContentControlViewModel(contentDTO, new ContentServiceBLL(new ContentRepositoryDAL()));
             _closeWindow = closeWindow;
-
-            Genres = new List<GenreDTO>(_contentBLL.GetGenresDTO());
-            FilmMakers = new List<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
-
-            CloseWindowCommand = new RelayCommand(execute => _closeWindow.Invoke());
-            OpenFileDialogCommand = new RelayCommand(execute => GetNewPathCover());
         }
 
-        private void GetNewPathCover()
+        private void Save()
         {
-            NewPathCover = FileDialogHelper.GetFilePath();
-            FileMessage = NewPathCover;
+            if (CurrentViewModel is EditContentControlViewModel)
+            {
+                _storedEditContentControlViewModel = CurrentViewModel as EditContentControlViewModel;
+                CurrentViewModel = new ConfirmEditContentViewModel(StoredContentDTO);
+            }
         }
+
+        private void Cancel()
+        {
+            if (CurrentViewModel is EditContentControlViewModel)
+                _closeWindow.Invoke();
+            else
+                CurrentViewModel = _storedEditContentControlViewModel;
+        }
+
     }
 }

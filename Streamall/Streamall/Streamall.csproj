@@ -239,7 +239,9 @@
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Navigation\Interface\INavigationService.cs" />
     <Compile Include="Navigation\Service\NavigationService.cs" />
+    <Compile Include="ViewModels\Contents\ConfirmEditContentViewModel.cs" />
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
+    <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
     <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
     <Compile Include="ViewModels\Users\LoginViewModel.cs" />
@@ -260,8 +262,14 @@
     <Compile Include="Views\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ConfirmEditContent.xaml.cs">
+      <DependentUpon>ConfirmEditContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ContentManagement.xaml.cs">
       <DependentUpon>ContentManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EditContentControl.xaml.cs">
+      <DependentUpon>EditContentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\UserManagement.xaml.cs">
       <DependentUpon>UserManagement.xaml</DependentUpon>
@@ -314,7 +322,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\ConfirmEditContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\ContentManagement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\EditContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

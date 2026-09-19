@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="700" d:DesignWidth="800">
     <Grid Margin="28">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +24,7 @@
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
                     <TextBlock Text="ID:" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,6,0" VerticalAlignment="Center"/>
                     <Border Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="4" Padding="10,4">
-                        <TextBlock Text="{Binding ContentDTO.Id}" Foreground="{StaticResource TextPrimaryLoginBrush}" FontWeight="Bold" FontSize="12"/>
+                        <TextBlock Text="{Binding OldContentDTO.Id}" Foreground="{StaticResource TextPrimaryLoginBrush}" FontWeight="Bold" FontSize="12"/>
                     </Border>
                 </StackPanel>
             </Grid>
@@ -49,8 +49,8 @@
                     <Border Style="{StaticResource CompareCardStyle}">
                         <StackPanel>
                             <TextBlock Text="CAPA ATUAL" Style="{StaticResource SectionTitleStyle}"/>
-                            <Border Height="200" CornerRadius="4" ClipToBounds="True" Background="#10FFFFFF">
-                                <Image Source="{Binding OriginalPathCover}" Stretch="UniformToFill"/>
+                            <Border Height="350" CornerRadius="4" ClipToBounds="True" Background="#10FFFFFF">
+                                <Image Source="{Binding OldContentDTO.PathCover}" Stretch="UniformToFill"/>
                             </Border>
                         </StackPanel>
                     </Border>
@@ -59,7 +59,7 @@
                     <Border Style="{StaticResource CompareCardStyle}">
                         <StackPanel>
                             <TextBlock Text="NOME DO CONTEÚDO" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="{Binding OriginalNameContent}" Style="{StaticResource ValueTextStyle}"/>
+                            <TextBlock Text="{Binding OldContentDTO.Name}" Style="{StaticResource ValueTextStyle}"/>
                         </StackPanel>
                     </Border>
 
@@ -76,21 +76,21 @@
                         <Border Grid.Column="0" Style="{StaticResource CompareCardStyle}">
                             <StackPanel>
                                 <TextBlock Text="TIPO" Style="{StaticResource SectionTitleStyle}"/>
-                                <TextBlock Text="{Binding OriginalTypeContentDisplay}" Style="{StaticResource ValueTextStyle}"/>
+                                <TextBlock Text="{Binding OldContentType}" Style="{StaticResource ValueTextStyle}"/>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Column="2" Style="{StaticResource CompareCardStyle}">
                             <StackPanel>
                                 <TextBlock Text="GÊNERO" Style="{StaticResource SectionTitleStyle}"/>
-                                <TextBlock Text="{Binding OriginalGenreName}" Style="{StaticResource ValueTextStyle}"/>
+                                <TextBlock Text="{Binding OldContentDTO.Genre}" Style="{StaticResource ValueTextStyle}"/>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Column="4" Style="{StaticResource CompareCardStyle}">
                             <StackPanel>
                                 <TextBlock Text="ANO" Style="{StaticResource SectionTitleStyle}"/>
-                                <TextBlock Text="{Binding OriginalReleaseDate, StringFormat=\{0:yyyy\}}" Style="{StaticResource ValueTextStyle}"/>
+                                <TextBlock Text="{Binding OldContentDTO.ReleaseDate, StringFormat=\{0:yyyy\}}" Style="{StaticResource ValueTextStyle}"/>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -99,7 +99,7 @@
                     <Border Style="{StaticResource CompareCardStyle}">
                         <StackPanel>
                             <TextBlock Text="CINEASTA / DIRETOR" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="{Binding OriginalFilmmakerName}" Style="{StaticResource ValueTextStyle}"/>
+                            <TextBlock Text="{Binding OldContentDTO.FilmMaker}" Style="{StaticResource ValueTextStyle}"/>
                         </StackPanel>
                     </Border>
 
@@ -107,7 +107,7 @@
                     <Border Style="{StaticResource CompareCardStyle}">
                         <StackPanel>
                             <TextBlock Text="SINOPSE" Style="{StaticResource SectionTitleStyle}"/>
-                            <TextBlock Text="{Binding OriginalSynopsisContent}" Style="{StaticResource ValueTextStyle}"/>
+                            <TextBlock Text="{Binding OldContentDTO.Synopsis}" Style="{StaticResource ValueTextStyle}"/>
                         </StackPanel>
                     </Border>
                 </StackPanel>
@@ -116,27 +116,23 @@
                 <Grid Grid.Column="1">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Border Width="36" Height="36" CornerRadius="18" Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1">
-                            <TextBlock Text="➔" Foreground="#E5A93C" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Text="➔" Foreground="{StaticResource PrimaryAccentBrush}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
                         </Border>
                     </StackPanel>
                 </Grid>
 
                 <!-- ==================== NOVOS DADOS ==================== -->
                 <StackPanel Grid.Column="2">
-                    <Border Background="#20E5A93C" Padding="8,6" CornerRadius="4" Margin="0,0,0,12">
-                        <TextBlock Text="NOVOS DADOS (A SALVAR)" TextAlignment="Center" FontWeight="Bold" Foreground="#E5A93C" FontSize="11"/>
+                    <Border Background="{StaticResource AccentHighlightBackgroundBrush}" Padding="8,6" CornerRadius="4" Margin="0,0,0,12">
+                        <TextBlock Text="NOVOS DADOS (A SALVAR)" TextAlignment="Center" FontWeight="Bold" Foreground="{StaticResource PrimaryAccentBrush}" FontSize="11"/>
                     </Border>
 
                     <!-- Capa Nova -->
                     <StackPanel Margin="0,0,0,12">
-                        <Border Style="{StaticResource ChangedBadgeBorderStyle}"
-                            Visibility="{Binding IsCoverChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource ChangedBadgeTextStyle}"/>
-                        </Border>
-                        <Border Style="{Binding IsCoverChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                        <Border Margin="0" Style="{StaticResource CompareCardStyle}">
                             <StackPanel>
                                 <TextBlock Text="NOVA CAPA" Style="{StaticResource SectionTitleStyle}"/>
-                                <Border Height="200" CornerRadius="4" ClipToBounds="True" Background="#10FFFFFF">
+                                <Border Height="350" CornerRadius="4" ClipToBounds="True" Background="#10FFFFFF">
                                     <Image Source="{Binding NewPathCover}" Stretch="UniformToFill"/>
                                 </Border>
                             </StackPanel>
@@ -145,11 +141,7 @@
 
                     <!-- Nome Novo -->
                     <StackPanel Margin="0,0,0,12">
-                        <Border Style="{StaticResource ChangedBadgeBorderStyle}"
-                            Visibility="{Binding IsNameChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource ChangedBadgeTextStyle}"/>
-                        </Border>
-                        <Border Style="{Binding IsNameChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                        <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                             <StackPanel>
                                 <TextBlock Text="NOME DO CONTEÚDO" Style="{StaticResource SectionTitleStyle}"/>
                                 <TextBlock Text="{Binding NameContent}" Style="{StaticResource ValueTextStyle}" FontWeight="SemiBold"/>
@@ -169,11 +161,7 @@
 
                         <!-- Tipo -->
                         <StackPanel Grid.Column="0">
-                            <Border Style="{StaticResource ChangedBadgeBorderStyle}" Padding="4,2"
-                                Visibility="{Binding IsTypeChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock Style="{StaticResource ChangedBadgeTextStyle}" FontSize="8"/>
-                            </Border>
-                            <Border Style="{Binding IsTypeChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                            <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                                 <StackPanel>
                                     <TextBlock Text="TIPO" Style="{StaticResource SectionTitleStyle}"/>
                                     <TextBlock Text="{Binding NewTypeContentDisplay}" Style="{StaticResource ValueTextStyle}"/>
@@ -183,11 +171,7 @@
 
                         <!-- Gênero -->
                         <StackPanel Grid.Column="2">
-                            <Border Style="{StaticResource ChangedBadgeBorderStyle}" Padding="4,2"
-                                Visibility="{Binding IsGenreChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock Style="{StaticResource ChangedBadgeTextStyle}" FontSize="8"/>
-                            </Border>
-                            <Border Style="{Binding IsGenreChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                            <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                                 <StackPanel>
                                     <TextBlock Text="GÊNERO" Style="{StaticResource SectionTitleStyle}"/>
                                     <TextBlock Text="{Binding NewGenreName}" Style="{StaticResource ValueTextStyle}"/>
@@ -197,11 +181,7 @@
 
                         <!-- Ano -->
                         <StackPanel Grid.Column="4">
-                            <Border Style="{StaticResource ChangedBadgeBorderStyle}" Padding="4,2"
-                                Visibility="{Binding IsReleaseDateChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <TextBlock Style="{StaticResource ChangedBadgeTextStyle}" FontSize="8"/>
-                            </Border>
-                            <Border Style="{Binding IsReleaseDateChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                            <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                                 <StackPanel>
                                     <TextBlock Text="ANO" Style="{StaticResource SectionTitleStyle}"/>
                                     <TextBlock Text="{Binding ReleaseDate, StringFormat=\{0:yyyy\}}" Style="{StaticResource ValueTextStyle}"/>
@@ -212,11 +192,7 @@
 
                     <!-- Diretor Novo -->
                     <StackPanel Margin="0,0,0,12">
-                        <Border Style="{StaticResource ChangedBadgeBorderStyle}"
-                            Visibility="{Binding IsFilmmakerChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource ChangedBadgeTextStyle}"/>
-                        </Border>
-                        <Border Style="{Binding IsFilmmakerChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                        <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                             <StackPanel>
                                 <TextBlock Text="CINEASTA / DIRETOR" Style="{StaticResource SectionTitleStyle}"/>
                                 <TextBlock Text="{Binding NewFilmmakerName}" Style="{StaticResource ValueTextStyle}"/>
@@ -226,11 +202,7 @@
 
                     <!-- Sinopse Nova -->
                     <StackPanel Margin="0,0,0,12">
-                        <Border Style="{StaticResource ChangedBadgeBorderStyle}"
-                            Visibility="{Binding IsSynopsisChanged, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <TextBlock Style="{StaticResource ChangedBadgeTextStyle}"/>
-                        </Border>
-                        <Border Style="{Binding IsSynopsisChanged, Converter={StaticResource BoolToCardStyleConverter}}" Margin="0">
+                        <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                             <StackPanel>
                                 <TextBlock Text="SINOPSE" Style="{StaticResource SectionTitleStyle}"/>
                                 <TextBlock Text="{Binding SynopsisContent}" Style="{StaticResource ValueTextStyle}"/>
@@ -240,22 +212,5 @@
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-
-        <!-- Rodapé -->
-        <Border Grid.Row="2" Margin="0,20,0,0" Padding="0,16,0,0" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="0,1,0,0">
-            <Grid>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Ellipse Width="8" Height="8" Fill="#E5A93C" Margin="0,0,8,0"/>
-                    <TextBlock Text="Revise as alterações destacadas em amarelo antes de salvar." Foreground="{StaticResource TextSecondaryLoginBrush}" FontSize="12"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Voltar a Editar" Width="130" Height="38" Style="{StaticResource StyleSecondaryButtonEditModal}" Margin="0,0,12,0" Command="{Binding BackToEditCommand}"/>
-                    <Button Content="Confirmar e Salvar" Width="160" Height="38" Style="{StaticResource StylePrimaryButtonEditModal}" Command="{Binding ConfirmSaveCommand}"/>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-
     </Grid>
 </UserControl>

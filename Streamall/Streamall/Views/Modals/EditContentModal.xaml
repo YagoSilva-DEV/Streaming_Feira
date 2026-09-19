@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views.Modals"
+        xmlns:ViewModels="clr-namespace:Streamall.ViewModels.Contents"
+        xmlns:UserControl="clr-namespace:Streamall.Views.UserControls"
         mc:Ignorable="d"
         WindowStyle="None"
         BorderBrush="White"
@@ -11,114 +13,22 @@
         Background="{StaticResource BackgroundColorLoginBrush}"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Title="EditContentModal" Height="700" Width="700">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:EditContentControlViewModel}">
+            <UserControl:EditContent/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:ConfirmEditContentViewModel}">
+            <UserControl:ConfirmEditContent/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid Margin="32">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Cabecalho Organizado -->
-        <Border Grid.Row="0" Margin="0,0,0,24" Padding="0,0,0,16" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="0,0,0,1">
-            <Grid>
-                <StackPanel>
-                    <TextBlock Text="STREAMALL STUDIO" Foreground="{StaticResource TextSecondaryLoginBrush}" FontSize="20" FontFamily="{StaticResource Righteous}" FontWeight="Bold"/>
-                    <TextBlock Text="Editar Conteúdo" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextPrimaryLoginBrush}" Margin="0,4,0,0" FontFamily="{StaticResource Righteous}"/>
-                </StackPanel>
-
-                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-                    <TextBlock Text="ID:" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,6,0" VerticalAlignment="Center"/>
-                    <Border Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="4" Padding="10,4">
-                        <TextBlock Text="{Binding ContentDTO.Id}" Foreground="{StaticResource TextPrimaryLoginBrush}" FontWeight="Bold" FontSize="12"/>
-                    </Border>
-                </StackPanel>
-            </Grid>
-        </Border>
-
-        <!-- Formulario em Painel Organizado -->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="260"/>
-                <ColumnDefinition Width="32"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Coluna Esquerda: Capa e Arquivo -->
-            <StackPanel Grid.Column="0">
-                <TextBlock Text="Capa do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}"/>
-
-                <Border Height="340" Background="{StaticResource InputBackgroundEditModalBrush}" CornerRadius="6" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" Margin="0,0,0,12">
-                    <Grid>
-                        <Image Source="{Binding NewPathCover}" Stretch="UniformToFill"/>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding FileMessage}" Foreground="{StaticResource TextSecondaryLoginBrush}" FontSize="12" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-
-                <!-- Campo do Caminho da Capa -->
-                <Grid>
-                    <Button Content="Buscar" Style="{StaticResource StyleSecondaryButtonEditModal}" Command="{Binding OpenFileDialogCommand}"/>
-                </Grid>
-            </StackPanel>
-
-            <!-- Coluna Direita: Campos de Dados -->
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <!-- Linha 1: Nome do Conteúdo -->
-                <StackPanel Grid.Row="0" Margin="0,0,0,16">
-                    <TextBlock Text="Nome do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}"/>
-                    <TextBox Height="40" Text="{Binding NameContent}" Style="{StaticResource StyleTextBoxEditModal}"/>
-                </StackPanel>
-
-                <!-- Linha 2: Tipo, Gênero e Lançamento -->
-                <Grid Grid.Row="1" Margin="0,0,0,16">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="16"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Tipo" Style="{StaticResource StyleFieldLabelEditModal}"/>
-                        <ComboBox SelectedValue="{Binding TypeContent}" SelectedValuePath="Tag" Style="{StaticResource StyleComboBoxEditModal}">
-                            <ComboBoxItem Content="Filme" Tag="1"/>
-                            <ComboBoxItem Content="Série" Tag="2"/>
-                        </ComboBox>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="2">
-                        <TextBlock Text="Gênero" Style="{StaticResource StyleFieldLabelEditModal}"/>
-                        <ComboBox SelectedValue="{Binding GenderId}" ItemsSource="{Binding Genres}" Style="{StaticResource StyleComboBoxEditModal}"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="4">
-                        <TextBlock Text="Ano / Lançamento" Style="{StaticResource StyleFieldLabelEditModal}"/>
-                        <DatePicker SelectedDate="{Binding ReleaseDate}" Height="40" Background="{StaticResource InputBackgroundEditModalBrush}"/>
-                    </StackPanel>
-                </Grid>
-
-                <!-- Linha 3: Cineasta / Diretor -->
-                <StackPanel Grid.Row="2" Margin="0,0,0,16">
-                    <TextBlock Text="Cineasta / Diretor" Style="{StaticResource StyleFieldLabelEditModal}"/>
-                    <ComboBox SelectedValue="{Binding FilmmakerId}" ItemsSource="{Binding FilmMakers}" Style="{StaticResource StyleComboBoxEditModal}"/>
-                </StackPanel>
-
-                <!-- Linha 4: Sinopse -->
-                <StackPanel Grid.Row="3">
-                    <TextBlock Text="Sinopse" Style="{StaticResource StyleFieldLabelEditModal}"/>
-                    <TextBox Height="120" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding SynopsisContent}" Style="{StaticResource StyleTextBoxEditModal}"/>
-                </StackPanel>
-            </Grid>
-        </Grid>
+        <ContentControl Content="{Binding CurrentViewModel}"/>
 
         <!-- Rodapé de Ações -->
         <Border Grid.Row="2" Margin="0,24,0,0" Padding="0,16,0,0" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="0,1,0,0">
@@ -126,7 +36,7 @@
                 <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource TextSecondaryLoginBrush}" VerticalAlignment="Center" FontSize="12"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="Cancelar" Width="100" Style="{StaticResource StyleSecondaryButtonEditModal}" Margin="0,0,12,0" Command="{Binding CloseWindowCommand}"/>
+                    <Button Content="Cancelar" Width="100" Style="{StaticResource StyleSecondaryButtonEditModal}" Margin="0,0,12,0" Command="{Binding CancelCommand}"/>
                     <Button Content="Salvar Alterações" Width="150" Style="{StaticResource StylePrimaryButtonEditModal}" Command="{Binding SaveCommand}"/>
                 </StackPanel>
             </Grid>
