@@ -14,6 +14,7 @@ namespace Streamall.Navigation.Interface
         void AddAdmViewModel(AdministratorHomeViewModel administratorHomeViewModel);
         void Navigate<TView>();
         void Navigate<TView>(UserDTO admDTO);
+        void Navigate<TView>(ContentDTO contentDTO);
         void ViewModelNavigation<TViewModel>();
     }
 }

@@ -8,9 +8,12 @@
         xmlns:viewModelContent="clr-namespace:Streamall.ViewModels.Contents"
         mc:Ignorable="d"
         WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="False"
         WindowStartupLocation="CenterScreen"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        BorderBrush="White"
+        BorderThickness="1"
+        ResizeMode="CanResize"
         Background="{StaticResource BackgroundColorLoginBrush}"
         Title="AdministratorHome" Height="500" Width="900">
     <Window.Resources>

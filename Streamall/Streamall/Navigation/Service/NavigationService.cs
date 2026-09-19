@@ -6,6 +6,7 @@ using Streamall.ViewModels;
 using Streamall.ViewModels.Contents;
 using Streamall.ViewModels.Users;
 using Streamall.Views;
+using Streamall.Views.Modals;
 using System.Linq;
 using System.Windows;
 
@@ -76,9 +77,7 @@ namespace Streamall.Navigation.Service
                 var signUpIsActive = signUp.ShowDialog();
 
                 if (signUpIsActive == false)
-                {
                     owner.Opacity = 1;
-                }
             }
             if (typeof(TView) == typeof(AdministratorHome))
             {
@@ -92,11 +91,30 @@ namespace Streamall.Navigation.Service
             }
         }
 
+        public void Navigate<TView>(ContentDTO contentDTO)
+        {
+            if (typeof(TView) == typeof(EditContentModal))
+            {
+                Window owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
+                EditContentModal editContentModal = new EditContentModal(contentDTO);
+                if (owner != null)
+                {
+                    editContentModal.Owner = owner;
+                    editContentModal.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    owner.Opacity = 0.3;
+                }
+
+                var editModalIsActive = editContentModal.ShowDialog();
+                if (editModalIsActive == false)
+                    owner.Opacity = 1;
+            }
+        }
+
         public void ViewModelNavigation<TViewModel>()
         {
-            if(typeof(TViewModel) == typeof(ContentManagementViewModel))
+            if (typeof(TViewModel) == typeof(ContentManagementViewModel))
             {
-                _admViewModel.CurrentViewModel = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
+                _admViewModel.CurrentViewModel = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
             }
         }
     }

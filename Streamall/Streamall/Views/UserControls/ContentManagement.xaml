@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{StaticResource BackgroundColorLoginBrush}">
 
     <!-- Grid ocupando todo o espaço disponível -->
     <Grid Margin="25">
@@ -68,7 +69,7 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <!-- Botão Editar (Tom Laranja-Âmbar) -->
                                     <Button Style="{StaticResource CardActionButtonStyle}"
-                                            Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            Command="{Binding DataContext.EditContentCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                                             CommandParameter="{Binding}"
                                             ToolTip="Editar filme"
                                             Margin="0,0,6,0">

@@ -2,6 +2,8 @@
 using Streamall.Exceptions;
 using Streamall.Models.DTO;
 using Streamall.MVVM;
+using Streamall.Navigation.Interface;
+using Streamall.Views.Modals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +17,7 @@ namespace Streamall.ViewModels.Contents
 {
     public class ContentManagementViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IContentBLL _contentBLL;
         private ObservableCollection<ContentDTO> _contents;
 
@@ -30,9 +33,10 @@ namespace Streamall.ViewModels.Contents
 
         public RelayCommand RemoveContentCommand { get; set; }
         public RelayCommand EditContentCommand { get; set; }
-        public ContentManagementViewModel(IContentBLL contentBLL)
+        public ContentManagementViewModel(IContentBLL contentBLL, INavigationService navigationService)
         {
             _contentBLL = contentBLL;
+            _navigationService = navigationService;
 
             Contents = new ObservableCollection<ContentDTO>(_contentBLL.GetContentDTOs());
             RemoveContentCommand = new RelayCommand(execute => RemoveContent(execute as ContentDTO));
@@ -56,9 +60,7 @@ namespace Streamall.ViewModels.Contents
         }
         private void EditContent(ContentDTO contentDTO)
         {
-            int contentId = contentDTO.Id;
-
-            //chamar método para editar o conteúdo.
+            _navigationService.Navigate<EditContentModal>(contentDTO);
         }
     }
 }

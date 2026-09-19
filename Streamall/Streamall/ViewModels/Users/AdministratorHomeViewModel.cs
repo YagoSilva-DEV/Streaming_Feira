@@ -21,8 +21,8 @@ namespace Streamall.ViewModels.Users
         public object CurrentViewModel
         {
             get { return _currentViewModel; }
-            set 
-            { 
+            set
+            {
                 _currentViewModel = value;
                 OnPropertyChanged();
             }
