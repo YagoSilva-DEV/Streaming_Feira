@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
+using Streamall.Models.Entities.Contents;
 
 namespace Streamall.DAL.Repository.Contents
 {
@@ -34,7 +35,9 @@ namespace Streamall.DAL.Repository.Contents
                                     path_cover_content,
                                     year_realease_content,
                                     type_content,
+                                    pk_id_filmmaker,
                                     name_filmmaker,
+                                    pk_id_gender,
                                     name_gender
                                     FROM Tb_Content c
                                     INNER JOIN Tb_Gender g
@@ -48,16 +51,18 @@ namespace Streamall.DAL.Repository.Contents
                         {
                             while (reader.Read())
                             {
-                                int id = (int)reader["pk_id_content"];
+                                int idContent = (int)reader["pk_id_content"];
                                 string contentName = reader["name_content"].ToString();
                                 string synopsis = reader["synopsis_content"].ToString();
                                 string pathCoverFile = Path.Combine(AppContext.BaseDirectory, reader["path_cover_content"].ToString());
                                 DateTime releaseDate = (DateTime)reader["year_realease_content"];
                                 int contentType = (int)reader["type_content"];
+                                int idFilmMaker = (int)reader["pk_id_filmmaker"];
                                 string filmmakerName = reader["name_filmmaker"].ToString();
+                                int idGender = (int)reader["pk_id_gender"];
                                 string genderName = reader["name_gender"].ToString();
 
-                                contents.Add(new Content(id, contentName, synopsis, pathCoverFile, releaseDate, genderName, filmmakerName, (ContentType)contentType));
+                                contents.Add(new Content(idContent, contentName, synopsis, pathCoverFile, releaseDate, new Genre(idGender, genderName), new FilmMaker(idFilmMaker, filmmakerName), (ContentType)contentType));
                             }
                         }
                     }
@@ -68,6 +73,70 @@ namespace Streamall.DAL.Repository.Contents
             }
             
             return contents;
+        }
+
+        public IEnumerable<Genre> GetGenres()
+        {
+            List<Genre> genres = new List<Genre>();
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = "SELECT pk_id_gender, name_gender FROM Tb_Gender";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = (int)reader["pk_id_gender"];
+                                string name = reader["name_gender"].ToString();
+
+                                genres.Add(new Genre(id, name));
+                            }
+                        }
+                    }
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
+            }
+
+            return genres;
+        }
+
+        public IEnumerable<FilmMaker> GetFilmMakers()
+        {
+            List<FilmMaker> filmMakers = new List<FilmMaker>();
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = "SELECT pk_id_filmmaker, name_filmmaker FROM Tb_Filmmaker";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = (int)reader["pk_id_filmmaker"];
+                                string name = reader["name_filmmaker"].ToString();
+
+                                filmMakers.Add(new FilmMaker(id, name));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
+            }
+
+            return filmMakers;
         }
 
         public void RemoveContent(int id)

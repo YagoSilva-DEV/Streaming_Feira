@@ -1,10 +1,6 @@
 ﻿using Streamall.Models.DTO;
-using System;
+using Streamall.Models.DTO.ContentsDTO;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Streamall.BLL.Interfaces.Contents
 {
@@ -12,5 +8,7 @@ namespace Streamall.BLL.Interfaces.Contents
     {
         IEnumerable<ContentDTO> GetContentDTOs();
         void RemoveContent(int id);
+        IEnumerable<FilmMakerDTO> GetFilmMakersDTO();
+        IEnumerable<GenreDTO> GetGenresDTO();
     }
 }

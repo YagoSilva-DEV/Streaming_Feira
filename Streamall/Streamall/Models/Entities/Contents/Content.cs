@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Streamall.Models.Enums;
 using System.Threading.Tasks;
+using Streamall.Models.Entities.Contents;
 
 namespace Streamall.Models.Entities
 {
@@ -14,28 +15,28 @@ namespace Streamall.Models.Entities
         public string Synopsis { get; set; }
         public string PathCover { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public string Gender { get; set; }
-        public string FilmMaker { get; set; }
+        public Genre Genre { get; set; }
+        public FilmMaker FilmMaker { get; set; }
         public ContentType ContentType { get; set; }
 
-        public Content(string name, string synopsis, string pathCover, DateTime releaseDate, string gender, string filmMaker, ContentType contentType)
+        public Content(string name, string synopsis, string pathCover, DateTime releaseDate, Genre genre, FilmMaker filmMaker, ContentType contentType)
         {
             Name = name;
             Synopsis = synopsis;
             PathCover = pathCover;
             ReleaseDate = releaseDate;
-            Gender = gender;
+            Genre = genre;
             FilmMaker = filmMaker;
             ContentType = contentType;
         }
-        public Content(int id, string name, string synopsis, string pathCover, DateTime releaseDate, string gender, string filmMaker, ContentType contentType)
+        public Content(int id, string name, string synopsis, string pathCover, DateTime releaseDate, Genre genre, FilmMaker filmMaker, ContentType contentType)
         {
             Id = id;
             Name = name;
             Synopsis = synopsis;
             PathCover = pathCover;
             ReleaseDate = releaseDate;
-            Gender = gender;
+            Genre = genre;
             FilmMaker = filmMaker;
             ContentType = contentType;
         }

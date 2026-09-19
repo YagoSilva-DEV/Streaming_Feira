@@ -1,4 +1,5 @@
 ﻿using Streamall.Models.Entities;
+using Streamall.Models.Entities.Contents;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,5 +13,7 @@ namespace Streamall.DAL.Interfaces.Contents
     {
         IEnumerable<Content> GetContents();
         void RemoveContent(int id);
+        IEnumerable<FilmMaker> GetFilmMakers();
+        IEnumerable<Genre> GetGenres();
     }
 }

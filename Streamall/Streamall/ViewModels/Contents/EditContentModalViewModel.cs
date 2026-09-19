@@ -1,6 +1,7 @@
 ﻿using Streamall.BLL.Interfaces.Contents;
 using Streamall.Helpers;
 using Streamall.Models.DTO;
+using Streamall.Models.DTO.ContentsDTO;
 using Streamall.MVVM;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,29 @@ namespace Streamall.ViewModels.Contents
     {
         public ContentDTO ContentDTO { get; set; }
         private IContentBLL _contentBLL;
+        private List<GenreDTO> _genres;
+        public List<GenreDTO> Genres
+        {
+            get { return _genres; }
+            set 
+            { 
+                _genres = value;
+                OnPropertyChanged();
+            }
+        }
+        private List<FilmMakerDTO> _filmMakers;
+
+        public List<FilmMakerDTO> FilmMakers
+        {
+            get { return _filmMakers; }
+            set 
+            {
+                _filmMakers = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private Action _closeWindow;
         public RelayCommand CloseWindowCommand { get; set; }
         public RelayCommand OpenFileDialogCommand { get; set; }
@@ -33,7 +57,9 @@ namespace Streamall.ViewModels.Contents
         {
             get
             {
-                return _fileMessage;
+                if(_fileMessage == null)
+                    return "Nenhuma imagem selecionada";
+                return string.Empty;
             }
             set
             {
@@ -48,6 +74,9 @@ namespace Streamall.ViewModels.Contents
             _contentBLL = contentBLL;
             _closeWindow = closeWindow;
 
+            Genres = new List<GenreDTO>(_contentBLL.GetGenresDTO());
+            FilmMakers = new List<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
+
             CloseWindowCommand = new RelayCommand(execute => _closeWindow.Invoke());
             OpenFileDialogCommand = new RelayCommand(execute => GetNewPathCover());
         }
@@ -55,7 +84,7 @@ namespace Streamall.ViewModels.Contents
         private void GetNewPathCover()
         {
             NewPathCover = FileDialogHelper.GetFilePath();
-            FileMessage = (NewPathCover != null) ? string.Empty : "Nenhum arquivo selecionado";
+            FileMessage = NewPathCover;
         }
     }
 }

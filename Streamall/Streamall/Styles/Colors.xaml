@@ -16,6 +16,23 @@
     <Color x:Key="PrimaryBlueLogin">#394BDB</Color>
 
     <Color x:Key="LogoPurpleLogin">#7055E8</Color>
+    <!-- Novas Cores para o EditModal -->
+    <Color x:Key="SurfaceBackgroundEditModal">#16171D</Color>
+    <Color x:Key="InputBackgroundEditModal">#1F2029</Color>
+    <Color x:Key="BorderColorEditModal">#2A2B36</Color>
+    <Color x:Key="PurpleDarkEditModal">#3B2D54</Color>
+    <Color x:Key="PurpleHoverEditModal">#4F3B6E</Color>
+    <Color x:Key="PurpleBorderEditModal">#5C4582</Color>
+    <Color x:Key="SecondaryButtonHoverEditModal">#303240</Color>
+
+    <!-- Brushes do EditModal -->
+    <SolidColorBrush x:Key="SurfaceBackgroundEditModalBrush" Color="{StaticResource SurfaceBackgroundEditModal}"/>
+    <SolidColorBrush x:Key="InputBackgroundEditModalBrush" Color="{StaticResource InputBackgroundEditModal}"/>
+    <SolidColorBrush x:Key="BorderColorEditModalBrush" Color="{StaticResource BorderColorEditModal}"/>
+    <SolidColorBrush x:Key="PurpleDarkEditModalBrush" Color="{StaticResource PurpleDarkEditModal}"/>
+    <SolidColorBrush x:Key="PurpleHoverEditModalBrush" Color="{StaticResource PurpleHoverEditModal}"/>
+    <SolidColorBrush x:Key="PurpleBorderEditModalBrush" Color="{StaticResource PurpleBorderEditModal}"/>
+    <SolidColorBrush x:Key="SecondaryButtonHoverEditModalBrush" Color="{StaticResource SecondaryButtonHoverEditModal}"/>
 
     <SolidColorBrush x:Key="BackgroundColorLoginBrush" Color="{StaticResource BackgroundColorLogin}"/>
     <SolidColorBrush x:Key="SurfaceColorLoginBrush" Color="{StaticResource SurfaceColorLogin}"/>
