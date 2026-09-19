@@ -17,6 +17,8 @@
 
     <Color x:Key="LogoPurpleLogin">#7055E8</Color>
 
+    <Color x:Key="BackgroundColorsearchBar">#F8F9FA</Color>
+
     <SolidColorBrush x:Key="BackgroundColorLoginBrush" Color="{StaticResource BackgroundColorLogin}"/>
     <SolidColorBrush x:Key="SurfaceColorLoginBrush" Color="{StaticResource SurfaceColorLogin}"/>
     <SolidColorBrush x:Key="BorderColorLoginBrush" Color="{StaticResource BorderColorLogin}"/>
@@ -24,5 +26,6 @@
     <SolidColorBrush x:Key="TextSecondaryLoginBrush" Color="{StaticResource TextSecondaryLogin}"/>
     <SolidColorBrush x:Key="PrimaryPurpleLoginBrush" Color="{StaticResource PrimaryPurpleLogin}"/>
     <SolidColorBrush x:Key="PrimaryBlueLoginBrush" Color="{StaticResource PrimaryBlueLogin}"/>
-    <SolidColorBrush x:Key="LogoPurpleLoginBrush" Color="{StaticResource TextPrimaryLogin}"/>
+    <SolidColorBrush x:Key="LogoPurpleLoginBrush" Color="{StaticResource LogoPurpleLogin}"/>
+    <SolidColorBrush x:Key="BackgroundColorsearchBarBrush" Color="{StaticResource BackgroundColorsearchBar}"/>
 </ResourceDictionary>
