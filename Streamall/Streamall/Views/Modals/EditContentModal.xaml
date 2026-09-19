@@ -160,9 +160,9 @@
 
                 <Border Height="340" Background="{StaticResource InputBackground}" CornerRadius="6" BorderBrush="{StaticResource BorderColor}" BorderThickness="1" Margin="0,0,0,12">
                     <Grid>
-                        <Image Source="{Binding ContentDTO.PathCover}" Stretch="UniformToFill"/>
+                        <Image Source="{Binding NewPathCover}" Stretch="UniformToFill"/>
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock Text="Nenhum arquivo" Foreground="{StaticResource TextSecondary}" FontSize="12" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding FileMessage}" Foreground="{StaticResource TextSecondary}" FontSize="12" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -173,8 +173,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox Text="{Binding CoverPath}" Height="38" x:Name="txtCoverPath"/>
-                    <Button Grid.Column="1" Content="Buscar" Width="70" Margin="8,0,0,0" Style="{StaticResource SecondaryButton}" Command="{Binding SelectCoverCommand}"/>
+                    <TextBox Text="{Binding NewPathCover}" Height="38" x:Name="txtCoverPath"/>
+                    <Button Grid.Column="1" Content="Buscar" Width="70" Margin="8,0,0,0" Style="{StaticResource SecondaryButton}" Command="{Binding OpenFileDialogCommand}"/>
                 </Grid>
             </StackPanel>
 

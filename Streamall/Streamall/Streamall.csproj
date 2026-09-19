@@ -208,6 +208,7 @@
     <Compile Include="Exceptions\DataBaseException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\InvalidSignUpException.cs" />
+    <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Helpers\MessageBoxHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Models\DTO\AdministratorDTO.cs" />
