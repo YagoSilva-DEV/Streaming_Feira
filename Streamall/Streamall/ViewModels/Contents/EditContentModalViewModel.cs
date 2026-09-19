@@ -16,6 +16,7 @@ namespace Streamall.ViewModels.Contents
     public class EditContentModalViewModel : ViewModelBase
     {
         private EditContentControlViewModel _storedEditContentControlViewModel;
+        private ContentDTO _newContentDTO;
         private Action _closeWindow;
         public ContentDTO StoredContentDTO { get; set; }
         private object _currentViewModel;
@@ -45,7 +46,8 @@ namespace Streamall.ViewModels.Contents
             if (CurrentViewModel is EditContentControlViewModel)
             {
                 _storedEditContentControlViewModel = CurrentViewModel as EditContentControlViewModel;
-                CurrentViewModel = new ConfirmEditContentViewModel(StoredContentDTO);
+                _newContentDTO = new ContentDTO(StoredContentDTO.Id, _storedEditContentControlViewModel.NewName, _storedEditContentControlViewModel.NewSynopsis, _storedEditContentControlViewModel.NewPathCover, _storedEditContentControlViewModel.NewReleaseDate, _storedEditContentControlViewModel.NewGenre, _storedEditContentControlViewModel.NewFilmMaker, StoredContentDTO.ContentType);
+                CurrentViewModel = new ConfirmEditContentViewModel(StoredContentDTO, _newContentDTO);
             }
         }
 

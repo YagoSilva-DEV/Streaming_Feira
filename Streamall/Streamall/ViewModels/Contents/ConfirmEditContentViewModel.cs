@@ -11,7 +11,20 @@ namespace Streamall.ViewModels.Contents
 {
     public class ConfirmEditContentViewModel : ViewModelBase
     {
+        public ContentDTO NewContentDTO { get; set; }
         public ContentDTO OldContentDTO { get; set; }
+        private string _newContentType;
+
+        public string NewContentType
+        {
+            get { return _newContentType; }
+            set 
+            { 
+                _newContentType = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _oldContentType;
         public string OldContentType {
             get
@@ -24,10 +37,12 @@ namespace Streamall.ViewModels.Contents
                 OnPropertyChanged();
             }
         }
-        public ConfirmEditContentViewModel(ContentDTO oldContentDTO)
+        public ConfirmEditContentViewModel(ContentDTO oldContentDTO, ContentDTO newContentDTO)
         {
             OldContentDTO = oldContentDTO;
+            NewContentDTO = newContentDTO;
             OldContentType = (OldContentDTO.ContentType == Models.Enums.ContentType.MOVIE) ? "Filme" : "Série";
+            NewContentType = (NewContentDTO.ContentType == Models.Enums.ContentType.MOVIE) ? "Filme" : "Série";
         }
     }
 }

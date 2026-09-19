@@ -74,7 +74,7 @@
                 <!-- Linha 1: Nome do Conteúdo -->
                 <StackPanel Grid.Row="0" Margin="0,0,0,16">
                     <TextBlock Text="Nome do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                    <TextBox Height="40" Text="{Binding NameContent, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
+                    <TextBox Height="40" Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
                 </StackPanel>
 
                 <!-- Linha 2: Tipo, Gênero e Lançamento -->
@@ -94,25 +94,25 @@
 
                     <StackPanel Grid.Column="2">
                         <TextBlock Text="Gênero" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                        <ComboBox SelectedValue="{Binding GenderId}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding Genres}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                        <ComboBox SelectedItem="{Binding NewGenre}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding Genres}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="4">
                         <TextBlock Text="Ano / Lançamento" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                        <DatePicker SelectedDate="{Binding ReleaseDate}" Height="40" Background="{StaticResource InputBackgroundEditModalBrush}"/>
+                        <DatePicker SelectedDate="{Binding NewReleaseDate}" Height="40" Background="{StaticResource InputBackgroundEditModalBrush}" IsTodayHighlighted="True"/>
                     </StackPanel>
                 </Grid>
 
                 <!-- Linha 3: Cineasta / Diretor -->
                 <StackPanel Grid.Row="2" Margin="0,0,0,16">
                     <TextBlock Text="Cineasta / Diretor" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                    <ComboBox SelectedValue="{Binding FilmmakerId}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding FilmMakers}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                    <ComboBox SelectedItem="{Binding NewFilmMaker}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding FilmMakers}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
                 </StackPanel>
 
                 <!-- Linha 4: Sinopse -->
                 <StackPanel Grid.Row="3">
                     <TextBlock Text="Sinopse" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                    <TextBox Height="120" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding SynopsisContent, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
+                    <TextBox Height="120" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding NewSynopsis, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
                 </StackPanel>
             </Grid>
         </Grid>

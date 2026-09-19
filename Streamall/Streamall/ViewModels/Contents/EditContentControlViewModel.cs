@@ -14,7 +14,7 @@ namespace Streamall.ViewModels.Contents
     public class EditContentControlViewModel : ViewModelBase
     {
         public ContentDTO StoredContentDTO { get; set; }
-        public ContentDTO NewContentDTO { get; set; }
+
         private IContentBLL _contentBLL;
         private List<GenreDTO> _genres;
         public List<GenreDTO> Genres
@@ -39,6 +39,8 @@ namespace Streamall.ViewModels.Contents
         }
 
         public RelayCommand OpenFileDialogCommand { get; set; }
+
+        #region Atributos para a edição do conteudo
         private string _contentType;
         public string ContentType
         {
@@ -46,7 +48,7 @@ namespace Streamall.ViewModels.Contents
             {
                 return _contentType;
             }
-            set 
+            set
             {
                 _contentType = value;
                 OnPropertyChanged();
@@ -56,23 +58,57 @@ namespace Streamall.ViewModels.Contents
         public string NewName
         {
             get { return _newName; }
-            set 
+            set
             {
                 _newName = value;
                 OnPropertyChanged();
             }
         }
 
-        private int myVar;
-
-        public int MyProperty
+        private GenreDTO _newGenre;
+        public GenreDTO NewGenre
         {
-            get { return myVar; }
-            set { myVar = value; }
+            get { return _newGenre; }
+            set
+            {
+                _newGenre = value;
+                OnPropertyChanged();
+            }
         }
 
+        private FilmMakerDTO _newFilmMaker;
+        public FilmMakerDTO NewFilmMaker
+        {
+            get { return _newFilmMaker; }
+            set
+            {
+                _newFilmMaker = value;
+                OnPropertyChanged();
+            }
+        }
 
-        #region Imagem
+        private string _newSynopsis;
+        public string NewSynopsis
+        {
+            get { return _newSynopsis; }
+            set
+            {
+                _newSynopsis = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DateTime _newReleaseDate;
+        public DateTime NewReleaseDate
+        {
+            get { return _newReleaseDate; }
+            set
+            {
+                _newReleaseDate = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _newPathCover;
 
         public string NewPathCover
@@ -84,6 +120,8 @@ namespace Streamall.ViewModels.Contents
                 OnPropertyChanged();
             }
         }
+        #endregion
+
         private string _fileMessage;
         public string FileMessage
         {
@@ -99,18 +137,18 @@ namespace Streamall.ViewModels.Contents
                 OnPropertyChanged();
             }
         }
-        #endregion
         public EditContentControlViewModel(ContentDTO contentDTO, IContentBLL contentBLL)
         {
             StoredContentDTO = contentDTO;
             _contentBLL = contentBLL;
 
             ContentType = (StoredContentDTO.ContentType == Models.Enums.ContentType.MOVIE) ? "Filme" : "Série";
+            NewReleaseDate = DateTime.Today;
             Genres = new List<GenreDTO>(_contentBLL.GetGenresDTO());
             FilmMakers = new List<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
             OpenFileDialogCommand = new RelayCommand(execute => GetNewPathCover());
         }
-
+ 
         private void GetNewPathCover()
         {
             NewPathCover = FileDialogHelper.GetFilePath();

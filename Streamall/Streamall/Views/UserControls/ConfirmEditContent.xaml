@@ -133,7 +133,7 @@
                             <StackPanel>
                                 <TextBlock Text="NOVA CAPA" Style="{StaticResource SectionTitleStyle}"/>
                                 <Border Height="350" CornerRadius="4" ClipToBounds="True" Background="#10FFFFFF">
-                                    <Image Source="{Binding NewPathCover}" Stretch="UniformToFill"/>
+                                    <Image Source="{Binding NewContentDTO.PathCover}" Stretch="UniformToFill"/>
                                 </Border>
                             </StackPanel>
                         </Border>
@@ -144,7 +144,7 @@
                         <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                             <StackPanel>
                                 <TextBlock Text="NOME DO CONTEÚDO" Style="{StaticResource SectionTitleStyle}"/>
-                                <TextBlock Text="{Binding NameContent}" Style="{StaticResource ValueTextStyle}" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding NewContentDTO.Name}" Style="{StaticResource ValueTextStyle}" FontWeight="SemiBold"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -164,7 +164,7 @@
                             <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                                 <StackPanel>
                                     <TextBlock Text="TIPO" Style="{StaticResource SectionTitleStyle}"/>
-                                    <TextBlock Text="{Binding NewTypeContentDisplay}" Style="{StaticResource ValueTextStyle}"/>
+                                    <TextBlock Text="{Binding NewContentType}" Style="{StaticResource ValueTextStyle}"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
@@ -174,7 +174,7 @@
                             <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                                 <StackPanel>
                                     <TextBlock Text="GÊNERO" Style="{StaticResource SectionTitleStyle}"/>
-                                    <TextBlock Text="{Binding NewGenreName}" Style="{StaticResource ValueTextStyle}"/>
+                                    <TextBlock Text="{Binding NewContentDTO.Genre}" Style="{StaticResource ValueTextStyle}"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
@@ -184,7 +184,7 @@
                             <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                                 <StackPanel>
                                     <TextBlock Text="ANO" Style="{StaticResource SectionTitleStyle}"/>
-                                    <TextBlock Text="{Binding ReleaseDate, StringFormat=\{0:yyyy\}}" Style="{StaticResource ValueTextStyle}"/>
+                                    <TextBlock Text="{Binding NewContentDTO.ReleaseDate, StringFormat=\{0:yyyy\}}" Style="{StaticResource ValueTextStyle}"/>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
@@ -195,7 +195,7 @@
                         <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                             <StackPanel>
                                 <TextBlock Text="CINEASTA / DIRETOR" Style="{StaticResource SectionTitleStyle}"/>
-                                <TextBlock Text="{Binding NewFilmmakerName}" Style="{StaticResource ValueTextStyle}"/>
+                                <TextBlock Text="{Binding NewContentDTO.FilmMaker}" Style="{StaticResource ValueTextStyle}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -205,7 +205,7 @@
                         <Border Style="{StaticResource CompareCardStyle}" Margin="0">
                             <StackPanel>
                                 <TextBlock Text="SINOPSE" Style="{StaticResource SectionTitleStyle}"/>
-                                <TextBlock Text="{Binding SynopsisContent}" Style="{StaticResource ValueTextStyle}"/>
+                                <TextBlock Text="{Binding NewContentDTO.Synopsis}" Style="{StaticResource ValueTextStyle}"/>
                             </StackPanel>
                         </Border>
                     </StackPanel>

@@ -32,6 +32,7 @@ namespace Streamall.Models.Entities
         public Content(int id, string name, string synopsis, string pathCover, DateTime releaseDate, Genre genre, FilmMaker filmMaker, ContentType contentType)
         {
             Id = id;
+
             Name = name;
             Synopsis = synopsis;
             PathCover = pathCover;
