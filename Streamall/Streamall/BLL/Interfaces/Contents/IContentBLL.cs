@@ -11,5 +11,6 @@ namespace Streamall.BLL.Interfaces.Contents
         IEnumerable<FilmMakerDTO> GetFilmMakersDTO();
         IEnumerable<GenreDTO> GetGenresDTO();
         void UpdateContent(ContentDTO contentDTO, string oldPathCover);
+        void InsertContent(ContentDTO contentDTO);
     }
 }

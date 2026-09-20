@@ -17,5 +17,6 @@ namespace Streamall.DAL.Interfaces.Contents
         IEnumerable<FilmMaker> GetFilmMakers();
         IEnumerable<Genre> GetGenres();
         void UpdateContent(Content content);
+        void InsertContent(Content content);
     }
 }

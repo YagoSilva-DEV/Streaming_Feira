@@ -59,5 +59,16 @@ namespace Streamall.BLL.Services.Contents
             if (File.Exists(oldImagePath))
                 File.Delete(oldImagePath);
         }
+
+        public void InsertContent(ContentDTO contentDTO)
+        {
+            Content content = new Content(contentDTO);
+            content.PathCover = Path.Combine(@"../../Assets/", Path.GetFileName(content.PathCover));
+            _contentDAL.InsertContent(content);
+
+            string fileDestination = Path.Combine(AppContext.BaseDirectory, content.PathCover);
+            if(!File.Exists(fileDestination))
+                File.Move(contentDTO.PathCover, fileDestination);
+        }
     }
 }

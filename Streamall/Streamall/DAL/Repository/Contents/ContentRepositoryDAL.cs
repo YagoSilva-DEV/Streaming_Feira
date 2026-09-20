@@ -198,5 +198,37 @@ namespace Streamall.DAL.Repository.Contents
                 throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
             }
         }
+
+
+        public void InsertContent(Content content)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO Tb_Content
+                                   (name_content, synopsis_content, path_cover_content, year_realease_content, fk_id_gender_content, fk_id_filmmaker_content)
+                                   VALUES
+                                   (@name_content, @synopsis_content, @path_cover_content, @year_realease_content, @fk_id_gender_content, @fk_id_filmmaker_content)";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@name_content", SqlDbType.VarChar).Value = content.Name;
+                        cmd.Parameters.Add("@synopsis_content", SqlDbType.VarChar).Value = content.Synopsis;
+                        cmd.Parameters.Add("@path_cover_content", SqlDbType.VarChar).Value = content.PathCover;
+                        cmd.Parameters.Add("@year_realease_content", SqlDbType.DateTime).Value = content.ReleaseDate;
+                        cmd.Parameters.Add("@fk_id_gender_content", SqlDbType.Int).Value = content.Genre.Id;
+                        cmd.Parameters.Add("@fk_id_filmmaker_content", SqlDbType.Int).Value = content.FilmMaker.Id;
+                        cmd.Parameters.Add("@pk_id_content", SqlDbType.Int).Value = content.Id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
+            }
+        }
     }
 }
