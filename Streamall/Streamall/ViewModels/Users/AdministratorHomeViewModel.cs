@@ -12,6 +12,7 @@ using Streamall.DAL.Repository;
 using Streamall.BLL.Services.Contents;
 using Streamall.DAL.Repository.Contents;
 using Streamall.Navigation.Interface;
+using Streamall.Navigation.Service;
 
 namespace Streamall.ViewModels.Users
 {
@@ -62,6 +63,7 @@ namespace Streamall.ViewModels.Users
         public AdministratorHomeViewModel(UserDTO admDTO, INavigationService navigationService)
         {
             Adm = admDTO;
+            CurrentViewModel = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
             _navigationService = navigationService;
             _navigationService.AddAdmViewModel(this);
             ShowContentsManagmentCommand = new RelayCommand(canExecute => _navigationService.ViewModelNavigation<ContentManagementViewModel>());

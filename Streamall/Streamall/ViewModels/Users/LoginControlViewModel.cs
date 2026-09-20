@@ -16,7 +16,7 @@ using Streamall.Views;
 
 namespace Streamall.ViewModels
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginControlViewModel : ViewModelBase
     {
         private string _errorMessage;
 
@@ -89,7 +89,7 @@ namespace Streamall.ViewModels
         public RelayCommand LoginCommand { get; set; }
         public RelayCommand NavigateToSignUpCommand { get; set; }
 
-        public LoginViewModel(IUserBLL userBLL, INavigationService navegationService)
+        public LoginControlViewModel(IUserBLL userBLL, INavigationService navegationService)
         {
             string assetsPaths = Path.Combine(AppContext.BaseDirectory, @"..\..\Assets");
             string[] pathFile = Directory.GetFiles(assetsPaths).OrderBy(f => Guid.NewGuid()).Take(10).ToArray();

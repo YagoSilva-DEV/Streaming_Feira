@@ -176,4 +176,53 @@
         </Setter>
     </Style>
 
+    <Style x:Key="StyleButtonError" TargetType="Button">
+        <Setter Property="Background" Value="#2A1B1E"/>
+        <Setter Property="Foreground" Value="#FF4D4D"/>
+        <Setter Property="BorderBrush" Value="#FF4D4D"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Width" Value="110"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6"
+                            SnapsToDevicePixels="True">
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Focusable="False"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Efeito ao passar o mouse (Hover) -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#FF4D4D"/>
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                        </Trigger>
+
+                        <!-- Efeito ao clicar (Pressed) -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#CC3D3D"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#CC3D3D"/>
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                        </Trigger>
+
+                        <!-- Estado desabilitado (opcional) -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

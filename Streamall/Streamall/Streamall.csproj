@@ -245,8 +245,10 @@
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
+    <Compile Include="ViewModels\ErrorControlViewModel.cs" />
     <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
-    <Compile Include="ViewModels\Users\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Users\LoginControlViewModel.cs" />
+    <Compile Include="ViewModels\Users\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\Users\SignUpViewModel.cs" />
     <Compile Include="Views\AdministratorHome.xaml.cs">
       <DependentUpon>AdministratorHome.xaml</DependentUpon>
@@ -272,6 +274,12 @@
     </Compile>
     <Compile Include="Views\UserControls\EditContentControl.xaml.cs">
       <DependentUpon>EditContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ErrorControl.xaml.cs">
+      <DependentUpon>ErrorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\LoginControl.xaml.cs">
+      <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\UserManagement.xaml.cs">
       <DependentUpon>UserManagement.xaml</DependentUpon>
@@ -333,6 +341,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\EditContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ErrorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
