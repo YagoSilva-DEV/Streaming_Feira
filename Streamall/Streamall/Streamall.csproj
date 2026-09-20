@@ -213,19 +213,55 @@
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Helpers\MessageBoxHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
-    <Compile Include="Models\DTO\AdministratorDTO.cs" />
-    <Compile Include="Models\DTO\ClientDTO.cs" />
-    <Compile Include="Models\DTO\UserDTO.cs" />
-    <Compile Include="Models\Entities\Administrator.cs" />
-    <Compile Include="Models\Entities\Client.cs" />
-    <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\ContentDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\EpisodeDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\FilmMakerDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\GenreDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\MovieDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\SeasonDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\SeriesDTO.cs" />
+    <Compile Include="Models\DTO\ContentsDTO\TitleDTO.cs" />
+    <Compile Include="Models\DTO\UsersDTO\AdministratorDTO.cs" />
+    <Compile Include="Models\DTO\UsersDTO\ClientDTO.cs" />
+    <Compile Include="Models\DTO\UsersDTO\UserDTO.cs" />
+    <Compile Include="Models\Entities\Contents\Content.cs" />
+    <Compile Include="Models\Entities\Contents\Episode.cs" />
+    <Compile Include="Models\Entities\Contents\FilmMaker.cs" />
+    <Compile Include="Models\Entities\Contents\Genre.cs" />
+    <Compile Include="Models\Entities\Contents\Movie.cs" />
+    <Compile Include="Models\Entities\Contents\Season.cs" />
+    <Compile Include="Models\Entities\Contents\Series.cs" />
+    <Compile Include="Models\Entities\Contents\Title.cs" />
+    <Compile Include="Models\Entities\Users\Administrator.cs" />
+    <Compile Include="Models\Entities\Users\Client.cs" />
+    <Compile Include="Models\Entities\Users\User.cs" />
+    <Compile Include="Models\Enums\ContentType.cs" />
+    <Compile Include="Models\Enums\PageType.cs" />
     <Compile Include="Models\Enums\UserType.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Navigation\Interface\INavigationService.cs" />
     <Compile Include="Navigation\Service\NavigationService.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\Contents\ConfirmEditContentViewModel.cs" />
+    <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
+    <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />
+    <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
+    <Compile Include="ViewModels\FavoritesViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
+    <Compile Include="ViewModels\StartViewModel.cs" />
+    <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
+    <Compile Include="ViewModels\Users\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Users\SignUpViewModel.cs" />
+    <Compile Include="Views\AdministratorHome.xaml.cs">
+      <DependentUpon>AdministratorHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Favorites.xaml.cs">
+      <DependentUpon>Favorites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -233,8 +269,41 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\Modals\EditContentModal.xaml.cs">
+      <DependentUpon>EditContentModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pesquisa.xaml.cs">
+      <DependentUpon>Pesquisa.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Start.xaml.cs">
+      <DependentUpon>Start.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Carousel.xaml.cs">
+      <DependentUpon>Carousel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ConfirmEditContent.xaml.cs">
+      <DependentUpon>ConfirmEditContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ContentHero.xaml.cs">
+      <DependentUpon>ContentHero.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ContentManagement.xaml.cs">
+      <DependentUpon>ContentManagement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EditContentControl.xaml.cs">
+      <DependentUpon>EditContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SideBar.xaml.cs">
+      <DependentUpon>SideBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UserManagement.xaml.cs">
+      <DependentUpon>UserManagement.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\Buttons.xaml">
       <SubType>Designer</SubType>
@@ -256,6 +325,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ListViewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\PathIconsSvg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,13 +345,69 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AdministratorHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Favorites.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Modals\EditContentModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pesquisa.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Start.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Carousel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ConfirmEditContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ContentHero.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ContentManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\EditContentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\Header.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\SideBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\UserManagement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,33 @@
 
     <Color x:Key="LogoPurpleLogin">#7055E8</Color>
 
+    <!-- Novas Cores para o EditModal -->
+    <Color x:Key="SurfaceBackgroundEditModal">#16171D</Color>
+    <Color x:Key="InputBackgroundEditModal">#1F2029</Color>
+    <Color x:Key="BorderColorEditModal">#2A2B36</Color>
+    <Color x:Key="PurpleDarkEditModal">#3B2D54</Color>
+    <Color x:Key="PurpleHoverEditModal">#4F3B6E</Color>
+    <Color x:Key="PurpleBorderEditModal">#5C4582</Color>
+    <Color x:Key="SecondaryButtonHoverEditModal">#303240</Color>
+
+    <!-- Cores de Destaque / Modificações (Amarelo Dourado) -->
+    <Color x:Key="PrimaryAccent">#E5A93C</Color>
+    <Color x:Key="AccentHighlightBackground">#20E5A93C</Color>
+
+    <!-- Brushes do EditModal -->
+    <SolidColorBrush x:Key="SurfaceBackgroundEditModalBrush" Color="{StaticResource SurfaceBackgroundEditModal}"/>
+    <SolidColorBrush x:Key="InputBackgroundEditModalBrush" Color="{StaticResource InputBackgroundEditModal}"/>
+    <SolidColorBrush x:Key="BorderColorEditModalBrush" Color="{StaticResource BorderColorEditModal}"/>
+    <SolidColorBrush x:Key="PurpleDarkEditModalBrush" Color="{StaticResource PurpleDarkEditModal}"/>
+    <SolidColorBrush x:Key="PurpleHoverEditModalBrush" Color="{StaticResource PurpleHoverEditModal}"/>
+    <SolidColorBrush x:Key="PurpleBorderEditModalBrush" Color="{StaticResource PurpleBorderEditModal}"/>
+    <SolidColorBrush x:Key="SecondaryButtonHoverEditModalBrush" Color="{StaticResource SecondaryButtonHoverEditModal}"/>
+
+    <!-- Brushes de Destaque / Modificações -->
+    <SolidColorBrush x:Key="PrimaryAccentBrush" Color="{StaticResource PrimaryAccent}"/>
+    <SolidColorBrush x:Key="AccentHighlightBackgroundBrush" Color="{StaticResource AccentHighlightBackground}"/>
+
+    <!-- Brushes do Login e Gerais -->
     <SolidColorBrush x:Key="BackgroundColorLoginBrush" Color="{StaticResource BackgroundColorLogin}"/>
     <SolidColorBrush x:Key="SurfaceColorLoginBrush" Color="{StaticResource SurfaceColorLogin}"/>
     <SolidColorBrush x:Key="BorderColorLoginBrush" Color="{StaticResource BorderColorLogin}"/>
