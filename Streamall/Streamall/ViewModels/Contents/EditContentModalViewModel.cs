@@ -39,7 +39,7 @@ namespace Streamall.ViewModels.Contents
             _contentBLL = contentBLL;
             StoredContentDTO = contentDTO;
             SaveCommand = new RelayCommand(execute => Save());
-            CancelCommand = new RelayCommand(execute => Cancel());
+            CancelCommand = new RelayCommand(async execute => { await Cancel(); });
             CurrentViewModel = new EditContentControlViewModel(StoredContentDTO, new ContentServiceBLL(new ContentRepositoryDAL()));
             _closeWindow = closeWindow;
         }
@@ -57,7 +57,9 @@ namespace Streamall.ViewModels.Contents
                 try
                 {
                     _contentBLL.UpdateContent(_newContentDTO, StoredContentDTO.PathCover);
-                    await CloseWindow();
+                    CurrentViewModel = _storedEditContentControlViewModel;
+                    _storedEditContentControlViewModel.SuccessMessage = "Edição concluída.";
+                    await CloseWindow(1500);
                 }
                 catch(InvalidContentException ex)
                 {
@@ -70,15 +72,15 @@ namespace Streamall.ViewModels.Contents
         private async Task Cancel()
         {
             if (CurrentViewModel is EditContentControlViewModel)
-                await CloseWindow();
+                await CloseWindow(500);
             else
                 CurrentViewModel = _storedEditContentControlViewModel;
         }
 
 
-        private async Task CloseWindow()
+        private async Task CloseWindow(int delay)
         {
-            await Task.Delay(500);
+            await Task.Delay(delay);
             _closeWindow();
         }
     }

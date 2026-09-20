@@ -55,7 +55,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Card de Seleção e Preview de Capa -->
-                <Border Grid.Column="0" Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="8" Padding="16" VerticalAlignment="Top">
+                <Border Grid.Column="0" Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="8" Padding="16" VerticalAlignment="Center">
                     <StackPanel HorizontalAlignment="Stretch">
                         <TextBlock Text="Capa do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" FontWeight="Bold" Margin="0,0,0,12"/>
 

@@ -1,5 +1,6 @@
 ﻿using Streamall.Exceptions;
 using Streamall.Models.DTO;
+using Streamall.Models.DTO.ContentsDTO;
 using Streamall.Models.Entities.Contents;
 using Streamall.Models.Enums;
 using System;
@@ -54,12 +55,12 @@ namespace Streamall.Models.Entities
 
         public Content(ContentDTO contentDTO)
         {
+            VerifyGenre(contentDTO.Genre);
             VerifyName(contentDTO.Name);
             VerifySynopsis(contentDTO.Synopsis);
             VerifyPathCover(contentDTO.PathCover);
             VerifyReleaseDate(contentDTO.ReleaseDate);
-            VerifyGenre(new Genre(contentDTO.Genre.Id, contentDTO.Genre.Name));
-            VerifyFilmMaker(new FilmMaker(contentDTO.FilmMaker.Id, contentDTO.FilmMaker.Name));
+            VerifyFilmMaker(contentDTO.FilmMaker);
 
             Id = contentDTO.Id;
             Name = contentDTO.Name;
@@ -92,13 +93,25 @@ namespace Streamall.Models.Entities
 
         private void VerifyReleaseDate(DateTime releaseDate)
         {
-            if(releaseDate.Year < 1888 || releaseDate.Year > DateTime.Today.Year)
+            if(releaseDate.Date.Year < 1888 || releaseDate.Date > DateTime.Today)
                 throw new InvalidContentException("Insira uma data válida para o conteúdo");
+        }
+
+        private void VerifyGenre(GenreDTO genre)
+        {
+            if(genre == null)
+                throw new InvalidContentException("Selecione o genêro do conteúdo");
+        }
+
+        private void VerifyFilmMaker(FilmMakerDTO filmMaker)
+        {
+            if (filmMaker == null)
+                throw new InvalidContentException("Selecione o cineasta do conteúdo");
         }
 
         private void VerifyGenre(Genre genre)
         {
-            if(genre == null)
+            if (genre == null)
                 throw new InvalidContentException("Selecione o genêro do conteúdo");
         }
 

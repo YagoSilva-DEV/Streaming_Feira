@@ -53,11 +53,11 @@ namespace Streamall.BLL.Services.Contents
             _contentDAL.UpdateContent(content);
 
             string fileDestination = Path.Combine(AppContext.BaseDirectory, content.PathCover);
-            if(!File.Exists(fileDestination))
-                File.Move(contentDTO.PathCover, fileDestination);
             string oldImagePath = Path.Combine(AppContext.BaseDirectory, oldPathCover);
             if (File.Exists(oldImagePath))
                 File.Delete(oldImagePath);
+            if (!File.Exists(fileDestination))
+                File.Move(contentDTO.PathCover, fileDestination);
         }
 
         public void InsertContent(ContentDTO contentDTO)

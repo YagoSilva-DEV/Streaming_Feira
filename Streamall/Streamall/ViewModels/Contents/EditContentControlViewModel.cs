@@ -24,6 +24,16 @@ namespace Streamall.ViewModels.Contents
                 OnPropertyChanged();
             }
         }
+        private string _successMessage;
+        public string SuccessMessage
+        {
+            get { return _successMessage; }
+            set
+            {
+                _successMessage = value;
+                OnPropertyChanged();
+            }
+        }
 
         private IContentBLL _contentBLL;
         private List<GenreDTO> _genres;

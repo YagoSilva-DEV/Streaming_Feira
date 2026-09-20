@@ -120,14 +120,16 @@
                     <TextBlock Text="Sinopse" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
                     <TextBox Height="120" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding NewSynopsis, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
 
-                    <!-- Mensagem de Erro posicionada logo abaixo da Sinopse -->
-                    <TextBlock Text="{Binding ErrorMessage}" 
-               Foreground="#FF4D4D" 
-               FontSize="12" 
-               FontFamily="{StaticResource Righteous}"
-               Margin="0,6,0,0"
-               TextWrapping="Wrap"
-               Visibility="{Binding ErrorMessage}"/>
+                    <Grid>
+                        <TextBlock Text="{Binding SuccessMessage}" 
+                            Style="{StaticResource StyleTextBlockSuccess}"
+                            Visibility="{Binding ErrorMessage}"/>
+
+                        <!-- Mensagem de Erro posicionada logo abaixo da Sinopse -->
+                        <TextBlock Text="{Binding ErrorMessage}" 
+                           Style="{StaticResource StyleTextBlockError}"
+                           Visibility="{Binding ErrorMessage}"/>
+                    </Grid>
                 </StackPanel>
             </Grid>
         </Grid>
