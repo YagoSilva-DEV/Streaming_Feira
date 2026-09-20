@@ -31,7 +31,7 @@ namespace Streamall.ViewModels.Users
         }
 
         private INavigationService _navigationService;
-
+        public RelayCommand InsertContentContentCommand { get; set; }
         public RelayCommand ShowContentsManagmentCommand { get; set; }
 
         public UserDTO Adm { get; set; }
@@ -69,7 +69,8 @@ namespace Streamall.ViewModels.Users
                 CurrentViewModel = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
                 _navigationService = navigationService;
                 _navigationService.AddAdmViewModel(this);
-                ShowContentsManagmentCommand = new RelayCommand(canExecute => _navigationService.ViewModelNavigation<ContentManagementViewModel>());
+                InsertContentContentCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<InsertContentControlViewModel>());
+                ShowContentsManagmentCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<ContentManagementViewModel>());
             }
             catch (Exception)
             {
