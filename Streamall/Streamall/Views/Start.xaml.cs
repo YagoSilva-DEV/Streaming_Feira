@@ -10,26 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Streamall.ViewModels;
 
 namespace Streamall.Views
 {
     /// <summary>
-    /// Lógica interna para Home.xaml
+    /// Interação lógica para Start.xam
     /// </summary>
-    public partial class Home : Window
+    public partial class Start : Page
     {
-        public Home()
+        public Start()
         {
             InitializeComponent();
-
-            DataContext = new MainViewModel(); 
-        }
-
-        private void SideBar_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

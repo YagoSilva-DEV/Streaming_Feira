@@ -17,21 +17,21 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0"  Style="{StaticResource StyleButtonSideBar }">
+        <Button Grid.Row="0"  Style="{StaticResource StyleButtonSideBar}"  Command="{Binding HomeCommand}">
             <Path 
                 Style="{StaticResource IconsGlobalConfigs}"
                 Data="{StaticResource IconHome}"
             />
         </Button>
 
-        <Button Grid.Row="1" Style="{StaticResource StyleButtonSideBar}">
+        <Button Grid.Row="1" Style="{StaticResource StyleButtonSideBar}" Command="{Binding SearchCommand}">
             <Path 
                 Style="{StaticResource IconsGlobalConfigs}"
                 Data="{StaticResource IconSearch}"
             />
         </Button>
 
-        <Button Grid.Row="2" Style="{StaticResource StyleButtonSideBar}">
+        <Button Grid.Row="2" Style="{StaticResource StyleButtonSideBar}"  Command="{Binding FavoritesCommand}">
              <Path 
                 Style="{StaticResource IconsGlobalConfigs}"
                 Data="{StaticResource IconStar}"

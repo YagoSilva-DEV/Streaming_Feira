@@ -35,9 +35,7 @@
                 <Button Style="{StaticResource StyleOrganizarButton}" Content="☰  Organizar">
 
                     <Button.ContextMenu>
-
                         <ContextMenu>
-
                             <MenuItem Header="Mais recentes"/>
                             <MenuItem Header="Mais antigos"/>
 
@@ -47,8 +45,6 @@
                             <MenuItem Header="Z → A"/>
 
                             <Separator/>
-
-                            <MenuItem Header="Mais avaliados"/>
 
                         </ContextMenu>
                     </Button.ContextMenu>
