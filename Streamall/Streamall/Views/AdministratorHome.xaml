@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Streamall.Views"
         xmlns:contentUserControl="clr-namespace:Streamall.Views.UserControls"
         xmlns:viewModelContent="clr-namespace:Streamall.ViewModels.Contents"
+        xmlns:viewModelError="clr-namespace:Streamall.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="False"
@@ -19,6 +20,9 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModelContent:ContentManagementViewModel}">
             <contentUserControl:ContentManagement/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModelError:ErrorControlViewModel}">
+            <contentUserControl:ErrorControl/>
         </DataTemplate>
     </Window.Resources>
     <Grid>

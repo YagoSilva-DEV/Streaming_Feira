@@ -1,6 +1,7 @@
 ﻿using Streamall.BLL.Interfaces.Contents;
 using Streamall.BLL.Services.Contents;
 using Streamall.DAL.Repository.Contents;
+using Streamall.Exceptions;
 using Streamall.Helpers;
 using Streamall.Models.DTO;
 using Streamall.Models.DTO.ContentsDTO;
@@ -52,7 +53,17 @@ namespace Streamall.ViewModels.Contents
                 CurrentViewModel = new ConfirmEditContentViewModel(StoredContentDTO, _newContentDTO);
             }
             else
-                _contentBLL.UpdateContent(_newContentDTO, StoredContentDTO.PathCover);
+            {
+                try
+                {
+                    _contentBLL.UpdateContent(_newContentDTO, StoredContentDTO.PathCover);
+                }
+                catch(InvalidContentException ex)
+                {
+                    CurrentViewModel = _storedEditContentControlViewModel;
+                    _storedEditContentControlViewModel.ErrorMessage = ex.Message;
+                }
+            }
         }
 
         private void Cancel()

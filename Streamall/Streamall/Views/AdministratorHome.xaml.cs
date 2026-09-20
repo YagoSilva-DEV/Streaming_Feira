@@ -29,7 +29,7 @@ namespace Streamall.Views
         }
         public AdministratorHome(UserDTO admDTO)
         {
-            DataContext = new AdministratorHomeViewModel(admDTO, new NavigationService());
+            DataContext = new AdministratorHomeViewModel(admDTO, new NavigationService(), () => Close());
             InitializeComponent();
         }
 

@@ -14,6 +14,17 @@ namespace Streamall.ViewModels.Contents
     public class EditContentControlViewModel : ViewModelBase
     {
         public ContentDTO StoredContentDTO { get; set; }
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set 
+            {
+                _errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
 
         private IContentBLL _contentBLL;
         private List<GenreDTO> _genres;

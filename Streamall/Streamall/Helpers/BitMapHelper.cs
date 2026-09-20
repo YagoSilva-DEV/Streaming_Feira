@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,15 +26,22 @@ namespace Streamall.Helpers
             if (string.IsNullOrWhiteSpace(path))
                 return null;
 
-            BitmapImage image = new BitmapImage();
+            try
+            {
+                BitmapImage image = new BitmapImage();
 
-            image.BeginInit();
-            image.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
-            image.CacheOption = BitmapCacheOption.OnLoad;
-            image.EndInit();
-            image.Freeze();
+                image.BeginInit();
+                image.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.EndInit();
+                image.Freeze();
 
-            return image;
+                return image;
+            }
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
         }
 
         public object ConvertBack(
