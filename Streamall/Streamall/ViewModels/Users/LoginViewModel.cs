@@ -91,7 +91,17 @@ namespace Streamall.ViewModels
 
         public LoginViewModel(IUserBLL userBLL, INavigationService navegationService)
         {
-            _fullPathFiles = Directory.GetFiles(AppContext.BaseDirectory + @"..\..\Assets").OrderBy(f => Guid.NewGuid()).Take(10).ToArray();//Pega apenas 10 arquivos da Assets
+            string assetsPaths = Path.Combine(AppContext.BaseDirectory, @"..\..\Assets");
+            string[] pathFile = Directory.GetFiles(assetsPaths).OrderBy(f => Guid.NewGuid()).Take(10).ToArray();
+            _fullPathFiles = new string[pathFile.Length];
+            for (int i = 0; i < pathFile.Length; i++)
+            {
+                if (File.Exists(pathFile[i]))
+                {
+                    _fullPathFiles[i] = pathFile[i];
+                }
+            }
+            //Pega apenas 10 arquivos da Assets
             _userBLL = userBLL;
             _navigationService = navegationService;
             ImageSourceFile = _fullPathFiles[_count];

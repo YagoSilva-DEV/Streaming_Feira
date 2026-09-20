@@ -49,7 +49,7 @@ namespace Streamall.ViewModels.Contents
 
             try
             {
-                _contentBLL.RemoveContent(contentId);
+                _contentBLL.RemoveContent(contentDTO);
                 Contents.Clear();
                 Contents = new ObservableCollection<ContentDTO>(_contentBLL.GetContentDTOs());
             }

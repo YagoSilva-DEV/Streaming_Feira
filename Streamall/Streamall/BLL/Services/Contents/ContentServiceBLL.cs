@@ -37,9 +37,13 @@ namespace Streamall.BLL.Services.Contents
             return _contentDAL.GetFilmMakers().Select(f => new FilmMakerDTO(f));
         }
 
-        public void RemoveContent(int id)
+        public void RemoveContent(ContentDTO contentDTO)
         {
-            _contentDAL.RemoveContent(id);
+            _contentDAL.RemoveContent(contentDTO.Id);
+
+            string oldImagePath = Path.Combine(AppContext.BaseDirectory, contentDTO.PathCover);
+            if (File.Exists(oldImagePath))
+                File.Delete(oldImagePath);
         }
 
         public void UpdateContent(ContentDTO contentDTO, string oldPathCover)
