@@ -24,6 +24,9 @@
         <DataTemplate DataType="{x:Type viewModelError:ErrorControlViewModel}">
             <contentUserControl:ErrorControl/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModelContent:InsertContentControlViewModel}">
+            <contentUserControl:InsertContentControl/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -49,8 +52,8 @@
 
                 <!-- Menu de Navegação -->
                 <StackPanel Grid.Row="1" VerticalAlignment="Center">
-                    <Button Content="Catálogo de Filmes" Style="{StaticResource MenuButtonStyle}" Foreground="#FFFFFF" Margin="0,0,0,5" Command="{Binding ShowContentsManagmentCommand}"/>
-                    <Button Content="Cadastrar Filme" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
+                    <Button Content="Catálogo de Filmes" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5" Command="{Binding ShowContentsManagmentCommand}"/>
+                    <Button Content="Cadastrar Filme" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5" Command="{Binding InsertContentContentCommand}"/>
                     <Button Content="Gerenciar Clientes" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
                     <Button Content="Estatísticas" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
                 </StackPanel>

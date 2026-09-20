@@ -44,7 +44,7 @@ namespace Streamall.ViewModels.Contents
             _closeWindow = closeWindow;
         }
 
-        private void Save()
+        private async void Save()
         {
             if (CurrentViewModel is EditContentControlViewModel)
             {
@@ -57,6 +57,7 @@ namespace Streamall.ViewModels.Contents
                 try
                 {
                     _contentBLL.UpdateContent(_newContentDTO, StoredContentDTO.PathCover);
+                    await CloseWindow();
                 }
                 catch(InvalidContentException ex)
                 {
@@ -66,13 +67,19 @@ namespace Streamall.ViewModels.Contents
             }
         }
 
-        private void Cancel()
+        private async Task Cancel()
         {
             if (CurrentViewModel is EditContentControlViewModel)
-                _closeWindow.Invoke();
+                await CloseWindow();
             else
                 CurrentViewModel = _storedEditContentControlViewModel;
         }
 
+
+        private async Task CloseWindow()
+        {
+            await Task.Delay(500);
+            _closeWindow();
+        }
     }
 }

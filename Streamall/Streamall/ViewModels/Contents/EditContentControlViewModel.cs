@@ -15,7 +15,6 @@ namespace Streamall.ViewModels.Contents
     {
         public ContentDTO StoredContentDTO { get; set; }
         private string _errorMessage;
-
         public string ErrorMessage
         {
             get { return _errorMessage; }

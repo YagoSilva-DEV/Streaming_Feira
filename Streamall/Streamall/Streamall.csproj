@@ -245,6 +245,7 @@
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
+    <Compile Include="ViewModels\Contents\InsertContentControlViewModel.cs" />
     <Compile Include="ViewModels\ErrorControlViewModel.cs" />
     <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
     <Compile Include="ViewModels\Users\LoginControlViewModel.cs" />
@@ -277,6 +278,9 @@
     </Compile>
     <Compile Include="Views\UserControls\ErrorControl.xaml.cs">
       <DependentUpon>ErrorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\InsertContentControl.xaml.cs">
+      <DependentUpon>InsertContentControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
@@ -345,6 +349,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ErrorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\InsertContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
