@@ -51,4 +51,88 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontWeight" Value="Heavy"/>
     </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockContentName">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockUserInitials">
+        <Setter Property="FontFamily" Value="{StaticResource Righteous}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockTopAdmHome">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="25"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Heavy"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="StyleTextBlockDescriptionTopAdmHome">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="#8A8F9E"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <!-- Estilo dos Rótulos de Campo do EditModal -->
+    <Style x:Key="StyleFieldLabelEditModal" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="0,0,0,6"/>
+    </Style>
+    
+    <!-- Card de Comparação de Conteúdo Padrão -->
+    <Style x:Key="CompareCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{StaticResource InputBackgroundEditModalBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BorderColorEditModalBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Margin" Value="0,0,0,12"/>
+    </Style>
+
+    <!-- Card de Comparação Quando Modificado (Borda Amarela/Dourada) -->
+    <Style x:Key="ModifiedCardStyle" TargetType="Border" BasedOn="{StaticResource CompareCardStyle}">
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryAccentBrush}"/>
+        <Setter Property="Background" Value="{StaticResource AccentHighlightBackgroundBrush}"/>
+    </Style>
+
+    <!-- Título das Seções nos Cards -->
+    <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="0,0,0,6"/>
+    </Style>
+
+    <!-- Texto de Valor nos Cards -->
+    <Style x:Key="ValueTextStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <!-- Badge / Tag de "ALTERADO" -->
+    <Style x:Key="ChangedBadgeBorderStyle" TargetType="Border">
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="Padding" Value="6,2"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+
+    <Style x:Key="ChangedBadgeTextStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontSize" Value="9"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
 </ResourceDictionary>

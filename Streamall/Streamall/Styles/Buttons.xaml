@@ -117,17 +117,5 @@
         </Setter>
     </Style>
 
-<Style x:Key="StyleOrganizarButton"
-       TargetType="Button">
-
-    <Setter Property="Width" Value="125"/>
-    <Setter Property="Height" Value="40"/>
-    <Setter Property="Background" Value="Transparent"/>
-    <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
-    <Setter Property="BorderBrush" Value="#59627A"/>
-    <Setter Property="BorderThickness" Value="1"/>
-    <Setter Property="Cursor" Value="Hand"/>
-
-</Style>
 
 </ResourceDictionary>

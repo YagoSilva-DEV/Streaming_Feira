@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Streamall.Helpers
 {
-    internal class MessageBoxHelper
+    public class MessageBoxHelper
     {
         public static void ShowMessageBoxSuccess(string message)
         {

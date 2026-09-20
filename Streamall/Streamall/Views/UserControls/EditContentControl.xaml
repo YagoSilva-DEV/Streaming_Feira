@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="Streamall.Views.UserControls.EditContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Streamall.Views.UserControls"
+             xmlns:helpers="clr-namespace:Streamall.Helpers"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="800">
+    <UserControl.Resources>
+        <helpers:BitMapHelper x:Key="ImagePathConverter"/>
+    </UserControl.Resources>
+    <!-- Container Principal do UserControl -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Cabeçalho / ID -->
+            <RowDefinition Height="*"/>
+            <!-- Formulário em Painel Organizado -->
+        </Grid.RowDefinitions>
+
+        <!-- Cabecalho Streamall Studio / ID -->
+        <Border Grid.Row="0" Margin="0,0,0,20" Padding="0,0,0,16" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="0,0,0,1">
+            <Grid>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="STREAMALL STUDIO" Foreground="{StaticResource TextSecondaryLoginBrush}" FontSize="18" FontFamily="{StaticResource Righteous}" FontWeight="Bold"/>
+                    <TextBlock Text="Editar Conteúdo" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryLoginBrush}" Margin="0,2,0,0" FontFamily="{StaticResource Righteous}"/>
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Text="ID:" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                    <Border Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="4" Padding="10,4">
+                        <TextBlock Text="{Binding StoredContentDTO.Id}" Foreground="{StaticResource TextPrimaryLoginBrush}" FontWeight="Bold" FontSize="12"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Formulario em Painel Organizado -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="32"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Coluna Esquerda: Capa e Arquivo -->
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Capa do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+
+                <Border Height="360" Background="{StaticResource InputBackgroundEditModalBrush}" CornerRadius="6" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" Margin="0,0,0,12" ClipToBounds="True">
+                    <Grid>
+                        <Image Source="{Binding NewPathCover, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill"/>
+
+                        <!-- Mensagem exibida caso não haja capa ou durante o carregamento -->
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="{Binding FileMessage}" Foreground="{StaticResource TextSecondaryLoginBrush}" FontSize="12" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Campo do Caminho da Capa / Seleção de Arquivo -->
+                <Grid>
+                    <Button Content="Buscar Capa" Style="{StaticResource StyleSecondaryButtonEditModal}" Height="38" Command="{Binding OpenFileDialogCommand}"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Coluna Direita: Campos de Dados -->
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Linha 1: Nome do Conteúdo -->
+                <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                    <TextBlock Text="Nome do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+                    <TextBox Height="40" Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
+                </StackPanel>
+
+                <!-- Linha 2: Tipo, Gênero e Lançamento -->
+                <Grid Grid.Row="1" Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Tipo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+                        <ComboBox Text="{Binding ContentType}" IsEnabled="False" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Gênero" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+                        <ComboBox SelectedItem="{Binding NewGenre}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding Genres}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="4">
+                        <TextBlock Text="Ano / Lançamento" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+                        <DatePicker SelectedDate="{Binding NewReleaseDate}" Height="40" Background="{StaticResource InputBackgroundEditModalBrush}" IsTodayHighlighted="True"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Linha 3: Cineasta / Diretor -->
+                <StackPanel Grid.Row="2" Margin="0,0,0,16">
+                    <TextBlock Text="Cineasta / Diretor" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+                    <ComboBox SelectedItem="{Binding NewFilmMaker}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding FilmMakers}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                </StackPanel>
+
+                <!-- Linha 4: Sinopse -->
+                <StackPanel Grid.Row="3">
+                    <TextBlock Text="Sinopse" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
+                    <TextBox Height="120" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding NewSynopsis, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
