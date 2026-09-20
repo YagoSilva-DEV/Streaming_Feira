@@ -219,7 +219,6 @@ namespace Streamall.DAL.Repository.Contents
                         cmd.Parameters.Add("@year_realease_content", SqlDbType.DateTime).Value = content.ReleaseDate;
                         cmd.Parameters.Add("@fk_id_gender_content", SqlDbType.Int).Value = content.Genre.Id;
                         cmd.Parameters.Add("@fk_id_filmmaker_content", SqlDbType.Int).Value = content.FilmMaker.Id;
-                        cmd.Parameters.Add("@pk_id_content", SqlDbType.Int).Value = content.Id;
 
                         cmd.ExecuteNonQuery();
                     }
