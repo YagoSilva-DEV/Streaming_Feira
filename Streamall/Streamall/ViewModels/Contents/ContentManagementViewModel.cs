@@ -24,8 +24,8 @@ namespace Streamall.ViewModels.Contents
         public ObservableCollection<ContentDTO> Contents
         {
             get { return _contents; }
-            set 
-            { 
+            set
+            {
                 _contents = value;
                 OnPropertyChanged();
             }
@@ -61,6 +61,8 @@ namespace Streamall.ViewModels.Contents
         private void EditContent(ContentDTO contentDTO)
         {
             _navigationService.Navigate<EditContentModal>(contentDTO);
+            Contents.Clear();
+            Contents = new ObservableCollection<ContentDTO>(_contentBLL.GetContentDTOs());
         }
     }
 }

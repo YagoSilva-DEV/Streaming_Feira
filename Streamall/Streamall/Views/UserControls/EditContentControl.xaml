@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
+             xmlns:helpers="clr-namespace:Streamall.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="800">
-
+    <UserControl.Resources>
+        <helpers:BitMapHelper x:Key="ImagePathConverter"/>
+    </UserControl.Resources>
     <!-- Container Principal do UserControl -->
     <Grid>
         <Grid.RowDefinitions>
@@ -45,9 +48,9 @@
             <StackPanel Grid.Column="0">
                 <TextBlock Text="Capa do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
 
-                <Border Height="340" Background="{StaticResource InputBackgroundEditModalBrush}" CornerRadius="6" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" Margin="0,0,0,12" ClipToBounds="True">
+                <Border Height="360" Background="{StaticResource InputBackgroundEditModalBrush}" CornerRadius="6" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" Margin="0,0,0,12" ClipToBounds="True">
                     <Grid>
-                        <Image Source="{Binding NewPathCover}" Stretch="UniformToFill"/>
+                        <Image Source="{Binding NewPathCover, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill"/>
 
                         <!-- Mensagem exibida caso não haja capa ou durante o carregamento -->
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

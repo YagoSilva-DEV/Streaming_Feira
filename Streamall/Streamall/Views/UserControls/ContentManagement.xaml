@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
              mc:Ignorable="d" 
+             xmlns:hepers="clr-namespace:Streamall.Helpers"
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{StaticResource BackgroundColorLoginBrush}">
-
+    <UserControl.Resources>
+        <hepers:BitMapHelper x:Key="ImageConverter"/>
+    </UserControl.Resources>
     <!-- Grid ocupando todo o espaço disponível -->
     <Grid Margin="25">
         <Grid.RowDefinitions>
@@ -55,7 +58,7 @@
 
                             <!-- Imagem da Capa (Com suporte a Fallback e limitação estrita de recorte) -->
                             <Grid Grid.Row="0" ClipToBounds="True">
-                                <Image Source="{Binding PathCover, TargetNullValue='/Streamall;component/Assets/placeholder.png', FallbackValue='/Streamall;component/Assets/placeholder.png'}" 
+                                <Image Source="{Binding PathCover, TargetNullValue='/Streamall;component/Assets/placeholder.png', FallbackValue='/Streamall;component/Assets/placeholder.png', Converter={StaticResource ImageConverter}}" 
                                        Stretch="UniformToFill" 
                                        HorizontalAlignment="Center" 
                                        VerticalAlignment="Center"/>

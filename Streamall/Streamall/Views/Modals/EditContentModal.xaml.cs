@@ -25,7 +25,7 @@ namespace Streamall.Views.Modals
     {
         public EditContentModal(ContentDTO contentDTO)
         {
-            DataContext = new EditContentModalViewModel(contentDTO, () => Close());
+            DataContext = new EditContentModalViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), contentDTO, () => Close());
             InitializeComponent();
         }
 

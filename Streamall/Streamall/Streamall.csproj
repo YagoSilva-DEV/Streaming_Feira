@@ -206,8 +206,10 @@
     <Compile Include="DAL\Repository\Users\ClientRepositoryDAL.cs" />
     <Compile Include="DAL\Repository\Users\UserRepositoryDAL.cs" />
     <Compile Include="Exceptions\DataBaseException.cs" />
+    <Compile Include="Exceptions\InvalidContentException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
     <Compile Include="Exceptions\InvalidSignUpException.cs" />
+    <Compile Include="Helpers\BitMapHelper.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Helpers\MessageBoxHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />

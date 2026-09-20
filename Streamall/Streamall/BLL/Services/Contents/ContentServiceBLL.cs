@@ -2,8 +2,12 @@
 using Streamall.DAL.Interfaces.Contents;
 using Streamall.Models.DTO;
 using Streamall.Models.DTO.ContentsDTO;
+using Streamall.Models.Entities;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System;
+using System.Windows;
 
 namespace Streamall.BLL.Services.Contents
 {
@@ -36,6 +40,20 @@ namespace Streamall.BLL.Services.Contents
         public void RemoveContent(int id)
         {
             _contentDAL.RemoveContent(id);
+        }
+
+        public void UpdateContent(ContentDTO contentDTO, string oldPathCover)
+        {
+            Content content = new Content(contentDTO);
+            content.PathCover = Path.Combine(@"../../Assets/", Path.GetFileName(content.PathCover));
+            _contentDAL.UpdateContent(content);
+
+            string fileDestination = Path.Combine(AppContext.BaseDirectory, content.PathCover);
+            if(!File.Exists(fileDestination))
+                File.Move(contentDTO.PathCover, fileDestination);
+            string oldImagePath = Path.Combine(AppContext.BaseDirectory, oldPathCover);
+            if (File.Exists(oldImagePath))
+                File.Delete(oldImagePath);
         }
     }
 }

@@ -2,12 +2,13 @@
 using Streamall.DAL.Interfaces.Contents;
 using Streamall.Exceptions;
 using Streamall.Models.Entities;
+using Streamall.Models.Entities.Contents;
 using Streamall.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Data;
-using Streamall.Models.Entities.Contents;
+using System.IO;
+using System.Windows;
 
 namespace Streamall.DAL.Repository.Contents
 {
@@ -43,7 +44,8 @@ namespace Streamall.DAL.Repository.Contents
                                     INNER JOIN Tb_Gender g
                                     ON c.fk_id_Gender_content = g.pk_id_gender
                                     INNER JOIN Tb_Filmmaker f
-                                    ON c.fk_id_filmmaker_content = f.pk_id_filmmaker";
+                                    ON c.fk_id_filmmaker_content = f.pk_id_filmmaker
+                                    ORDER BY year_realease_content ASC";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -68,10 +70,11 @@ namespace Streamall.DAL.Repository.Contents
                     }
                 }
             }
-            catch (SqlException ex){
+            catch (SqlException ex)
+            {
                 throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
             }
-            
+
             return contents;
         }
 
@@ -99,7 +102,7 @@ namespace Streamall.DAL.Repository.Contents
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
             }
@@ -154,7 +157,43 @@ namespace Streamall.DAL.Repository.Contents
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
+            }
+        }
+
+        public void UpdateContent(Content content)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"UPDATE Tb_Content
+                                   SET
+                                   name_content = @name_content,
+                                   synopsis_content = @synopsis_content,
+                                   path_cover_content = @path_cover_content,
+                                   year_realease_content = @year_realease_content,
+                                   fk_id_gender_content = @fk_id_gender_content,
+                                   fk_id_filmmaker_content = @fk_id_filmmaker_content
+                                   WHERE pk_id_content = @pk_id_content";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@name_content", SqlDbType.VarChar).Value = content.Name;
+                        cmd.Parameters.Add("@synopsis_content", SqlDbType.VarChar).Value = content.Synopsis;
+                        cmd.Parameters.Add("@path_cover_content", SqlDbType.VarChar).Value = content.PathCover;
+                        cmd.Parameters.Add("@year_realease_content", SqlDbType.DateTime).Value = content.ReleaseDate;
+                        cmd.Parameters.Add("@fk_id_gender_content", SqlDbType.Int).Value = content.Genre.Id;
+                        cmd.Parameters.Add("@fk_id_filmmaker_content", SqlDbType.Int).Value = content.FilmMaker.Id;
+                        cmd.Parameters.Add("@pk_id_content", SqlDbType.Int).Value = content.Id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
             {
                 throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
             }

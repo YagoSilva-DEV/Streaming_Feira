@@ -15,9 +15,10 @@ namespace Streamall.ViewModels.Contents
 {
     public class EditContentModalViewModel : ViewModelBase
     {
+        private IContentBLL _contentBLL;
         private EditContentControlViewModel _storedEditContentControlViewModel;
-        private ContentDTO _newContentDTO;
         private Action _closeWindow;
+        private ContentDTO _newContentDTO;
         public ContentDTO StoredContentDTO { get; set; }
         private object _currentViewModel;
         public RelayCommand SaveCommand { get; set; }
@@ -32,12 +33,13 @@ namespace Streamall.ViewModels.Contents
             }
         }
 
-        public EditContentModalViewModel(ContentDTO contentDTO, Action closeWindow)
+        public EditContentModalViewModel(IContentBLL contentBLL, ContentDTO contentDTO, Action closeWindow)
         {
+            _contentBLL = contentBLL;
             StoredContentDTO = contentDTO;
             SaveCommand = new RelayCommand(execute => Save());
             CancelCommand = new RelayCommand(execute => Cancel());
-            CurrentViewModel = new EditContentControlViewModel(contentDTO, new ContentServiceBLL(new ContentRepositoryDAL()));
+            CurrentViewModel = new EditContentControlViewModel(StoredContentDTO, new ContentServiceBLL(new ContentRepositoryDAL()));
             _closeWindow = closeWindow;
         }
 
@@ -49,6 +51,8 @@ namespace Streamall.ViewModels.Contents
                 _newContentDTO = new ContentDTO(StoredContentDTO.Id, _storedEditContentControlViewModel.NewName, _storedEditContentControlViewModel.NewSynopsis, _storedEditContentControlViewModel.NewPathCover, _storedEditContentControlViewModel.NewReleaseDate, _storedEditContentControlViewModel.NewGenre, _storedEditContentControlViewModel.NewFilmMaker, StoredContentDTO.ContentType);
                 CurrentViewModel = new ConfirmEditContentViewModel(StoredContentDTO, _newContentDTO);
             }
+            else
+                _contentBLL.UpdateContent(_newContentDTO, StoredContentDTO.PathCover);
         }
 
         private void Cancel()
