@@ -6,6 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Borders.xaml"/>
                 <ResourceDictionary Source="/Styles/ListViewItem.xaml"/>
                 <ResourceDictionary Source="/Styles/ScrollBar.xaml"/>
                 <ResourceDictionary Source="/Styles/Fonts.xaml"/>

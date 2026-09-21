@@ -118,7 +118,7 @@ namespace Streamall.Navigation.Service
             }
             if (typeof(TViewModel) == typeof(InsertContentControlViewModel))
             {
-                _admViewModel.CurrentViewModel = new InsertContentControlViewModel();
+                _admViewModel.CurrentViewModel = new InsertContentControlViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
             }
         }
     }

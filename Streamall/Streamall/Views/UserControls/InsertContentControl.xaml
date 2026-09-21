@@ -12,19 +12,14 @@
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     </UserControl.Resources>
 
-    <!-- ScrollViewer para garantir visualização responsiva em resoluções menores -->
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False">
         <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <!-- Cabeçalho do Cadastro -->
                 <RowDefinition Height="*"/>
-                <!-- Layout Responsivo com Cards -->
                 <RowDefinition Height="Auto"/>
-                <!-- Barra Inferior de Ação / Botão Cadastrar -->
             </Grid.RowDefinitions>
 
-            <!-- 1. Cabeçalho Exclusivo de Cadastro -->
             <Border Grid.Row="0" Margin="0,0,0,20" Padding="0,0,0,16" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="0,0,0,1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -35,7 +30,7 @@
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Text="STREAMALL STUDIO" Foreground="{StaticResource TextSecondaryLoginBrush}" FontSize="13" FontFamily="{StaticResource Righteous}" FontWeight="Bold"/>
-                            <Border Background="#1F3D2B" BorderBrush="#2E6B45" BorderThickness="1" CornerRadius="10" Padding="8,2" Margin="10,0,0,0" VerticalAlignment="Center">
+                            <Border Background="#1F3D2B" BorderThickness="1" CornerRadius="10" Padding="8,2" Margin="10,0,0,0" VerticalAlignment="Center">
                                 <TextBlock Text="• CADASTRO" Foreground="#4EED89" FontSize="10" FontWeight="Bold"/>
                             </Border>
                         </StackPanel>
@@ -43,30 +38,28 @@
                     </StackPanel>
                 </Grid>
             </Border>
-
-            <!-- 2. Corpo do Formulário em Sub-painéis (Cards) -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <!-- Coluna da Capa (Upload + Preview) -->
-                    <ColumnDefinition Width="280"/>
+                    <ColumnDefinition Width="3*" MinWidth="280"/>
                     <ColumnDefinition Width="20"/>
-                    <!-- Coluna de Informações do Conteúdo -->
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="7*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Card de Seleção e Preview de Capa -->
-                <Border Grid.Column="0" Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="8" Padding="16" VerticalAlignment="Center">
-                    <StackPanel HorizontalAlignment="Stretch">
-                        <TextBlock Text="Capa do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" FontWeight="Bold" Margin="0,0,0,12"/>
+                <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}" Padding="16" VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <!-- Área da Imagem -->
-                        <Border Height="360" CornerRadius="6" ClipToBounds="True" Background="#121212" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1">
+                        <TextBlock Grid.Row="0" Text="Capa do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" FontWeight="Bold" Margin="0,0,0,12"/>
+
+                        <Border Grid.Row="1" Style="{StaticResource ImageContainerStyle}" VerticalAlignment="Stretch" MinHeight="260">
                             <Grid>
                                 <Image Source="{Binding PathCover, Converter={StaticResource ImagePathConverter}}" Stretch="UniformToFill"/>
-
-                                <!-- Placeholder quando não há imagem -->
                                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16">
-                                    <TextBlock Text="{Binding CoverFileMessage, FallbackValue='Nenhuma imagem selecionada'}" 
+                                    <TextBlock Text="{Binding FileMessage, FallbackValue='Nenhuma imagem selecionada'}" 
                                                Foreground="{StaticResource TextSecondaryLoginBrush}" 
                                                FontSize="11" 
                                                TextAlignment="Center" 
@@ -75,26 +68,22 @@
                             </Grid>
                         </Border>
 
-                        <Button Content="Carregar Capa" 
+                        <Button Grid.Row="2" Content="Carregar Capa" 
                                 Style="{StaticResource StyleSecondaryButtonEditModal}" 
                                 Height="38" 
                                 Margin="0,14,0,0" 
                                 Command="{Binding OpenImageFileDialogCommand}"/>
-                    </StackPanel>
+                    </Grid>
                 </Border>
 
-                <!-- Card Principal: Formulário de Cadastro -->
-                <Border Grid.Column="2" Background="{StaticResource InputBackgroundEditModalBrush}" BorderBrush="{StaticResource BorderColorEditModalBrush}" BorderThickness="1" CornerRadius="8" Padding="20">
+                <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}" Padding="20" VerticalAlignment="Stretch">
                     <StackPanel>
                         <TextBlock Text="Informações Gerais" Style="{StaticResource StyleFieldLabelEditModal}" FontSize="14" FontWeight="Bold" Margin="0,0,0,16"/>
-
-                        <!-- Nome do Conteúdo -->
                         <StackPanel Margin="0,0,0,16">
                             <TextBlock Text="Nome do Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
                             <TextBox Height="40" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
                         </StackPanel>
 
-                        <!-- Sub-grid Flexível: Tipo e Gênero -->
                         <Grid Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -104,16 +93,15 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Tipo de Conteúdo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                                <ComboBox SelectedItem="{Binding SelectedContentType}" ItemsSource="{Binding ContentTypes}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                                <ComboBox SelectedItem="{Binding ContentType}" ItemsSource="{Binding ContentTypes}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Gênero" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                                <ComboBox SelectedItem="{Binding SelectedGenre}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding Genres}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                                <ComboBox SelectedItem="{Binding GenreDTO}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding Genres}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
                             </StackPanel>
                         </Grid>
 
-                        <!-- Sub-grid Flexível: Diretor e Lançamento -->
                         <Grid Margin="0,0,0,16">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -123,7 +111,7 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Cineasta / Diretor" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                                <ComboBox SelectedItem="{Binding SelectedFilmMaker}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding FilmMakers}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                                <ComboBox SelectedItem="{Binding FilmMaker}" SelectedValuePath="Id" DisplayMemberPath="Name" ItemsSource="{Binding FilmMakers}" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
@@ -132,7 +120,6 @@
                             </StackPanel>
                         </Grid>
 
-                        <!-- Sinopse -->
                         <StackPanel Margin="0,0,0,8">
                             <TextBlock Text="Sinopse" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
                             <TextBox Height="110" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding Synopsis, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StyleTextBoxEditModal}"/>
@@ -141,38 +128,26 @@
                 </Border>
             </Grid>
 
-            <!-- 3. Barra Inferior: Mensagem de Erro e Botão Chamativo de Cadastro -->
             <Grid Grid.Row="2" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Mensagem de Erro à Esquerda -->
-                <TextBlock Grid.Column="0"
+                <Grid>
+                    <TextBlock
                            Text="{Binding ErrorMessage}" 
-                           Foreground="#FF4D4D" 
-                           FontSize="12" 
-                           FontFamily="{StaticResource Righteous}"
-                           TextWrapping="Wrap"
-                           VerticalAlignment="Center"
-                           Margin="0,0,16,0"
-                           Visibility="{Binding ErrorMessage}"/>
+                           Style="{StaticResource StyleTextBlockError}" FontSize="20"/>
 
-                <!-- Botão Chamativo de Cadastro à Direita -->
+                    <TextBlock
+                           Text="{Binding SuccessMessage}" 
+                           Style="{StaticResource StyleTextBlockSuccess}" FontSize="20"/>
+                </Grid>
                 <Button Grid.Column="1"
-                        Content="+ CADASTRAR CONTEÚDO"
-                        Command="{Binding SaveContentCommand}"
-                        Height="46"
-                        Padding="28,0"
-                        Cursor="Hand"
-                        FontFamily="{StaticResource Righteous}"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Foreground="#FFFFFF"
-                        Background="#2E7D32"
-                        BorderBrush="#4CAF50"
-                        BorderThickness="1">
+                        Content="CADASTRAR"
+                        Command="{Binding InsertCommand}"
+                        Style="{StaticResource StylePrimaryButtonEditModal}"
+                        Height="46">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="6"/>

@@ -45,5 +45,15 @@ namespace Streamall.Models.DTO
             FilmMaker = filmMaker;
             ContentType = contentType;
         }
+        public ContentDTO(string name, string synopsis, string pathCover, DateTime releaseDate, GenreDTO genre, FilmMakerDTO filmMaker, ContentType contentType)
+        {
+            Name = name;
+            Synopsis = synopsis;
+            PathCover = pathCover;
+            ReleaseDate = releaseDate;
+            Genre = genre;
+            FilmMaker = filmMaker;
+            ContentType = contentType;
+        }
     }
 }
