@@ -58,11 +58,13 @@ namespace Streamall.ViewModels.Contents
                 {
                     _contentBLL.UpdateContent(_newContentDTO, StoredContentDTO.PathCover);
                     CurrentViewModel = _storedEditContentControlViewModel;
+                    _storedEditContentControlViewModel.ErrorMessage = string.Empty;
                     _storedEditContentControlViewModel.SuccessMessage = "Edição concluída.";
                     await CloseWindow(1500);
                 }
                 catch(InvalidContentException ex)
                 {
+                    _storedEditContentControlViewModel.ErrorMessage = string.Empty;
                     CurrentViewModel = _storedEditContentControlViewModel;
                     _storedEditContentControlViewModel.ErrorMessage = ex.Message;
                 }
