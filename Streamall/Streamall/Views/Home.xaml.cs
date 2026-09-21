@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Streamall.ViewModels.Contents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,10 @@ namespace Streamall.Views
         public Home()
         {
             InitializeComponent();
+           
         }
 
+            
         private void SideBar_Loaded(object sender, RoutedEventArgs e)
         {
 

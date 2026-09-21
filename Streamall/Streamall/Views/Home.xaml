@@ -6,28 +6,42 @@
         xmlns:local="clr-namespace:Streamall.Views"
         xmlns:userControls="clr-namespace:Streamall.Views.UserControls"
         mc:Ignorable="d"
-        Title="Home" Height="1080" Width="1920">
+        Title="CINEVERSE"
+        Height="1080"
+        Width="1920"
+        Background="#0A0E17">
+
     <Grid>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
+
+        <!-- HEADER -->
+
         <userControls:Header Grid.Row="0"/>
 
-        <Grid Grid.Row="1" >
+
+        <!-- CONTEÚDO -->
+
+        <Grid Grid.Row="1">
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <userControls:SideBar Grid.Column="0" />
 
-            <!--pode ser substituido por um userController possivelmente-->
-            <Grid Grid.Column="1" Background="{StaticResource BackgroundColorLoginBrush}">
-                
+            <!-- SIDEBAR -->
 
-            </Grid>
+            <userControls:SideBar Grid.Column="0"/>
+
+
+            <userControls:Carousel Grid.Column="1"/>
         </Grid>
+
     </Grid>
+
 </Window>

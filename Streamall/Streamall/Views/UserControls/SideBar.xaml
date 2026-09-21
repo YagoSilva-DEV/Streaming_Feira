@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="850" d:DesignWidth="50">
-    <Grid Background="{StaticResource SurfaceColorLoginBrush}" >
+    <Grid Background="{StaticResource SurfaceColorLoginBrush}" HorizontalAlignment="Center" >
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="0.1*"/>

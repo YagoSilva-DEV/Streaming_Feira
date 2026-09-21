@@ -11,5 +11,12 @@ namespace Streamall.DAL.Interfaces.Contents
     public interface IContentDAL
     {
         IEnumerable<Content> GetContents();
+        IEnumerable<Content> GetRecomendationContens();
+        IEnumerable<Content> GetActionContens();
+        IEnumerable<Content> GetDramaContens();
+        IEnumerable<Content> GetScienceFictionContens();
+        IEnumerable<Content> GetAnimationContens();
+        IEnumerable<Content> GetDocumentaryContens();
+        
     }
 }
