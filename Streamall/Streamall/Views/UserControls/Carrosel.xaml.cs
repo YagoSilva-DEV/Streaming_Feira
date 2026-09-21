@@ -21,7 +21,7 @@ namespace Streamall.Views.UserControls
                 button.Tag is ScrollViewer scroll)
             {
                 scroll.ScrollToHorizontalOffset(
-                    scroll.HorizontalOffset - 500);
+                    scroll.HorizontalOffset - 240);
             }
         }
 
@@ -31,7 +31,7 @@ namespace Streamall.Views.UserControls
                 button.Tag is ScrollViewer scroll)
             {
                 scroll.ScrollToHorizontalOffset(
-                    scroll.HorizontalOffset + 500);
+                    scroll.HorizontalOffset + 240);
             }
         }
     }

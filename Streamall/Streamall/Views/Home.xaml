@@ -39,7 +39,7 @@
             <userControls:SideBar Grid.Column="0"/>
 
 
-            <userControls:Carousel Grid.Column="1"/>
+            <userControls:Carousel Grid.Column="1" />
         </Grid>
 
     </Grid>
