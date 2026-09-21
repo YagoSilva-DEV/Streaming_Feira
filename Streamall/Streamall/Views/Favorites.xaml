@@ -31,24 +31,13 @@
                     <TextBlock Text="10" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                 </StackPanel>
                 <Border Height="30" BorderBrush="White" Margin="0,10,20,0"/>
-                
-                <Button Style="{StaticResource StyleOrganizarButton}" Content="☰  Organizar">
 
-                    <Button.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Mais recentes"/>
-                            <MenuItem Header="Mais antigos"/>
-
-                            <Separator/>
-
-                            <MenuItem Header="A → Z"/>
-                            <MenuItem Header="Z → A"/>
-
-                            <Separator/>
-
-                        </ContextMenu>
-                    </Button.ContextMenu>
-                </Button>
+                <ComboBox  >
+                    <ComboBoxItem Content="Mais recentes" IsSelected="True"/>
+                    <ComboBoxItem Content="Mais antigos"/>
+                    <ComboBoxItem Content="A → Z"/>
+                    <ComboBoxItem Content="Z → A"/>
+                </ComboBox>
             </StackPanel>
             
         </Grid>

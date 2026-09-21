@@ -24,5 +24,7 @@ namespace Streamall.Views
         {
             InitializeComponent();
         }
+
+
     }
 }

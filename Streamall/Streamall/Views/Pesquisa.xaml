@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Width="500" Margin="10"  Style="{StaticResource StyleTextBoxLogin}" Background="{StaticResource BackgroundColorsearchBarBrush}"/>
+        <TextBox Width="500" Margin="10"  Style="{StaticResource StyleTextBoxLogin}" Background="{StaticResource LogoPurpleLoginBrush}" Foreground="{StaticResource SurfaceColorLoginBrush}"/>
         <UserControl  Grid.Row="1"/>
     </Grid>
 </Page>

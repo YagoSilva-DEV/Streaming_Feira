@@ -3,6 +3,8 @@
 
     <Color x:Key="BackgroundColorLogin">#0B0F14</Color>
 
+    <Color x:Key="BackgroundColorsearchBarBrush">#fbfbfb</Color>
+
     <Color x:Key="SurfaceColorLogin">#191C20</Color>
 
     <Color x:Key="BorderColorLogin">#30343A</Color>
