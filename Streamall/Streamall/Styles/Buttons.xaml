@@ -37,6 +37,8 @@
         </Setter>
     </Style>
 
+    
+    
     <Style TargetType="Button" x:Key="StyleSecundaryButtonLogin">
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryLoginBrush}"/>
         <Setter Property="FontWeight" Value="ExtraBold"/>
@@ -58,6 +60,7 @@
         </Setter>
     </Style>
 
+
     <Style TargetType="Button" x:Key="StylePrimaryButtonSignUp">
         <Setter Property="Background" Value="{StaticResource ButtonGradientSignUp}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderColorLoginBrush}"/>
@@ -75,20 +78,40 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Button">
+                <ControlTemplate TargetType="Button"></ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-                    <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="15">
+
+    <Style x:Key="StyleButtonSideBar" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat}"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="Transparent"/>
+
+        <Setter Property="BorderBrush" Value="DodgerBlue"/>
+        <Setter Property="Tag" Value="SteelBlue"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="5">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="ButtonBorder" Property="Background" Value="DodgerBlue"/>
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.8"/>
                         </Trigger>
 
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="ButtonBorder" Property="Background" Value="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -114,7 +137,7 @@
                             <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

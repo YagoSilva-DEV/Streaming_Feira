@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="Streamall.Views.UserControls.SideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Streamall.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="850" d:DesignWidth="50">
+    <Grid Background="{StaticResource SurfaceColorLoginBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0"  Style="{StaticResource StyleButtonSideBar}"  Command="{Binding HomeCommand}">
+            <Path 
+                Style="{StaticResource IconsGlobalConfigs}"
+                Data="{StaticResource IconHome}"
+            />
+        </Button>
+
+        <Button Grid.Row="1" Style="{StaticResource StyleButtonSideBar}" Command="{Binding SearchCommand}">
+            <Path 
+                Style="{StaticResource IconsGlobalConfigs}"
+                Data="{StaticResource IconSearch}"
+            />
+        </Button>
+
+        <Button Grid.Row="2" Style="{StaticResource StyleButtonSideBar}"  Command="{Binding FavoritesCommand}">
+             <Path 
+                Style="{StaticResource IconsGlobalConfigs}"
+                Data="{StaticResource IconStar}"
+             />
+        </Button>
+
+        <Button Grid.Row="3" Style="{StaticResource StyleButtonSideBar}">
+            <Path 
+                Style="{StaticResource IconsGlobalConfigs}"
+                Data="{StaticResource IconHistory}"
+            />
+        </Button>
+
+        <!-- ENGRENAGEM INICIO-->
+        
+        <!-- Corpo da engrenagem -->
+        <Button Grid.Row="4" Style="{StaticResource StyleButtonSideBar}">
+            <Grid>
+
+                <Path
+                    Style="{StaticResource IconsGlobalConfigs}"
+                    Data="{StaticResource IconConfigGearExternal}"/>
+
+                <Path
+                    Style="{StaticResource IconsGlobalConfigs}"
+                    Data="{StaticResource IconConfigGearInternal}"
+                    Width="8"
+                    Height="8"/>
+
+            </Grid>
+
+            <!-- ENGRENAGEM FIM-->
+        </Button>
+
+        <Button  Grid.Row="6" Style="{StaticResource StyleButtonSideBar}">
+            <Path
+                Style="{StaticResource IconsGlobalConfigs}"
+                Data="{StaticResource IconExit}"
+            />
+        </Button>
+
+
+    </Grid>
+</UserControl>
