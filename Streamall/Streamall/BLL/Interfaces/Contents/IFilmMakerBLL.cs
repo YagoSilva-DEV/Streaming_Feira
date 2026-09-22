@@ -9,6 +9,6 @@ namespace Streamall.BLL.Interfaces.Contents
 {
     public interface IFilmMakerBLL
     {
-        void InserFilmMaker(FilmMakerDTO filmMakerDTO);
+        void InsertFilmMaker(FilmMakerDTO filmMakerDTO);
     }
 }

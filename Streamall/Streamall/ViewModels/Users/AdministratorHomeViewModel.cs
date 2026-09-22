@@ -76,6 +76,6 @@ namespace Streamall.ViewModels.Users
             {
                 CurrentViewModel = new ErrorControlViewModel("Erro insperado", "Erro Ocorreu um erro inesperdo", closeWindow);
             }
-            }
+        }
     }
 }

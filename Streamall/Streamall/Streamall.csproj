@@ -189,19 +189,27 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BLL\Interfaces\Contents\IContentBLL.cs" />
+    <Compile Include="BLL\Interfaces\Contents\IGenreBLL.cs" />
+    <Compile Include="BLL\Interfaces\Contents\IFilmMakerBLL.cs" />
     <Compile Include="BLL\Interfaces\Users\IAdministratorBLL.cs" />
     <Compile Include="BLL\Interfaces\Users\IClientBLL.cs" />
     <Compile Include="BLL\Interfaces\Users\IUserBLL.cs" />
     <Compile Include="BLL\Services\Contents\ContentServiceBLL.cs" />
+    <Compile Include="BLL\Services\Contents\FilmMakerServiceBLL.cs" />
+    <Compile Include="BLL\Services\Contents\GenreServiceBLL.cs" />
     <Compile Include="BLL\Services\Users\AdministratorServiceBLL.cs" />
     <Compile Include="BLL\Services\Users\ClientServiceBLL.cs" />
     <Compile Include="BLL\Services\Users\UserServiceBLL.cs" />
     <Compile Include="DAL\DataBaseConnectionDAL.cs" />
     <Compile Include="DAL\Interfaces\Contents\IContentDAL.cs" />
+    <Compile Include="DAL\Interfaces\Contents\IGenreDAL.cs" />
+    <Compile Include="DAL\Interfaces\IFilmMakerDAL.cs" />
     <Compile Include="DAL\Interfaces\Users\IAdministratorDAL.cs" />
     <Compile Include="DAL\Interfaces\Users\IClientDAL.cs" />
     <Compile Include="DAL\Interfaces\Users\IUserDAL.cs" />
     <Compile Include="DAL\Repository\Contents\ContentRepositoryDAL.cs" />
+    <Compile Include="DAL\Repository\Contents\FilmMakerRepositoryDAL.cs" />
+    <Compile Include="DAL\Repository\Contents\GenreRepositoryDAL.cs" />
     <Compile Include="DAL\Repository\Users\AdministratorRepositoryDAL.cs" />
     <Compile Include="DAL\Repository\Users\ClientRepositoryDAL.cs" />
     <Compile Include="DAL\Repository\Users\UserRepositoryDAL.cs" />
@@ -209,6 +217,7 @@
     <Compile Include="Exceptions\InvalidContentException.cs" />
     <Compile Include="Exceptions\InvalidEmailException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\InvalidNameException.cs" />
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Exceptions\InvalidSignUpException.cs" />
     <Compile Include="Helpers\BitMapHelper.cs" />
@@ -237,12 +246,14 @@
     <Compile Include="Models\Entities\Contents\Series.cs" />
     <Compile Include="Models\Entities\Contents\Title.cs" />
     <Compile Include="Models\Entities\Users\User.cs" />
+    <Compile Include="Models\Enums\CatalogItemType.cs" />
     <Compile Include="Models\Enums\ContentType.cs" />
     <Compile Include="Models\Enums\UserType.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Navigation\Interface\INavigationService.cs" />
     <Compile Include="Navigation\Service\NavigationService.cs" />
+    <Compile Include="ViewModels\Contents\AddCatalogItemModalViewModel.cs" />
     <Compile Include="ViewModels\Contents\ConfirmEditContentViewModel.cs" />
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Streamall.BLL.Services.Contents;
+using Streamall.DAL.Repository.Contents;
+using Streamall.Models.Enums;
+using Streamall.ViewModels.Contents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +23,13 @@ namespace Streamall.Views.Modals
     /// </summary>
     public partial class AddCatalogItemModal : Window
     {
-        public AddCatalogItemModal()
+        public AddCatalogItemModal(CatalogItemType catalogItemType)
         {
             InitializeComponent();
+            DataContext = new AddCatalogItemModalViewModel(catalogItemType,
+                new GenreServiceBLL(new GenreRepositoryDAL()),
+                new FilmMakerServiceBLL(new FilmMakerRepositoryDAL()),
+                () => Close());
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

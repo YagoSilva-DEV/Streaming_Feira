@@ -14,7 +14,8 @@
        MouseLeftButtonDown="Window_MouseLeftButtonDown"
        Title="EditContentModal"
        Width="420"
-       MinWidth="300">
+       MinWidth="300"
+       Height="300">
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled"
@@ -30,7 +31,7 @@
                            FontFamily="{StaticResource Righteous}"
                            FontWeight="Bold"/>
 
-                    <TextBlock Text="{Binding WindowTitle}"
+                    <TextBlock Text="{Binding ToDo}"
                            Foreground="{StaticResource TextPrimaryLoginBrush}"
                            FontSize="21"
                            FontFamily="{StaticResource Righteous}"
@@ -73,7 +74,7 @@
 
                         <Button Grid.Column="2"
                             Content="SALVAR"
-                            Command="{Binding SaveCommand}"
+                            Command="{Binding AddItemCommand}"
                             Style="{StaticResource StylePrimaryButtonEditModal}"
                             Height="42"/>
                     </Grid>

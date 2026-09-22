@@ -1,6 +1,7 @@
 ﻿using Streamall.BLL.Services.Contents;
 using Streamall.DAL.Repository.Contents;
 using Streamall.Models.DTO;
+using Streamall.Models.Enums;
 using Streamall.Navigation.Interface;
 using Streamall.ViewModels;
 using Streamall.ViewModels.Contents;
@@ -110,6 +111,28 @@ namespace Streamall.Navigation.Service
             }
         }
 
+        public bool ShowCatalogItemModal(CatalogItemType itemType)
+        {
+            Window owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
+            var catalogModal = new AddCatalogItemModal(itemType);
+
+            if(owner != null)
+            {
+                catalogModal.Owner = owner;
+                catalogModal.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                owner.Opacity = 0.3;
+            }
+
+            var catalogModalIsActive = catalogModal.ShowDialog();
+            if (catalogModalIsActive == false)
+            {
+                owner.Opacity = 1;
+                return true;
+            }
+            else
+                return false;
+        }
+
         public void ViewModelNavigation<TViewModel>()
         {
             if (typeof(TViewModel) == typeof(ContentManagementViewModel))
@@ -118,7 +141,7 @@ namespace Streamall.Navigation.Service
             }
             if (typeof(TViewModel) == typeof(InsertContentControlViewModel))
             {
-                _admViewModel.CurrentViewModel = new InsertContentControlViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
+                _admViewModel.CurrentViewModel = new InsertContentControlViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
             }
         }
     }
