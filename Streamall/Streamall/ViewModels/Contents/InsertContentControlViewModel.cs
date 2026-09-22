@@ -3,6 +3,7 @@ using Streamall.Exceptions;
 using Streamall.Helpers;
 using Streamall.Models.DTO;
 using Streamall.Models.DTO.ContentsDTO;
+using Streamall.Models.Entities.Contents;
 using Streamall.Models.Enums;
 using Streamall.MVVM;
 using System;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Resources;
 
 namespace Streamall.ViewModels.Contents
 {
@@ -141,14 +143,51 @@ namespace Streamall.ViewModels.Contents
 			}
 		}
 
-		public RelayCommand OpenImageFileDialogCommand { get; set; }
+        private List<GenreDTO> _genres;
+        public List<GenreDTO> Genres
+        {
+            get { return _genres; }
+            set
+            {
+                _genres = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<FilmMakerDTO> _filmMakers;
+        public List<FilmMakerDTO> FilmMakers
+        {
+            get { return _filmMakers; }
+            set
+            {
+                _filmMakers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<ContentType> _contentTypes;
+        public List<ContentType> ContentTypes
+        {
+            get { return _contentTypes; }
+            set
+            {
+                _contentTypes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand OpenImageFileDialogCommand { get; set; }
         public RelayCommand InsertCommand { get; set; }
 		private IContentBLL _contentBLL;
 		public InsertContentControlViewModel(IContentBLL contentBLL)
 		{
 			_contentBLL = contentBLL;
 
-			InsertCommand = new RelayCommand(execute => Insert());
+            Genres = new List<GenreDTO>(_contentBLL.GetGenresDTO());
+            FilmMakers = new List<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
+            ContentTypes = new List<ContentType>((ContentType[])Enum.GetValues(typeof(ContentType)));
+
+            InsertCommand = new RelayCommand(execute => Insert());
 			OpenImageFileDialogCommand = new RelayCommand(execute => GetNewPathCover());
 		}
 
