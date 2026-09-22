@@ -84,7 +84,7 @@ namespace Streamall.ViewModels
         public SignUpViewModel(IClientBLL clientBLL, Action action)
         {
             _clientBLL = clientBLL;
-            SignUpCommand = new RelayCommand(execute => SignUp());
+            SignUpCommand = new RelayCommand(async execute => { await SignUp(); });
             _closeWindow = action;
         }
 
@@ -101,6 +101,14 @@ namespace Streamall.ViewModels
                 _closeWindow.Invoke();
             }
             catch(InvalidSignUpException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch(InvalidEmailException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch(InvalidPasswordException ex)
             {
                 ErrorMessage = ex.Message;
             }

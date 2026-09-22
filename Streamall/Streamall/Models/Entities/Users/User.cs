@@ -77,13 +77,13 @@ namespace Streamall.Models.Entities
             }
 
             if (!(hasSign && hasDot))
-                throw new InvalidSignUpException("O endereço email está incorreto");
+                throw new InvalidEmailException("O endereço email está incorreto");
         }
 
         private void VerifyPassword(string password)
         {
-            if (password.Length <= 8)
-                throw new InvalidSignUpException("Senha deve conter mais que 8 caracteres");
+            if (password.Length <= 8 || string.IsNullOrEmpty(password))
+                throw new InvalidPasswordException("Senha deve conter mais que 8 caracteres");
 
             bool hasUpperCase = false;
             bool hasLowerCase = false;
@@ -99,7 +99,7 @@ namespace Streamall.Models.Entities
             }
 
             if (!(hasUpperCase && hasLowerCase && hasNumber))
-                throw new InvalidSignUpException("Use maiúscula, minúscula e número.");
+                throw new InvalidPasswordException("Use maiúscula, minúscula e número.");
         }
     }
 }

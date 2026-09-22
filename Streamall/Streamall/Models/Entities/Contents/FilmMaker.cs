@@ -17,5 +17,10 @@ namespace Streamall.Models.Entities.Contents
             Name = name;
         }
 
+        public FilmMaker(string name)
+        {
+            Name = name;
+        }
+
     }
 }

@@ -8,6 +8,7 @@ using Streamall.Models.Enums;
 using Streamall.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,18 +39,6 @@ namespace Streamall.ViewModels.Contents
 			set 
 			{
 				_pathCover = value;
-				OnPropertyChanged();
-			}
-		}
-
-		private ContentType _contentType;
-
-		public ContentType ContentType
-		{
-			get { return _contentType; }
-			set 
-			{
-				_contentType = value;
 				OnPropertyChanged();
 			}
 		}
@@ -142,9 +131,9 @@ namespace Streamall.ViewModels.Contents
 				OnPropertyChanged();
 			}
 		}
-
-        private List<GenreDTO> _genres;
-        public List<GenreDTO> Genres
+		
+        private ObservableCollection<GenreDTO> _genres;
+        public ObservableCollection<GenreDTO> Genres
         {
             get { return _genres; }
             set
@@ -154,24 +143,13 @@ namespace Streamall.ViewModels.Contents
             }
         }
 
-        private List<FilmMakerDTO> _filmMakers;
-        public List<FilmMakerDTO> FilmMakers
+        private ObservableCollection<FilmMakerDTO> _filmMakers;
+        public ObservableCollection<FilmMakerDTO> FilmMakers
         {
             get { return _filmMakers; }
             set
             {
                 _filmMakers = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<ContentType> _contentTypes;
-        public List<ContentType> ContentTypes
-        {
-            get { return _contentTypes; }
-            set
-            {
-                _contentTypes = value;
                 OnPropertyChanged();
             }
         }
@@ -183,9 +161,9 @@ namespace Streamall.ViewModels.Contents
 		{
 			_contentBLL = contentBLL;
 
-            Genres = new List<GenreDTO>(_contentBLL.GetGenresDTO());
-            FilmMakers = new List<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
-            ContentTypes = new List<ContentType>((ContentType[])Enum.GetValues(typeof(ContentType)));
+			ReleaseDate = DateTime.Today;
+            Genres = new ObservableCollection<GenreDTO>(_contentBLL.GetGenresDTO());
+            FilmMakers = new ObservableCollection<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
 
             InsertCommand = new RelayCommand(execute => Insert());
 			OpenImageFileDialogCommand = new RelayCommand(execute => GetNewPathCover());
@@ -204,8 +182,10 @@ namespace Streamall.ViewModels.Contents
             SuccessMessage = string.Empty;
             try
 			{
-				ContentDTO contentDTO = new ContentDTO(_name, _synopsis, _pathCover, _releaseDate, _genreDTO, _filmMaker, _contentType);
+				ContentDTO contentDTO = new ContentDTO(_name, _synopsis, _pathCover, _releaseDate, _genreDTO, _filmMaker, ContentType.MOVIE);
 				_contentBLL.InsertContent(contentDTO);
+				SuccessMessage = "Conteúdo salvo com êxito.";
+				LimparCampos();
 			}
 			catch(InvalidContentException ex)
 			{
@@ -219,6 +199,16 @@ namespace Streamall.ViewModels.Contents
 			{
 				ErrorMessage = "Um erro inesperado ocorreu.";
 			}
+		}
+
+		private void LimparCampos()
+		{
+			Name = string.Empty;
+			Synopsis = string.Empty;
+			PathCover = string.Empty;
+			ReleaseDate = DateTime.Today;
+			GenreDTO = null;
+			FilmMaker = null;
 		}
     }
 }

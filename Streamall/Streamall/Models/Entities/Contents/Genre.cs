@@ -16,5 +16,11 @@ namespace Streamall.Models.Entities.Contents
             Name = name;
         }
 
+        public Genre(string name)
+        {
+            Name = name;
+        }
+
+
     }
 }

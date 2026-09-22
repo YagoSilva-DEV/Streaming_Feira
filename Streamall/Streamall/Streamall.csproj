@@ -207,7 +207,9 @@
     <Compile Include="DAL\Repository\Users\UserRepositoryDAL.cs" />
     <Compile Include="Exceptions\DataBaseException.cs" />
     <Compile Include="Exceptions\InvalidContentException.cs" />
+    <Compile Include="Exceptions\InvalidEmailException.cs" />
     <Compile Include="Exceptions\InvalidLoginException.cs" />
+    <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Exceptions\InvalidSignUpException.cs" />
     <Compile Include="Helpers\BitMapHelper.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
@@ -260,6 +262,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Modals\AddCatalogItemModal.xaml.cs">
+      <DependentUpon>AddCatalogItemModal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Modals\EditContentModal.xaml.cs">
       <DependentUpon>EditContentModal.xaml</DependentUpon>
@@ -329,6 +334,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Modals\AddCatalogItemModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
