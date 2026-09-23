@@ -135,7 +135,7 @@ namespace Streamall.ViewModels
                 else
                 {
                     UserDTO clientDTO = userData as ClientDTO;
-                    //CHAMAR A UI DE CLIENTE
+                    _navigationService.Navigate<Home>(userData);
                 }
             }
             catch (InvalidLoginException ex)
