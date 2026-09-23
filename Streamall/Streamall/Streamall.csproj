@@ -259,6 +259,7 @@
     <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
     <Compile Include="ViewModels\Contents\InsertContentControlViewModel.cs" />
     <Compile Include="ViewModels\ErrorControlViewModel.cs" />
+    <Compile Include="ViewModels\Contents\AddCatalogItemModalViewModel.cs" />
     <Compile Include="ViewModels\FavoritesViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
