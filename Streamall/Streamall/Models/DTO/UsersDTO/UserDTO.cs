@@ -16,7 +16,7 @@ namespace Streamall.Models.DTO
         public string Password { get; set; }
         public string Email { get; set; }
         public UserType UserType { get; set; }
-        public bool StatusUser { get; set; }
+        public string StatusUser { get; set; }
 
         public UserDTO(string userName, string password, string email)
         {
@@ -25,7 +25,7 @@ namespace Streamall.Models.DTO
             Email = email;
         }
 
-        public UserDTO(int id, string fullName, string userName, bool statusUser)
+        public UserDTO(int id, string fullName, string userName, string statusUser)
         {
             UserId = id;
             FullName = fullName;
@@ -61,6 +61,7 @@ namespace Streamall.Models.DTO
             Password = user.Password;
             Email = user.Email;
             UserType = user.UserType;
+            StatusUser = user.StatusUser;
         }
     }
 }

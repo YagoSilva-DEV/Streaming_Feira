@@ -8,7 +8,7 @@ namespace Streamall.Models.Entities
         {
         }
 
-        public Client(int id, string fullName, string userName, bool statusUser) : base(id, fullName, userName, statusUser)
+        public Client(int id, string fullName, string userName, string statusUser) : base(id, fullName, userName, statusUser)
         {
         }
 

@@ -14,7 +14,6 @@ namespace Streamall.ViewModels.Users
     {
         private IAdministratorBLL _administratorService;
         private ObservableCollection<ClientDTO> _clients;
-
         public ObservableCollection<ClientDTO> Clients
         {
             get { return _clients; }

@@ -24,7 +24,7 @@ namespace Streamall.DAL.Repository
                 {
                     conn.Open();
                     string sql = @"SELECT 
-                                   pk_fk_id_user,
+                                   pk_fk_id_client,
                                    complete_name_user,
                                    name_user,
                                    status_user
@@ -38,12 +38,13 @@ namespace Streamall.DAL.Repository
                         {
                             while (reader.Read())
                             {
-                                int id = (int)reader["pk_fk_id_user"];
+                                int id = (int)reader["pk_fk_id_client"];
                                 string fullName = reader["complete_name_user"].ToString();
                                 string userName = reader["name_user"].ToString();
                                 bool statusUser = (bool)reader["status_user"];
+                                string txtStatusUser = statusUser ? "Ativo" : "Inativo";
 
-                                clients.Add(new Client(id, fullName, userName, statusUser));
+                                clients.Add(new Client(id, fullName, userName, txtStatusUser));
                             }
                         }
                     }

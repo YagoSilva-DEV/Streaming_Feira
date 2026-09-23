@@ -14,7 +14,7 @@ namespace Streamall.Models.DTO
         {
         }
 
-        public ClientDTO(int id, string fullName, string userName, bool statusUser) : base(id, fullName, userName, statusUser)
+        public ClientDTO(int id, string fullName, string userName, string statusUser) : base(id, fullName, userName, statusUser)
         { }
 
         public ClientDTO(string fullName, string userName, string password, string email) : base(fullName, userName, password, email)

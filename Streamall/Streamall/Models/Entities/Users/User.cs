@@ -1,5 +1,5 @@
-﻿using Streamall.Models.Enums;
-using Streamall.Exceptions;
+﻿using Streamall.Exceptions;
+using Streamall.Models.Enums;
 
 namespace Streamall.Models.Entities
 {
@@ -11,9 +11,9 @@ namespace Streamall.Models.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public UserType UserType { get; set; }
-        public bool StatusUser { get; set; }
+        public string StatusUser { get; set; }
 
-        public User(int id, string fullName, string userName, bool statusUser)
+        public User(int id, string fullName, string userName, string statusUser)
         {
             UserId = id;
             FullName = fullName;
