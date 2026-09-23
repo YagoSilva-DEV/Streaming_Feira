@@ -125,7 +125,7 @@
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock Text="Gerenciamento de Clientes" 
                            Style="{StaticResource StyleTextBlockTopAdmHome}"/>
-                <TextBlock Text="Gerencie as contas e o status de acesso dos clients" 
+                <TextBlock Text="Gerencie as contas e o status de acesso dos clientes" 
                            Style="{StaticResource StyleTextBlockDescriptionTopAdmHome}"/>
             </StackPanel>
         </Grid>
