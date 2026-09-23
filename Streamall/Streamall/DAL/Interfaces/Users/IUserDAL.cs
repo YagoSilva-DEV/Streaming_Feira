@@ -11,5 +11,7 @@ namespace Streamall.DAL.Interfaces
     {
         bool LoginDAL(User user);
         User UserData(string userName);
+        void KeepUserActive(int id);
+        void KeepUserInactive(int id);
     }
 }

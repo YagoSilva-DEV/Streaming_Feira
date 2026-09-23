@@ -22,6 +22,59 @@ namespace Streamall.DAL.Repository
         {
             _connectionDAL = new DataBaseConnectionDAL();
         }
+
+        public void KeepUserActive(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"UPDATE Tb_User
+                                 SET
+                                 status_user = @status_user
+                                 WHERE pk_id_User = @pk_id_User";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@status_user", SqlDbType.Bit).Value = true;
+                        cmd.Parameters.Add("@pk_id_User", SqlDbType.Int).Value = id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.", ex);
+            }
+        }
+
+        public void KeepUserInactive(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"UPDATE Tb_User
+                                 SET
+                                 status_user = @status_user
+                                 WHERE pk_id_User = @pk_id_User";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@status_user", SqlDbType.Bit).Value = false;
+                        cmd.Parameters.Add("@pk_id_User", SqlDbType.Int).Value = id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.", ex);
+            }
+        }
+
         public bool LoginDAL(User user)
         {
             try
@@ -71,7 +124,7 @@ namespace Streamall.DAL.Repository
                 {
                     cmd.Parameters.Add("@name_user", SqlDbType.VarChar).Value = userName;
 
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         reader.Read();
 

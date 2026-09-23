@@ -20,6 +20,16 @@ namespace Streamall.BLL.Services
             _userDAL = userDAL;
         }
 
+        public void KeepUserActive(int id)
+        {
+            _userDAL.KeepUserActive(id);
+        }
+
+        public void KeepUserInactive(int id)
+        {
+            _userDAL.KeepUserInactive(id);
+        }
+
         public UserDTO LoginBLL(UserDTO userDTO)
         {
             User user = new User(userDTO.UserName, userDTO.Password, userDTO.Email);

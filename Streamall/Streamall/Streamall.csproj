@@ -261,6 +261,7 @@
     <Compile Include="ViewModels\ErrorControlViewModel.cs" />
     <Compile Include="ViewModels\Contents\AddCatalogItemModalViewModel.cs" />
     <Compile Include="ViewModels\FavoritesViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />

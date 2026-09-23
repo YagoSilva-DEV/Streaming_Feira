@@ -10,5 +10,7 @@ namespace Streamall.BLL.Interfaces
     public interface IUserBLL
     {
         UserDTO LoginBLL(UserDTO userDTO);
+        void KeepUserActive(int id);
+        void KeepUserInactive(int id);
     }
 }

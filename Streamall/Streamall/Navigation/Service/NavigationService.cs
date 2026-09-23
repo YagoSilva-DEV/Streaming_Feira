@@ -93,6 +93,19 @@ namespace Streamall.Navigation.Service
                 admHome.Show();
                 loginView.Close();
             }
+
+            if (typeof(TView) == typeof(Home))
+            {
+                Window loginView = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+
+                Home homeView = new Home(userDTO);
+                homeView.WindowState = WindowState.Maximized;
+                homeView.Show();
+
+                loginView?.Close();
+            }
         }
 
         public void Navigate<TView>(ContentDTO contentDTO)
