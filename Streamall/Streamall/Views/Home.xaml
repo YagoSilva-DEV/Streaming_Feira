@@ -33,8 +33,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <userControls:Header x:Name="Header" Grid.Row="0"/>
+
+        <userControls:Header x:Name="Header" Grid.Row="0" UserName="{Binding UserName}"/>
 
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>

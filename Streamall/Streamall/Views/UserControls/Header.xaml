@@ -17,8 +17,8 @@
         <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlockLogoLogin}" FontSize="60"  VerticalAlignment="Center" > Streamall</TextBlock>
         
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <TextBlock  Foreground="White" Margin="5"  VerticalAlignment="Center"/>
-            <TextBlock  Foreground="White" Margin="5"  VerticalAlignment="Center"/> 
+            <TextBlock  Foreground="White" Margin="5"  VerticalAlignment="Center"> foto perfil</TextBlock>
+            <TextBlock  Foreground="White" Margin="5"  VerticalAlignment="Center" Text="{Binding UserName, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </StackPanel>
     </Grid>
 </UserControl>

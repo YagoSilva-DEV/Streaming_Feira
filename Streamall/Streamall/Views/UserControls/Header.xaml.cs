@@ -24,5 +24,15 @@ namespace Streamall.Views.UserControls
         {
             InitializeComponent();
         }
+        public static readonly DependencyProperty UserNameProperty =
+            DependencyProperty.Register(
+              nameof(UserName), typeof(string),
+              typeof(Header), new PropertyMetadata(string.Empty));
+
+        public string UserName
+        {
+            get => (string)GetValue(UserNameProperty);
+            set => SetValue(UserNameProperty, value);
+        }
     }
 }

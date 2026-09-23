@@ -10,9 +10,8 @@ namespace Streamall.ViewModels
     public class ClientHomeViewModel : ViewModelBase
     {
 
-        // Propriedade para bindar o nome do usuário na tela
         private string _userName;
-        private INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
         public string UserName
         {
@@ -23,8 +22,9 @@ namespace Streamall.ViewModels
         public ClientHomeViewModel(UserDTO userDTO, INavigationService navigationService)
         {
             _navigationService = navigationService;
-            // _navigationService.AddHomeViewModel(this); se necessario
-                UserName = userDTO.UserName;
+
+            // Atribuição das propriedades vindas do DTO
+            UserName = userDTO.UserName;
         }
 
     }

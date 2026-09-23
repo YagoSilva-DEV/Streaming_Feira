@@ -98,7 +98,7 @@ namespace Streamall.BLL.Services.Contents
 
         public IEnumerable<ContentDTO> GetRecomendationContens()
         {
-            return _contentDAL.GetRecomendationContens().Select(c => new ContentDTO(c)).OrderBy(c => Guid.NewGuid()).Take(14);
+           return _contentDAL.GetRecomendationContens().Select(c => new ContentDTO(c)).OrderBy(c => Guid.NewGuid()).Take(14);
         }
 
         public IEnumerable<ContentDTO> GetScienceFictionContens()
