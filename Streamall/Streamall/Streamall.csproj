@@ -240,6 +240,7 @@
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Navigation\Interface\INavigationService.cs" />
     <Compile Include="Navigation\Service\NavigationService.cs" />
+    <Compile Include="ViewModels\Contents\Carrosel.cs" />
     <Compile Include="ViewModels\Contents\ConfirmEditContentViewModel.cs" />
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />

@@ -11,10 +11,12 @@
         Title="Home" Height="1080" Width="1920">
 
     <Window.Resources>
-
+<!-- caminhos/views que são frames, irao aparecer ao click de cada button respectivamente-->
+    <!--tela default-->
         <DataTemplate DataType="{x:Type vm:StartViewModel}">
             <views:Start/>
         </DataTemplate>
+    <!--tela default-->
 
         <DataTemplate DataType="{x:Type vm:SearchViewModel}">
             <views:Pesquisa/>
@@ -41,7 +43,9 @@
             </Grid.ColumnDefinitions>
 
             <userControls:SideBar Grid.Column="0" />
-          
+
+            <!--frame sera "caixa" que contera as views aparti do click-->
+            <userControls:Carousel Grid.Column="1"/>
             <Frame Grid.Column="1" Background="{StaticResource BackgroundColorLoginBrush}" NavigationUIVisibility="Hidden" Content="{Binding CurrentViewModel}"/>
         </Grid>
     </Grid>

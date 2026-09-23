@@ -20,13 +20,14 @@ namespace Streamall.BLL.Services.Contents
             _contentDAL = contentDAL;
         }
 
+        //existe 2
         public IEnumerable<ContentDTO> GetContentDTOs()
         {
             //Comentário para os devs que passarão por aqui:
             //Pega a lista fornecida pela DAL(lista de content), e a retorna transformada em uma lista de contentDTO
             return _contentDAL.GetContents().Select(c => new ContentDTO(c));
         }
-
+        //existe 2
         public IEnumerable<GenreDTO> GetGenresDTO()
         {
             return _contentDAL.GetGenres().Select(g => new GenreDTO(g));
@@ -37,6 +38,7 @@ namespace Streamall.BLL.Services.Contents
             return _contentDAL.GetFilmMakers().Select(f => new FilmMakerDTO(f));
         }
 
+        //ADM metodos
         public void RemoveContent(ContentDTO contentDTO)
         {
             _contentDAL.RemoveContent(contentDTO.Id);
@@ -70,5 +72,39 @@ namespace Streamall.BLL.Services.Contents
             if(!File.Exists(fileDestination))
                 File.Move(contentDTO.PathCover, fileDestination);
         }
+        //ADM metodos
+
+
+        //Metodos carrousel
+        public IEnumerable<ContentDTO> GetActionContens()
+        {
+            return _contentDAL.GetActionContens().Select(c => new ContentDTO(c));
+        }
+
+        public IEnumerable<ContentDTO> GetAnimationContens()
+        {
+            return _contentDAL.GetAnimationContens().Select(c => new ContentDTO(c));
+        }
+
+        public IEnumerable<ContentDTO> GetDocumentaryContens()
+        {
+            return _contentDAL.GetDocumentaryContens().Select(c => new ContentDTO(c));
+        }
+
+        public IEnumerable<ContentDTO> GetDramaContens()
+        {
+            return _contentDAL.GetDramaContens().Select(c => new ContentDTO(c));
+        }
+
+        public IEnumerable<ContentDTO> GetRecomendationContens()
+        {
+            return _contentDAL.GetRecomendationContens().Select(c => new ContentDTO(c)).OrderBy(c => Guid.NewGuid()).Take(14);
+        }
+
+        public IEnumerable<ContentDTO> GetScienceFictionContens()
+        {
+            return _contentDAL.GetScienceFictionContens().Select(c => new ContentDTO(c));
+        }
+        //Metodos carrousel
     }
 }

@@ -1,4 +1,5 @@
-﻿using Streamall.Models.Enums;
+﻿using Streamall.BLL.Interfaces.Contents;
+using Streamall.Models.Enums;
 using Streamall.MVVM;
 using System;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ namespace Streamall.ViewModels
     
     internal class MainViewModel : ViewModelBase
     {
+        private readonly IContentBLL _contentBLL;
         private ViewModelBase _currentViewModel;
         private PageType _selectedPage;
 
@@ -38,8 +40,9 @@ namespace Streamall.ViewModels
         public ICommand SearchCommand { get; }
         public ICommand FavoritesCommand { get; }       
 
-        public MainViewModel()
+        public MainViewModel(IContentBLL contentBLL)
         {
+            _contentBLL = contentBLL;
             HomeCommand = new RelayCommand(_ => Navigate(PageType.START));
             SearchCommand = new RelayCommand(_ => Navigate(PageType.SEARCH));
             FavoritesCommand = new RelayCommand(_ => Navigate(PageType.FAVORITES));
@@ -64,7 +67,7 @@ namespace Streamall.ViewModels
             switch (pageType)
             {
                 case PageType.START:
-                    return new StartViewModel();
+                    return new StartViewModel(_contentBLL);
 
                 case PageType.SEARCH:
                     return new SearchViewModel();

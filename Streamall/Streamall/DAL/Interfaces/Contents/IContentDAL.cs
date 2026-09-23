@@ -18,5 +18,13 @@ namespace Streamall.DAL.Interfaces.Contents
         IEnumerable<Genre> GetGenres();
         void UpdateContent(Content content);
         void InsertContent(Content content);
+
+        //Metodos carrousel
+        IEnumerable<Content> GetRecomendationContens();
+        IEnumerable<Content> GetActionContens();
+        IEnumerable<Content> GetDramaContens();
+        IEnumerable<Content> GetScienceFictionContens();
+        IEnumerable<Content> GetAnimationContens();
+        IEnumerable<Content> GetDocumentaryContens();
     }
 }

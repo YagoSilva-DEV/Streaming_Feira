@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Streamall.MVVM;
-using Streamall.BLL.Interfaces.Contents;
-using Streamall.Models.DTO;
-using Streamall.ViewModels.Contents;
 
 namespace Streamall.ViewModels
 {

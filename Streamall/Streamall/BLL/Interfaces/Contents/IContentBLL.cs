@@ -12,5 +12,14 @@ namespace Streamall.BLL.Interfaces.Contents
         IEnumerable<GenreDTO> GetGenresDTO();
         void UpdateContent(ContentDTO contentDTO, string oldPathCover);
         void InsertContent(ContentDTO contentDTO);
+
+        //Metodos carrousel
+        IEnumerable<ContentDTO> GetRecomendationContens();
+        IEnumerable<ContentDTO> GetActionContens();
+        IEnumerable<ContentDTO> GetDramaContens();
+        IEnumerable<ContentDTO> GetScienceFictionContens();
+        IEnumerable<ContentDTO> GetAnimationContens();
+        IEnumerable<ContentDTO> GetDocumentaryContens();
+
     }
 }

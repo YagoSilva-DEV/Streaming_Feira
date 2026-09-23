@@ -14,8 +14,9 @@
         
         
             <Image Grid.Row="0" Source="https://via.placeholder.com/800x400" Stretch="UniformToFill"/>
-        
-            <Grid Grid.Row="0">
+        <Path/>
+
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition/>
