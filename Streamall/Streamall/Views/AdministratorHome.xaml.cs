@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Streamall.Navigation.Service;
 using System.Windows.Shapes;
+using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
 
 namespace Streamall.Views
 {
@@ -29,7 +31,7 @@ namespace Streamall.Views
         }
         public AdministratorHome(UserDTO admDTO)
         {
-            DataContext = new AdministratorHomeViewModel(admDTO, new NavigationService(), () => Close());
+            DataContext = new AdministratorHomeViewModel(admDTO, new NavigationService(), () => Close(), new UserServiceBLL(new UserRepositoryDAL()));
             InitializeComponent();
         }
 
@@ -48,9 +50,5 @@ namespace Streamall.Views
             this.WindowState = (this.WindowState == WindowState.Maximized) ? WindowState.Normal : WindowState.Maximized;
         }
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
     }
 }

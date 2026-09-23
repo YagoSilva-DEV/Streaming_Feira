@@ -127,7 +127,7 @@ namespace Streamall.ViewModels
             {
                 ErrorMessage = string.Empty;
                 UserDTO userData = _userBLL.LoginBLL(userDTO);
-
+                _userBLL.KeepUserActive(userData.UserId);
                 if (userData.UserType == UserType.ADMINISTRATOR)
                 {
                     _navigationService.Navigate<AdministratorHome>(userData);

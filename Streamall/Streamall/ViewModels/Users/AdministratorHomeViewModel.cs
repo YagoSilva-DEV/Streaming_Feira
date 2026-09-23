@@ -15,11 +15,13 @@ using Streamall.Navigation.Interface;
 using Streamall.Navigation.Service;
 using System.IO;
 using Streamall.Views.UserControls;
+using Streamall.BLL.Interfaces;
 
 namespace Streamall.ViewModels.Users
 {
     public class AdministratorHomeViewModel : ViewModelBase
     {
+        private IUserBLL _userService;
         private object _currentViewModel;
         public object CurrentViewModel
         {
@@ -30,12 +32,12 @@ namespace Streamall.ViewModels.Users
                 OnPropertyChanged();
             }
         }
-
+        private Action _closeWindow;
         private INavigationService _navigationService;
         public RelayCommand InsertContentControlCommand { get; set; }
         public RelayCommand ShowContentsManagmentCommand { get; set; }
         public RelayCommand ShowClientManagementCommand { get; set; }
-
+        public RelayCommand CloseWindowCommand { get; set; }
         public UserDTO Adm { get; set; }
         public string NameInitials
         {
@@ -63,7 +65,7 @@ namespace Streamall.ViewModels.Users
         public AdministratorHomeViewModel()
         {
         }
-        public AdministratorHomeViewModel(UserDTO admDTO, INavigationService navigationService, Action closeWindow)
+        public AdministratorHomeViewModel(UserDTO admDTO, INavigationService navigationService, Action closeWindow, IUserBLL userBLL)
         {
             try
             {
@@ -71,14 +73,24 @@ namespace Streamall.ViewModels.Users
                 CurrentViewModel = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
                 _navigationService = navigationService;
                 _navigationService.AddAdmViewModel(this);
+                _closeWindow = closeWindow;
+                _userService = userBLL;
+                CloseWindowCommand = new RelayCommand(async execute => { await CloseWindow(); });
                 InsertContentControlCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<InsertContentControlViewModel>());
                 ShowContentsManagmentCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<ContentManagementViewModel>());
                 ShowClientManagementCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<ClientManagement>());
             }
             catch (Exception)
             {
-                CurrentViewModel = new ErrorControlViewModel("Erro insperado", "Erro Ocorreu um erro inesperdo", closeWindow);
+                CurrentViewModel = new ErrorControlViewModel("Erro insperado", "Ocorreu um erro inesperdo", _closeWindow);
             }
+        }
+
+        private async Task CloseWindow()
+        {
+            _userService.KeepUserInactive(Adm.UserId);
+            await Task.Delay(250);
+            _closeWindow.Invoke();
         }
     }
 }
