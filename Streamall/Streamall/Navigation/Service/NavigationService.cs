@@ -1,4 +1,6 @@
-﻿using Streamall.BLL.Services.Contents;
+﻿using Streamall.BLL.Services;
+using Streamall.BLL.Services.Contents;
+using Streamall.DAL.Repository;
 using Streamall.DAL.Repository.Contents;
 using Streamall.Models.DTO;
 using Streamall.Models.Enums;
@@ -8,6 +10,7 @@ using Streamall.ViewModels.Contents;
 using Streamall.ViewModels.Users;
 using Streamall.Views;
 using Streamall.Views.Modals;
+using Streamall.Views.UserControls;
 using System.Linq;
 using System.Windows;
 
@@ -142,6 +145,10 @@ namespace Streamall.Navigation.Service
             if (typeof(TViewModel) == typeof(InsertContentControlViewModel))
             {
                 _admViewModel.CurrentViewModel = new InsertContentControlViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
+            }
+            if(typeof(TViewModel) == typeof(ClientManagement))
+            {
+                _admViewModel.CurrentViewModel = new ClientManagementViewModel(new AdministratorServiceBLL(new AdministratorRepositoryDAL()));
             }
         }
     }

@@ -11,6 +11,15 @@ namespace Streamall.Models.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public UserType UserType { get; set; }
+        public bool StatusUser { get; set; }
+
+        public User(int id, string fullName, string userName, bool statusUser)
+        {
+            UserId = id;
+            FullName = fullName;
+            UserName = userName;
+            StatusUser = statusUser;
+        }
 
         public User(string userName, string password, string email)
         {

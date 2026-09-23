@@ -14,6 +14,7 @@ using Streamall.DAL.Repository.Contents;
 using Streamall.Navigation.Interface;
 using Streamall.Navigation.Service;
 using System.IO;
+using Streamall.Views.UserControls;
 
 namespace Streamall.ViewModels.Users
 {
@@ -31,8 +32,9 @@ namespace Streamall.ViewModels.Users
         }
 
         private INavigationService _navigationService;
-        public RelayCommand InsertContentContentCommand { get; set; }
+        public RelayCommand InsertContentControlCommand { get; set; }
         public RelayCommand ShowContentsManagmentCommand { get; set; }
+        public RelayCommand ShowClientManagementCommand { get; set; }
 
         public UserDTO Adm { get; set; }
         public string NameInitials
@@ -69,8 +71,9 @@ namespace Streamall.ViewModels.Users
                 CurrentViewModel = new ContentManagementViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), new NavigationService());
                 _navigationService = navigationService;
                 _navigationService.AddAdmViewModel(this);
-                InsertContentContentCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<InsertContentControlViewModel>());
+                InsertContentControlCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<InsertContentControlViewModel>());
                 ShowContentsManagmentCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<ContentManagementViewModel>());
+                ShowClientManagementCommand = new RelayCommand(execute => _navigationService.ViewModelNavigation<ClientManagement>());
             }
             catch (Exception)
             {

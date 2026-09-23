@@ -261,6 +261,7 @@
     <Compile Include="ViewModels\Contents\InsertContentControlViewModel.cs" />
     <Compile Include="ViewModels\ErrorControlViewModel.cs" />
     <Compile Include="ViewModels\Users\AdministratorHomeViewModel.cs" />
+    <Compile Include="ViewModels\Users\ClientManagementViewModel.cs" />
     <Compile Include="ViewModels\Users\LoginControlViewModel.cs" />
     <Compile Include="ViewModels\Users\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\Users\SignUpViewModel.cs" />
@@ -301,8 +302,8 @@
     <Compile Include="Views\UserControls\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\UserManagement.xaml.cs">
-      <DependentUpon>UserManagement.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\ClientManagement.xaml.cs">
+      <DependentUpon>ClientManagement.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\Borders.xaml">
       <SubType>Designer</SubType>
@@ -384,7 +385,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\UserManagement.xaml">
+    <Page Include="Views\UserControls\ClientManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

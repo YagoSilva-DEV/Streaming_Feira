@@ -16,12 +16,21 @@ namespace Streamall.Models.DTO
         public string Password { get; set; }
         public string Email { get; set; }
         public UserType UserType { get; set; }
+        public bool StatusUser { get; set; }
 
         public UserDTO(string userName, string password, string email)
         {
             UserName = userName;
             Password = password;
             Email = email;
+        }
+
+        public UserDTO(int id, string fullName, string userName, bool statusUser)
+        {
+            UserId = id;
+            FullName = fullName;
+            UserName = userName;
+            StatusUser = statusUser;
         }
 
         public UserDTO(string fullName, string userName, string password, string email)

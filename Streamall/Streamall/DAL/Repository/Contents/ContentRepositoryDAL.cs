@@ -86,7 +86,7 @@ namespace Streamall.DAL.Repository.Contents
                 using (SqlConnection conn = _connectionDAL.Connect())
                 {
                     conn.Open();
-                    string sql = "SELECT pk_id_gender, name_gender FROM Tb_Gender";
+                    string sql = "SELECT pk_id_gender, name_gender FROM Tb_Gender ORDER BY name_gender";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -118,7 +118,7 @@ namespace Streamall.DAL.Repository.Contents
                 using (SqlConnection conn = _connectionDAL.Connect())
                 {
                     conn.Open();
-                    string sql = "SELECT pk_id_filmmaker, name_filmmaker FROM Tb_Filmmaker";
+                    string sql = "SELECT pk_id_filmmaker, name_filmmaker FROM Tb_Filmmaker ORDER BY name_filmmaker";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())

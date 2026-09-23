@@ -119,7 +119,7 @@ namespace Streamall.ViewModels.Contents
                 {
                     _genreBLL.InsertGenre(new GenreDTO(Name));
                     SuccessMessage = "Gênero inserido com êxito";
-                    await Task.Delay(1000);
+                    await Task.Delay(2000);
                     _closeWindow.Invoke();
                 }
             }

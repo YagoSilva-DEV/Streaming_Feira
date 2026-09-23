@@ -4,6 +4,8 @@ using Streamall.Exceptions;
 using Streamall.Models.DTO;
 using Streamall.Models.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Streamall.BLL.Services
 {
@@ -17,5 +19,9 @@ namespace Streamall.BLL.Services
             _adminDAL = adminDAL;
         }
 
+        public IEnumerable<ClientDTO> GetClientDTOs()
+        {
+            return _adminDAL.GetClients().Select(c => new ClientDTO(c));
+        }
     }
 }
