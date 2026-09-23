@@ -1,4 +1,5 @@
 ﻿using Streamall.Models.DTO;
+using Streamall.Models.Enums;
 using Streamall.ViewModels.Users;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace Streamall.Navigation.Interface
         void Navigate<TView>(UserDTO admDTO);
         void Navigate<TView>(ContentDTO contentDTO);
         void ViewModelNavigation<TViewModel>();
+        bool ShowCatalogItemModal(CatalogItemType itemType);
     }
 }

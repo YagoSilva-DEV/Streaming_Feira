@@ -18,9 +18,9 @@ namespace Streamall.Views.UserControls
     /// <summary>
     /// Interaction logic for UserManagement.xaml
     /// </summary>
-    public partial class UserManagement : UserControl
+    public partial class ClientManagement : UserControl
     {
-        public UserManagement()
+        public ClientManagement()
         {
             InitializeComponent();
         }

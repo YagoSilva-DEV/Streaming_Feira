@@ -1,5 +1,5 @@
-﻿using Streamall.Models.Enums;
-using Streamall.Exceptions;
+﻿using Streamall.Exceptions;
+using Streamall.Models.Enums;
 
 namespace Streamall.Models.Entities
 {
@@ -11,6 +11,15 @@ namespace Streamall.Models.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public UserType UserType { get; set; }
+        public string StatusUser { get; set; }
+
+        public User(int id, string fullName, string userName, string statusUser)
+        {
+            UserId = id;
+            FullName = fullName;
+            UserName = userName;
+            StatusUser = statusUser;
+        }
 
         public User(string userName, string password, string email)
         {
@@ -77,13 +86,13 @@ namespace Streamall.Models.Entities
             }
 
             if (!(hasSign && hasDot))
-                throw new InvalidSignUpException("O endereço email está incorreto");
+                throw new InvalidEmailException("O endereço email está incorreto");
         }
 
         private void VerifyPassword(string password)
         {
-            if (password.Length <= 8)
-                throw new InvalidSignUpException("Senha deve conter mais que 8 caracteres");
+            if (password.Length <= 8 || string.IsNullOrEmpty(password))
+                throw new InvalidPasswordException("Senha deve conter mais que 8 caracteres");
 
             bool hasUpperCase = false;
             bool hasLowerCase = false;
@@ -99,7 +108,7 @@ namespace Streamall.Models.Entities
             }
 
             if (!(hasUpperCase && hasLowerCase && hasNumber))
-                throw new InvalidSignUpException("Use maiúscula, minúscula e número.");
+                throw new InvalidPasswordException("Use maiúscula, minúscula e número.");
         }
     }
 }

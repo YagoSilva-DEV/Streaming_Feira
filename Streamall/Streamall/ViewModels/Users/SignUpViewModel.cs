@@ -4,6 +4,7 @@ using Streamall.Models.DTO;
 using Streamall.MVVM;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Streamall.ViewModels
 {
@@ -16,8 +17,8 @@ namespace Streamall.ViewModels
         public string FullName
         {
             get { return _fullName; }
-            set 
-            { 
+            set
+            {
                 _fullName = value;
                 OnPropertyChanged();
             }
@@ -28,7 +29,8 @@ namespace Streamall.ViewModels
         public string UserName
         {
             get { return _userName; }
-            set {
+            set
+            {
                 _userName = value;
                 OnPropertyChanged();
             }
@@ -39,9 +41,9 @@ namespace Streamall.ViewModels
         public string Email
         {
             get { return _email; }
-            set 
-            { 
-                _email = value; 
+            set
+            {
+                _email = value;
                 OnPropertyChanged();
             }
         }
@@ -59,7 +61,7 @@ namespace Streamall.ViewModels
         public string ErrorMessage
         {
             get { return _errorMessage; }
-            set 
+            set
             {
                 _errorMessage = value;
                 OnPropertyChanged();
@@ -71,7 +73,7 @@ namespace Streamall.ViewModels
         public string SuccessMessage
         {
             get { return _successMessage; }
-            set 
+            set
             {
                 _successMessage = value;
                 OnPropertyChanged();
@@ -84,13 +86,18 @@ namespace Streamall.ViewModels
         public SignUpViewModel(IClientBLL clientBLL, Action action)
         {
             _clientBLL = clientBLL;
-            SignUpCommand = new RelayCommand(execute => SignUp());
+            SignUpCommand = new RelayCommand(async execute => { await SignUp(execute as object); });
             _closeWindow = action;
         }
 
-        private async Task SignUp()
+        private async Task SignUp(object pbPassword)
         {
-            UserDTO user = new ClientDTO(_fullName, _userName, _password, _email);
+            if (pbPassword is PasswordBox)
+            {
+                PasswordBox passwordBox = pbPassword as PasswordBox;
+                _password = passwordBox.Password;
+            }
+                UserDTO user = new ClientDTO(_fullName, _userName, _password, _email);
 
             try
             {
@@ -100,18 +107,26 @@ namespace Streamall.ViewModels
                 await Task.Delay(3000);
                 _closeWindow.Invoke();
             }
-            catch(InvalidSignUpException ex)
+            catch (InvalidSignUpException ex)
             {
                 ErrorMessage = ex.Message;
             }
-            catch(DataBaseException ex)
+            catch (InvalidEmailException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (InvalidPasswordException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (DataBaseException ex)
             {
                 ErrorMessage = ex.Message;
             }
             catch (Exception)
             {
                 ErrorMessage = "Ocorreu um erro inesperado.";
-            }  
+            }
         }
     }
 }

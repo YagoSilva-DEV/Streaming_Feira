@@ -62,7 +62,7 @@
                     <TextBlock x:Name="tbBlockName" Text="Usuário" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <TextBox Grid.Row="1" Style="{StaticResource StyleTextBoxLogin}" Text="{Binding UserEmail}" x:Name="txtEmail" TextChanged="txtEmail_TextChanged"/>
                     <TextBlock x:Name="tbBlockEmail" Grid.Row="1" Text="Email" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
-                    <TextBox Grid.Row="2" Style="{StaticResource StyleTextBoxLogin}" Text="{Binding Password}" x:Name="txtPassword" TextChanged="txtPassword_TextChanged"/>
+                    <PasswordBox Grid.Row="2" x:Name="pbPassword" PasswordChanged="pbPassword_PasswordChanged_1" Style="{StaticResource StylePasswordBoxLogin}"/>
                     <TextBlock x:Name="tbBlockPassword" Grid.Row="2" Text="Senha" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
@@ -70,7 +70,7 @@
                             <RowDefinition Height="7*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="{Binding ErrorMessage}" Style="{StaticResource StyleTextBlockError}" Grid.ColumnSpan="2"/>
-                        <Button Grid.Row="2" Style="{StaticResource StylePrimaryButtonLogin}" Content="Entrar" Command="{Binding LoginCommand}"/>
+                        <Button Grid.Row="2" Style="{StaticResource StylePrimaryButtonLogin}" Content="Entrar" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=pbPassword}"/>
                     </Grid>
                 </Grid>
 

@@ -35,9 +35,9 @@ namespace Streamall.Views.UserControls
             tbBlockEmail.Visibility = (string.IsNullOrWhiteSpace(txtEmail.Text)) ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void txtPassword_TextChanged(object sender, TextChangedEventArgs e)
+        private void pbPassword_PasswordChanged_1(object sender, RoutedEventArgs e)
         {
-            tbBlockPassword.Visibility = (string.IsNullOrWhiteSpace(txtPassword.Text)) ? Visibility.Visible : Visibility.Hidden;
+            tbBlockPassword.Visibility = (string.IsNullOrWhiteSpace(pbPassword.Password)) ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

@@ -45,12 +45,12 @@
                     <TextBlock x:Name="tbUserName" Grid.Row="1" Text="Nome de usuário" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                     <TextBox Grid.Row="2" x:Name="txtEmail" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtEmail_TextChanged" Text="{Binding Email}"/>
                     <TextBlock x:Name="tbEmail" Grid.Row="2" Text="Email" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
-                    <TextBox Grid.Row="3" x:Name="txtPassword" Style="{StaticResource StyleTextBoxLogin}" TextChanged="txtPassword_TextChanged" Text="{Binding Password}"/>
+                    <PasswordBox x:Name="pbPassword" Grid.Row="3" Style="{StaticResource StylePasswordBoxLogin}" PasswordChanged="pbPassword_PasswordChanged"/>
                     <TextBlock x:Name="tbPassword" Grid.Row="3" Text="Senha" Style="{StaticResource StyleTextBlockLogin}" IsHitTestVisible="False"/>
                 </Grid>
                 <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlockError}" Text="{Binding ErrorMessage}"/>
                 <TextBlock Grid.Row="1" Style="{StaticResource StyleTextBlockSuccess}" Text="{Binding SuccessMessage}"/>
-                <Button Content="Cadastrar" Style="{StaticResource StylePrimaryButtonSignUp}" Grid.Row="2" Command="{Binding SignUpCommand}"/>
+                <Button Content="Cadastrar" Style="{StaticResource StylePrimaryButtonSignUp}" Grid.Row="2" Command="{Binding SignUpCommand}" CommandParameter="{Binding ElementName=pbPassword}"/>
             </Grid>
         </Grid>
     </Grid>

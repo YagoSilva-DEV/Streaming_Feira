@@ -18,6 +18,11 @@ namespace Streamall.Models.DTO.ContentsDTO
             Name = filmMaker.Name;
         }
 
+        public FilmMakerDTO(string filmMaker)
+        {
+            Name = filmMaker;
+        }
+
         public override string ToString()
         {
             return Name;
