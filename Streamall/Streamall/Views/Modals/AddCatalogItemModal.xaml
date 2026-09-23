@@ -52,12 +52,18 @@
                          Style="{StaticResource StyleTextBoxEditModal}"
                          Height="42"
                          MaxLength="100"/>
-
+                    <Grid>
                     <TextBlock Text="{Binding ErrorMessage}"
                            Style="{StaticResource StyleTextBlockError}"
                            FontSize="12"
                            TextWrapping="Wrap"
                            Margin="0,8,0,0"/>
+                    <TextBlock Text="{Binding SuccessMessage}"
+                           Style="{StaticResource StyleTextBlockSuccess}"
+                           FontSize="12"
+                           TextWrapping="Wrap"
+                           Margin="0,8,0,0"/>
+                    </Grid>
 
                     <Grid Margin="0,24,0,0">
                         <Grid.ColumnDefinitions>

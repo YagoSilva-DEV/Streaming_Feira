@@ -33,6 +33,7 @@ namespace Streamall.DAL.Repository.Contents
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.Add("@name_gender", SqlDbType.VarChar).Value = genre.Name;
+                        cmd.ExecuteNonQuery();
                     }
                 }
             }

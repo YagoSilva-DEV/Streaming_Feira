@@ -221,7 +221,6 @@ namespace Streamall.ViewModels.Contents
         {
             if (_navigationService.ShowCatalogItemModal(CatalogItemType.GENRE))
             {
-                FilmMakers.Clear();
                 Genres = new ObservableCollection<GenreDTO>(_contentBLL.GetGenresDTO());
             }
         }
@@ -230,7 +229,6 @@ namespace Streamall.ViewModels.Contents
         {
             if (_navigationService.ShowCatalogItemModal(CatalogItemType.FILMMAKER))
             {
-                FilmMakers.Clear();
                 FilmMakers = new ObservableCollection<FilmMakerDTO>(_contentBLL.GetFilmMakersDTO());
             }
         }
