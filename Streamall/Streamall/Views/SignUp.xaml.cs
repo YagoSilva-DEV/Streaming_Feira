@@ -21,34 +21,21 @@ namespace Streamall.Views
 
         private void txtFullName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtFullName.Text))
-                tbFullName.Visibility = Visibility.Hidden;
-            else
-                tbFullName.Visibility = Visibility.Visible;
+            tbFullName.Visibility = (string.IsNullOrWhiteSpace(txtFullName.Text)) ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void txtUserName_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtUserName.Text))
-                tbUserName.Visibility = Visibility.Hidden;
-            else
-                tbUserName.Visibility = Visibility.Visible;
+            tbUserName.Visibility = (string.IsNullOrWhiteSpace(txtUserName.Text)) ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void txtEmail_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtEmail.Text))
-                tbEmail.Visibility = Visibility.Hidden;
-            else
-                tbEmail.Visibility = Visibility.Visible;
+            tbEmail.Visibility = (string.IsNullOrWhiteSpace(txtEmail.Text)) ? Visibility.Visible : Visibility.Hidden;
         }
-
-        private void txtPassword_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtPassword.Text))
-                tbPassword.Visibility = Visibility.Hidden;
-            else
-                tbPassword.Visibility = Visibility.Visible;
+            tbPassword.Visibility = (string.IsNullOrWhiteSpace(pbPassword.Password)) ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

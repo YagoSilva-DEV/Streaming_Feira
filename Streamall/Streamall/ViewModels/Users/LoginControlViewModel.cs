@@ -13,6 +13,7 @@ using Streamall.Navigation.Interface;
 using System.Threading;
 using Streamall.Models.Enums;
 using Streamall.Views;
+using System.Windows.Controls;
 
 namespace Streamall.ViewModels
 {
@@ -108,13 +109,18 @@ namespace Streamall.ViewModels
 
             _ = CarouselImageReplace();
 
-            LoginCommand = new RelayCommand(execute => Login());
+            LoginCommand = new RelayCommand(execute => Login(execute as object));
             NavigateToSignUpCommand = new RelayCommand(execute => _navigationService.Navigate<SignUp>());
         }
 
         #region Métodos de Login, seja de cliente ou administrador
-        private void Login()
+        private void Login(object pbPassword)
         {
+            if (pbPassword is PasswordBox)
+            {
+                PasswordBox passwordBox = pbPassword as PasswordBox;
+                _password = passwordBox.Password;
+            }
             UserDTO userDTO = new UserDTO(_userName, _password, _userEmail);
 
             try

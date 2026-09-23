@@ -217,7 +217,7 @@ namespace Streamall.DAL.Repository.Contents
                         cmd.Parameters.Add("@synopsis_content", SqlDbType.VarChar).Value = content.Synopsis;
                         cmd.Parameters.Add("@path_cover_content", SqlDbType.VarChar).Value = content.PathCover;
                         cmd.Parameters.Add("@year_realease_content", SqlDbType.DateTime).Value = content.ReleaseDate;
-                        cmd.Parameters.Add("@type_content", SqlDbType.Int).Value = (int)content.ContentType;
+                        cmd.Parameters.Add("@type_content", SqlDbType.Int).Value = ContentType.MOVIE;
                         cmd.Parameters.Add("@fk_id_gender_content", SqlDbType.Int).Value = content.Genre.Id;
                         cmd.Parameters.Add("@fk_id_filmmaker_content", SqlDbType.Int).Value = content.FilmMaker.Id;
 
@@ -227,7 +227,7 @@ namespace Streamall.DAL.Repository.Contents
             }
             catch (SqlException ex)
             {
-                throw new DataBaseException("Erro ao acessar o banco de dados: ", ex);
+                throw new DataBaseException("Erro ao acessar o banco de dados: " + ex.Message);
             }
         }
     }
