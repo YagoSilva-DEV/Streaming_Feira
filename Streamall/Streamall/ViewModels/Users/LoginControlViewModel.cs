@@ -132,11 +132,19 @@ namespace Streamall.ViewModels
                     //CHAMAR A UI DE CLIENTE
                 }
             }
-            catch(InvalidLoginException ex)
+            catch (InvalidLoginException ex)
             {
                 ErrorMessage = ex.Message;
             }
-            catch(DataBaseException ex)
+            catch (InvalidEmailException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (InvalidPasswordException ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+            catch (DataBaseException ex)
             {
                 ErrorMessage = ex.Message;
             }

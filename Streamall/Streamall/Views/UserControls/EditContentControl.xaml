@@ -94,8 +94,16 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="Tipo" Style="{StaticResource StyleFieldLabelEditModal}" Margin="0,0,0,6"/>
-                        <ComboBox Text="{Binding ContentType}" IsEnabled="False" Style="{StaticResource StyleComboBoxEditModal}" Height="40"/>
+                        <TextBlock Text="Tipo"
+               Style="{StaticResource StyleFieldLabelEditModal}"
+               Margin="0,0,0,6"/>
+
+                        <TextBox Text="{Binding ContentType}"
+             Style="{StaticResource StyleTextBoxEditModal}"
+             Height="40"
+             IsReadOnly="True"
+             IsHitTestVisible="False"
+             Focusable="False"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2">

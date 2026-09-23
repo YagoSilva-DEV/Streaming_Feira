@@ -17,6 +17,11 @@ namespace Streamall.Models.DTO.ContentsDTO
             Name = genre.Name;
         }
 
+        public GenreDTO(string genre)
+        {
+            Name = genre;
+        }
+
         public override string ToString()
         {
             return Name;

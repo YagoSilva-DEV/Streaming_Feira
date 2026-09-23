@@ -8,9 +8,65 @@
              xmlns:hepers="clr-namespace:Streamall.Helpers"
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{StaticResource BackgroundColorLoginBrush}">
+
     <UserControl.Resources>
         <hepers:BitMapHelper x:Key="ImageConverter"/>
+
+        <!-- Estilo Moderno para os Botões de Ação do Card -->
+        <Style x:Key="ModernCardActionButton" TargetType="Button">
+            <Setter Property="Background" Value="#1A202C"/>
+            <Setter Property="BorderBrush" Value="#2D3748"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="BtnBorder" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BtnBorder" Property="Background" Value="#2D3748"/>
+                                <Setter TargetName="BtnBorder" Property="BorderBrush" Value="#4A5568"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="BtnBorder" Property="Background" Value="#1A202C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Botão Editar Específico (Hover Âmbar/Laranja) -->
+        <Style x:Key="EditCardActionButton" TargetType="Button" BasedOn="{StaticResource ModernCardActionButton}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2C1D11"/>
+                    <Setter Property="BorderBrush" Value="#7C2D12"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Botão Excluir Específico (Hover Vermelho) -->
+        <Style x:Key="DeleteCardActionButton" TargetType="Button" BasedOn="{StaticResource ModernCardActionButton}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2D1214"/>
+                    <Setter Property="BorderBrush" Value="#7F1D1D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
+
     <!-- Grid ocupando todo o espaço disponível -->
     <Grid Margin="25">
         <Grid.RowDefinitions>
@@ -34,7 +90,8 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Background="Transparent" 
-                  BorderThickness="0">
+                  BorderThickness="0"
+                  HorizontalAlignment="Center">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -44,21 +101,22 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="205" Height="340" 
+                    <Border Width="210" Height="370" 
                             Background="{StaticResource BackgroundColorLoginBrush}" 
                             BorderBrush="{StaticResource BorderColorLoginBrush}" 
                             BorderThickness="1" 
-                            CornerRadius="8" 
-                            ClipToBounds="True">
+                            CornerRadius="10" 
+                            ClipToBounds="True"
+                            ToolTip="{Binding Name}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- Imagem da Capa (Com suporte a Fallback e limitação estrita de recorte) -->
+                            <!-- Imagem da Capa -->
                             <Grid Grid.Row="0" ClipToBounds="True">
-                                <Image Source="{Binding PathCover, TargetNullValue='/Streamall;component/Assets/placeholder.png', FallbackValue='/Streamall;component/Assets/placeholder.png', Converter={StaticResource ImageConverter}}" 
+                                <Image Source="{Binding PathCover, Converter={StaticResource ImageConverter}}" 
                                        Stretch="UniformToFill" 
                                        HorizontalAlignment="Center" 
                                        VerticalAlignment="Center"/>
@@ -67,34 +125,52 @@
                                 <Border Background="#10000000"/>
                             </Grid>
 
-                            <!-- Barra de Ações com Botões SVG -->
-                            <Border Grid.Row="1" Background="#121318" Padding="8,6">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <!-- Botão Editar (Tom Laranja-Âmbar) -->
-                                    <Button Style="{StaticResource CardActionButtonStyle}"
-                                            Command="{Binding DataContext.EditContentCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                            CommandParameter="{Binding}"
-                                            ToolTip="Editar filme"
-                                            Margin="0,0,6,0">
-                                        <Path Data="M14.06,9.02L14.98,9.94L5.92,19H5V18.08L14.06,9.02M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" 
-                                              Fill="#FB923C" 
-                                              Width="18" 
-                                              Height="18" 
-                                              Stretch="Uniform"/>
-                                    </Button>
+                            <!-- Barra de Ações com Botões Estilizados e Título -->
+                            <Border Grid.Row="1" Background="#0F111A" Padding="10,8" BorderBrush="#1E2330" BorderThickness="0,1,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                    <!-- Botão Apagar (Vermelho) -->
-                                    <Button Style="{StaticResource CardActionButtonStyle}"
-                                            Command="{Binding DataContext.RemoveContentCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
-                                            CommandParameter="{Binding}"
-                                            ToolTip="Excluir filme">
-                                        <Path Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" 
-                                              Fill="#E53935" 
-                                              Width="18" 
-                                              Height="18" 
-                                              Stretch="Uniform"/>
-                                    </Button>
-                                </StackPanel>
+                                    <!-- Título/Nome do Conteúdo (Suporta Name ou Title) -->
+                                    <TextBlock Grid.Column="0" 
+                                               Text="{Binding Name}" 
+                                               Foreground="{StaticResource TextPrimaryLoginBrush}" 
+                                               FontSize="12" 
+                                               FontWeight="SemiBold" 
+                                               VerticalAlignment="Center" 
+                                               TextTrimming="CharacterEllipsis" 
+                                               Margin="0,0,6,0"/>
+
+                                    <!-- Botões de Ação -->
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <!-- Botão Editar -->
+                                        <Button Style="{StaticResource EditCardActionButton}"
+                                                Command="{Binding DataContext.EditContentCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Editar filme"
+                                                Margin="0,0,6,0">
+                                            <Path Data="M3,17.25V21H6.75L17.81,9.94L14.06,6.19L3,17.25Z M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04Z" 
+                                                  Fill="#F97316" 
+                                                  Width="13" 
+                                                  Height="13" 
+                                                  Stretch="Uniform"/>
+                                        </Button>
+
+                                        <!-- Botão Apagar -->
+                                        <Button Style="{StaticResource DeleteCardActionButton}"
+                                                Command="{Binding DataContext.RemoveContentCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                CommandParameter="{Binding}"
+                                                ToolTip="Excluir filme">
+                                            <Path Data="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" 
+                                                  Fill="#EF4444" 
+                                                  Width="13" 
+                                                  Height="13" 
+                                                  Stretch="Uniform"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
                             </Border>
                         </Grid>
                     </Border>

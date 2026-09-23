@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Streamall.Views"
-        xmlns:contentUserControl="clr-namespace:Streamall.Views.UserControls"
+        xmlns:UserControl="clr-namespace:Streamall.Views.UserControls"
         xmlns:viewModelContent="clr-namespace:Streamall.ViewModels.Contents"
         xmlns:viewModelError="clr-namespace:Streamall.ViewModels"
+        xmlns:viewModelClient="clr-namespace:Streamall.ViewModels.Users"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="False"
@@ -19,13 +20,16 @@
         Title="AdministratorHome" Height="500" Width="900">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModelContent:ContentManagementViewModel}">
-            <contentUserControl:ContentManagement/>
+            <UserControl:ContentManagement/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModelError:ErrorControlViewModel}">
-            <contentUserControl:ErrorControl/>
+            <UserControl:ErrorControl/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModelContent:InsertContentControlViewModel}">
-            <contentUserControl:InsertContentControl/>
+            <UserControl:InsertContentControl/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModelClient:ClientManagementViewModel}">
+            <UserControl:ClientManagement/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -53,9 +57,8 @@
                 <!-- Menu de Navegação -->
                 <StackPanel Grid.Row="1" VerticalAlignment="Center">
                     <Button Content="Catálogo de Filmes" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5" Command="{Binding ShowContentsManagmentCommand}"/>
-                    <Button Content="Cadastrar Filme" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5" Command="{Binding InsertContentContentCommand}"/>
-                    <Button Content="Gerenciar Clientes" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
-                    <Button Content="Estatísticas" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5"/>
+                    <Button Content="Cadastrar Filme" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5" Command="{Binding InsertContentControlCommand}"/>
+                    <Button Content="Gerenciar Clientes" Style="{StaticResource MenuButtonStyle}" Margin="0,0,0,5" Command="{Binding ShowClientManagementCommand}"/>
                 </StackPanel>
 
                 <!-- Perfil do Usuário no Rodapé -->

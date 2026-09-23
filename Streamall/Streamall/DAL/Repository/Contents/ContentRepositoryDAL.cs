@@ -86,7 +86,7 @@ namespace Streamall.DAL.Repository.Contents
                 using (SqlConnection conn = _connectionDAL.Connect())
                 {
                     conn.Open();
-                    string sql = "SELECT pk_id_gender, name_gender FROM Tb_Gender";
+                    string sql = "SELECT pk_id_gender, name_gender FROM Tb_Gender ORDER BY name_gender";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -118,7 +118,7 @@ namespace Streamall.DAL.Repository.Contents
                 using (SqlConnection conn = _connectionDAL.Connect())
                 {
                     conn.Open();
-                    string sql = "SELECT pk_id_filmmaker, name_filmmaker FROM Tb_Filmmaker";
+                    string sql = "SELECT pk_id_filmmaker, name_filmmaker FROM Tb_Filmmaker ORDER BY name_filmmaker";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -208,15 +208,16 @@ namespace Streamall.DAL.Repository.Contents
                 {
                     conn.Open();
                     string sql = @"INSERT INTO Tb_Content
-                                   (name_content, synopsis_content, path_cover_content, year_realease_content, fk_id_gender_content, fk_id_filmmaker_content)
-                                   VALUES
-                                   (@name_content, @synopsis_content, @path_cover_content, @year_realease_content, @fk_id_gender_content, @fk_id_filmmaker_content)";
+                           (name_content, synopsis_content, path_cover_content, year_realease_content, type_content, fk_id_gender_content, fk_id_filmmaker_content)
+                           VALUES
+                           (@name_content, @synopsis_content, @path_cover_content, @year_realease_content, @type_content, @fk_id_gender_content, @fk_id_filmmaker_content)";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.Add("@name_content", SqlDbType.VarChar).Value = content.Name;
                         cmd.Parameters.Add("@synopsis_content", SqlDbType.VarChar).Value = content.Synopsis;
                         cmd.Parameters.Add("@path_cover_content", SqlDbType.VarChar).Value = content.PathCover;
                         cmd.Parameters.Add("@year_realease_content", SqlDbType.DateTime).Value = content.ReleaseDate;
+                        cmd.Parameters.Add("@type_content", SqlDbType.Int).Value = (int)content.ContentType;
                         cmd.Parameters.Add("@fk_id_gender_content", SqlDbType.Int).Value = content.Genre.Id;
                         cmd.Parameters.Add("@fk_id_filmmaker_content", SqlDbType.Int).Value = content.FilmMaker.Id;
 
