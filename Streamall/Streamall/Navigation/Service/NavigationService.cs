@@ -19,9 +19,16 @@ namespace Streamall.Navigation.Service
     public class NavigationService : INavigationService
     {
         private AdministratorHomeViewModel _admViewModel;
+        private ClientHomeViewModel _homeViewModel;        
+
         public void AddAdmViewModel(AdministratorHomeViewModel viewModel)
         {
             _admViewModel = viewModel;
+        }
+
+        public void AddHomeViewModel(ClientHomeViewModel viewModel)
+        {
+            _homeViewModel = viewModel;
         }
         public void Navigate<TView>()
         {
@@ -94,18 +101,7 @@ namespace Streamall.Navigation.Service
                 loginView.Close();
             }
 
-            if (typeof(TView) == typeof(Home))
-            {
-                Window loginView = Application.Current.Windows
-                .OfType<Window>()
-                .FirstOrDefault(w => w.IsActive);
-
-                Home homeView = new Home(userDTO);
-                homeView.WindowState = WindowState.Maximized;
-                homeView.Show();
-
-                loginView?.Close();
-            }
+            
         }
 
         public void Navigate<TView>(ContentDTO contentDTO)

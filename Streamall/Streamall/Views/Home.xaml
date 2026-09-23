@@ -34,7 +34,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <userControls:Header Grid.Row="0"/>
+        <userControls:Header x:Name="Header" Grid.Row="0"/>
 
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>

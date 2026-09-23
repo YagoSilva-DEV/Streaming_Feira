@@ -7,6 +7,7 @@ using Streamall.ViewModels.Contents;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Streamall.Views
 {
@@ -21,14 +22,6 @@ namespace Streamall.Views
 
             DataContext = new CarroselViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
         }
-        public Home(UserDTO userDTO)
-        {
-            InitializeComponent();
-            var viewModel = new ClientHomeViewModel(/* passe suas dependências de BLL aqui */);
-            viewModel.Initialize(userDTO);           
-            DataContext = viewModel;
-        }
-
         private void SideBar_Loaded(object sender, RoutedEventArgs e)
         {
 

@@ -11,10 +11,10 @@ namespace Streamall.Views
     /// </summary>
     public partial class Start : Page
     {
-        public Start(IContentBLL contentBLL)
+        public Start()
         {
             InitializeComponent();
-            DataContext = new StartViewModel(contentBLL);
+            
         }
     }
 }

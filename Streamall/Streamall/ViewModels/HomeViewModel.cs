@@ -1,29 +1,31 @@
 ﻿using Streamall.BLL.Interfaces;
 using Streamall.Models.DTO;
+using Streamall.Models.Entities;
 using Streamall.MVVM;
+using Streamall.Navigation.Interface;
 using System.Collections.ObjectModel;
 
 namespace Streamall.ViewModels
 {
     public class ClientHomeViewModel : ViewModelBase
     {
-        private readonly IFilmeBLL _filmeBLL;
 
         // Propriedade para bindar o nome do usuário na tela
         private string _userName;
+        private INavigationService _navigationService;
+
         public string UserName
         {
             get => _userName;
             set { _userName = value; OnPropertyChanged(); }
         }
 
-        private int _userId;
-        public int UserId
+        public ClientHomeViewModel(UserDTO userDTO, INavigationService navigationService)
         {
-            get => _userId;
-            set { _userId = value; OnPropertyChanged(); }
+            _navigationService = navigationService;
+            // _navigationService.AddHomeViewModel(this); se necessario
+                UserName = userDTO.UserName;
         }
 
-       
     }
 }
