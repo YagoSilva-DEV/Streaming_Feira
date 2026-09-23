@@ -34,7 +34,8 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Background="Transparent" 
-                  BorderThickness="0">
+                  BorderThickness="0"
+                  HorizontalAlignment="Center">
 
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

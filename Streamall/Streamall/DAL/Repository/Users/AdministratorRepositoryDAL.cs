@@ -3,6 +3,7 @@ using Streamall.Exceptions;
 using Streamall.Models.Entities;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Streamall.DAL.Repository
 {
@@ -56,5 +57,50 @@ namespace Streamall.DAL.Repository
             }
             return clients;
         }
+
+        public void RemoveUser(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM Tb_User WHERE pk_id_User = @pk_id_User";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@pk_id_User", SqlDbType.Int).Value = id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou" + ex.Message);
+            }
+        }
+
+        public void RemoveClient(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM Tb_Client WHERE pk_fk_id_client = @pk_fk_id_client";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@pk_fk_id_client", SqlDbType.Int).Value = id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou", ex);
+            }
+        }
+
     }
 }

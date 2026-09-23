@@ -6,5 +6,6 @@ namespace Streamall.BLL.Interfaces
     public interface IAdministratorBLL
     {
         IEnumerable<ClientDTO> GetClientDTOs();
+        void RemoveClient(int id);
     }
 }

@@ -21,6 +21,34 @@
         <SolidColorBrush x:Key="StatusInactiveBg" Color="#282026"/>
         <SolidColorBrush x:Key="StatusInactiveFg" Color="#EF4444"/>
 
+        <!-- Estilo do Botão de Excluir -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="BtnBorder" 
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BtnBorder" Property="Background" Value="#2D1A24"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="BtnBorder" Property="Background" Value="#3D1E2A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- Estilo dos Itens da Lista (ListViewItem) -->
         <Style x:Key="ModernListViewItem" TargetType="ListViewItem">
             <Setter Property="Padding" Value="0"/>
@@ -144,11 +172,13 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="1" Text="NOME COMPLETO" Foreground="{StaticResource TextSecondary}" FontSize="11" FontWeight="Bold"/>
             <TextBlock Grid.Column="2" Text="NOME DE USUÁRIO" Foreground="{StaticResource TextSecondary}" FontSize="11" FontWeight="Bold"/>
             <TextBlock Grid.Column="3" Text="STATUS" Foreground="{StaticResource TextSecondary}" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="4" Text="AÇÕES" Foreground="{StaticResource TextSecondary}" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center"/>
         </Grid>
 
         <!-- 4. Lista de Usuários -->
@@ -167,6 +197,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="1.5*"/>
                             <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
 
                         <!-- Avatar do Usuário (Mostra a primeira letra) -->
@@ -200,13 +231,28 @@
                             <Run Text="@"/><Run Text="{Binding UserName}"/>
                         </TextBlock>
 
+                        <!-- Status -->
                         <TextBlock Grid.Column="3" 
-                           Text="{Binding StatusUser}" 
-                           Foreground="{StaticResource TextSecondary}" 
-                           FontSize="12" 
-                           FontWeight="SemiBold" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center"/>
+                                   Text="{Binding StatusUser}" 
+                                   Foreground="{StaticResource TextSecondary}" 
+                                   FontSize="12" 
+                                   FontWeight="SemiBold" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"/>
+
+                        <!-- Botão Excluir -->
+                        <Button Grid.Column="4" 
+                                Style="{StaticResource DeleteButtonStyle}"
+                                Command="{Binding DataContext.RemoveClientCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                CommandParameter="{Binding}"
+                                ToolTip="Excluir Cliente"
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
+                            <Path Data="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" 
+                                  Fill="{StaticResource StatusInactiveFg}" 
+                                  Width="14" Height="14" 
+                                  Stretch="Uniform"/>
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

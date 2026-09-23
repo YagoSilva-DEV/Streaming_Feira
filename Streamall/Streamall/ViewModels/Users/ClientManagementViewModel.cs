@@ -1,13 +1,12 @@
 ﻿using Streamall.BLL.Interfaces;
+using Streamall.Exceptions;
 using Streamall.Models.DTO;
 using Streamall.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Streamall.ViewModels.Users
 {
@@ -53,7 +52,16 @@ namespace Streamall.ViewModels.Users
 
         private void RemoveClient(ClientDTO clientDTO)
         {
-            //código para remover o cliente
+            try
+            {
+                _administratorService.RemoveClient(clientDTO.UserId);
+                _clientsList = new List<ClientDTO>(_administratorService.GetClientDTOs());
+                Clients = new ObservableCollection<ClientDTO>(_clientsList);
+            }
+            catch(DataBaseException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SearchClient(string name)

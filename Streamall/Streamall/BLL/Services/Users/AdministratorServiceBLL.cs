@@ -23,5 +23,11 @@ namespace Streamall.BLL.Services
         {
             return _adminDAL.GetClients().Select(c => new ClientDTO(c));
         }
+
+        public void RemoveClient(int id)
+        {
+            _adminDAL.RemoveClient(id);
+            _adminDAL.RemoveUser(id);
+        }
     }
 }
