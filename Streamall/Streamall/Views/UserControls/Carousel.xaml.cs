@@ -1,10 +1,11 @@
 ﻿using Streamall.BLL.Services.Contents;
 using Streamall.DAL.Repository.Contents;
+using Streamall.Models.DTO;
+using Streamall.Views.Modals;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Streamall.Models.DTO;
-using Streamall.Views.Modals;
 
 
 namespace Streamall.Views.UserControls
@@ -74,5 +75,20 @@ namespace Streamall.Views.UserControls
             detailsWindow.ShowDialog();
         }
 
+        private void ScrollFeatured_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (sender is ScrollViewer scrollViewer)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    double middleOffset =
+                        (scrollViewer.ExtentWidth - scrollViewer.ViewportWidth) / 2;
+
+                    if (middleOffset > 0)
+                        scrollViewer.ScrollToHorizontalOffset(middleOffset);
+
+                }), System.Windows.Threading.DispatcherPriority.Loaded);
+            }
+        }
     }
 }

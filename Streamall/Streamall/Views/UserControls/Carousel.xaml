@@ -155,8 +155,8 @@
                 </StackPanel>
 
                 <Grid HorizontalAlignment="Stretch">
-                    <ScrollViewer x:Name="ScrollFeatured" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ItemsControl ItemsSource="{Binding Recommendations}">
+                    <ScrollViewer x:Name="ScrollFeatured" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Loaded="ScrollFeatured_Loaded">
+                        <ItemsControl ItemsSource="{Binding Recommendations}" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal"/>
@@ -194,7 +194,7 @@
                 </StackPanel>
 
                 <Grid HorizontalAlignment="Stretch">
-                    <ScrollViewer x:Name="ScrollAction" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+                    <ScrollViewer x:Name="ScrollAction" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Loaded="ScrollFeatured_Loaded">
                         <ItemsControl ItemsSource="{Binding Actions}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -231,7 +231,7 @@
                 </StackPanel>
 
                 <Grid HorizontalAlignment="Stretch">
-                    <ScrollViewer x:Name="ScrollSciFi" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+                    <ScrollViewer x:Name="ScrollSciFi" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Loaded="ScrollFeatured_Loaded">
                         <ItemsControl ItemsSource="{Binding ScienceFictions}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -259,42 +259,6 @@
             </StackPanel>
 
             <!-- ========================================= -->
-            <!-- DOCUMENTÁRIOS -->
-            <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,36">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                    <Rectangle Width="4" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                    <TextBlock Text="Documentários" Foreground="White" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                </StackPanel>
-
-                <Grid HorizontalAlignment="Stretch">
-                    <ScrollViewer x:Name="ScrollComedy" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ItemsControl ItemsSource="{Binding Documentaries}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
-                                            Command="{Binding}" 
-                                            ToolTip="{Binding Name}"/>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-
-                    <Button x:Name="CMScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollComedy}">
-                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
-                    </Button>
-                    <Button x:Name="CMScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollComedy}">
-                        <TextBlock TextAlignment="Center" Text="›" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
-                    </Button>
-                </Grid>
-            </StackPanel>
-
-            <!-- ========================================= -->
             <!-- DRAMA -->
             <!-- ========================================= -->
             <StackPanel Margin="0,0,0,36">
@@ -304,8 +268,8 @@
                 </StackPanel>
 
                 <Grid HorizontalAlignment="Stretch">
-                    <ScrollViewer x:Name="ScrollDrama" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ItemsControl ItemsSource="{Binding Dramas}">
+                    <ScrollViewer x:Name="ScrollDrama" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Loaded="ScrollFeatured_Loaded">
+                        <ItemsControl ItemsSource="{Binding Dramas}" HorizontalContentAlignment="Center">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal"/>
@@ -341,7 +305,7 @@
                 </StackPanel>
 
                 <Grid HorizontalAlignment="Stretch">
-                    <ScrollViewer x:Name="ScrollTerror" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+                    <ScrollViewer x:Name="ScrollTerror" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Loaded="ScrollFeatured_Loaded">
                         <ItemsControl ItemsSource="{Binding Animations}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
