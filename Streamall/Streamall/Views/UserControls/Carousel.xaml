@@ -5,71 +5,181 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="1800" d:DesignWidth="1820">
+             d:DesignHeight="1080" d:DesignWidth="1280">
+
+    <UserControl.Resources>
+        <!-- Paleta de Cores e Pincéis do Projeto -->
+        <SolidColorBrush x:Key="BgCard" Color="#131622"/>
+        <SolidColorBrush x:Key="BgHover" Color="#1C2132"/>
+        <SolidColorBrush x:Key="BorderSubtle" Color="#23283B"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#8C93A8"/>
+        <SolidColorBrush x:Key="AccentPurple" Color="#8B5CF6"/>
+
+        <!-- Fallbacks para os Brushes Existentes no seu Projeto -->
+        <SolidColorBrush x:Key="BackgroundColorLoginBrush" Color="#131622"/>
+        <SolidColorBrush x:Key="BorderColorLoginBrush" Color="#23283B"/>
+        <SolidColorBrush x:Key="PrimaryPurpleLoginBrush" Color="#8B5CF6"/>
+
+        <!-- Estilo do Card Destaque/Recomendações (260x390px) -->
+        <Style x:Key="FeaturedNetflixCardButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0,0,16,0"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="CardContainer"
+                                Width="260" Height="390"
+                                Background="{StaticResource BackgroundColorLoginBrush}" 
+                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="12"
+                                ClipToBounds="True"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <Image Source="{Binding PathCover}" 
+                                       Stretch="UniformToFill" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                                <!-- Degradê inferior com Nome do Filme -->
+                                <Border VerticalAlignment="Bottom" Height="100">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#00000000" Offset="0.0"/>
+                                            <GradientStop Color="#CC131622" Offset="0.5"/>
+                                            <GradientStop Color="#FF131622" Offset="1.0"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+
+                                    <TextBlock Text="{Binding Name}" 
+                                               Foreground="{StaticResource TextPrimary}" 
+                                               FontSize="14" 
+                                               FontWeight="Bold"
+                                               TextTrimming="CharacterEllipsis"
+                                               TextWrapping="NoWrap"
+                                               Margin="14,0,14,14" 
+                                               VerticalAlignment="Bottom"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CardContainer" Property="BorderBrush" Value="{StaticResource AccentPurple}"/>
+                                <Setter TargetName="CardContainer" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Estilo do Card Padrão de Categoria (220x330px) -->
+        <Style x:Key="StandardNetflixCardButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0,0,14,0"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="CardContainer"
+                                Width="220" Height="330"
+                                Background="{StaticResource BackgroundColorLoginBrush}" 
+                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="10"
+                                ClipToBounds="True"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <Image Source="{Binding PathCover}" 
+                                       Stretch="UniformToFill" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                                <!-- Degradê inferior suave -->
+                                <Border VerticalAlignment="Bottom" Height="80">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#00000000" Offset="0.0"/>
+                                            <GradientStop Color="#AA131622" Offset="0.6"/>
+                                            <GradientStop Color="#EE131622" Offset="1.0"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+
+                                    <TextBlock Text="{Binding Name}" 
+                                               Foreground="{StaticResource TextPrimary}" 
+                                               FontSize="13" 
+                                               FontWeight="SemiBold"
+                                               TextTrimming="CharacterEllipsis"
+                                               TextWrapping="NoWrap"
+                                               Margin="12,0,12,12" 
+                                               VerticalAlignment="Bottom"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CardContainer" Property="BorderBrush" Value="{StaticResource AccentPurple}"/>
+                                <Setter TargetName="CardContainer" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
     <ScrollViewer x:Name="MainScroll" 
                   VerticalScrollBarVisibility="Auto" 
                   HorizontalScrollBarVisibility="Disabled" 
                   PreviewMouseWheel="MainScroll_PreviewMouseWheel">
 
-        <StackPanel Margin="20,16,20,24">
+        <StackPanel Margin="32,20,32,32">
 
             <!-- ========================================= -->
-            <!-- RECOMENDAÇÕES (DESTAQUES COM CARD MAIOR) -->
+            <!-- RECOMENDAÇÕES (DESTAQUES - CARDS GRANDES) -->
             <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,24">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+            <StackPanel Margin="0,0,0,36">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
                     <Rectangle Width="4" Height="22" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                    <TextBlock Text="Recomendações Especiais" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock Text="Recomendações Especiais" Foreground="White" FontSize="20" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid>
+                <Grid HorizontalAlignment="Stretch">
                     <ScrollViewer x:Name="ScrollFeatured" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding Recommendations}" 
-                                  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" 
-                                  Background="Transparent" 
-                                  BorderThickness="0">
-                            <ListView.ItemsPanel>
+                        <ItemsControl ItemsSource="{Binding Recommendations}">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    <StackPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding GoToContentHeroCommand}" CommandParameter="{Binding}" Click="Button_Click" Focusable="False">
-                                        <Border Height="495" Width="325" 
-                                             Style="{StaticResource CardBorderStyle}"
-                                              Background="{StaticResource BackgroundColorLoginBrush}" 
-                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                                 BorderThickness="1" 
-                                            Cursor="Hand" >
-                                        <Grid ClipToBounds="True">
-                                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                            <!-- Degradê inferior para dar acabamento premium -->
-                                            <Border VerticalAlignment="Bottom" Height="80">
-                                                <Border.Background>
-                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                                        <GradientStop Color="#00000000" Offset="0.0"/>
-                                                        <GradientStop Color="#CC000000" Offset="1.0"/>
-                                                    </LinearGradientBrush>
-                                                </Border.Background>
-                                            </Border>
-                                        </Grid>
-                                    </Border>
-                                    </Button>
+                                    <Button Style="{StaticResource FeaturedNetflixCardButtonStyle}"
+                                            Command="{Binding GoToContentHeroCommand}" 
+                                            CommandParameter="{Binding}" 
+                                            Click="Button_Click"
+                                            ToolTip="{Binding Name}"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
 
-                    <!-- SETA ESQUERDA -->
-                    <Button x:Name="RScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollFeatured}">
-                        <TextBlock Text="‹" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <!-- SETAS DE NAVEGAÇÃO -->
+                    <Button x:Name="RScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollFeatured}">
+                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
-                    <!-- SETA DIREITA -->
-                    <Button x:Name="RScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollFeatured}">
-                        <TextBlock Text="›" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="RScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollFeatured}">
+                        <TextBlock TextAlignment="Center" Text="›" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -77,46 +187,36 @@
             <!-- ========================================= -->
             <!-- AÇÃO -->
             <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,24">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Rectangle Width="3" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="1.5" RadiusY="1.5" Margin="0,0,8,0" VerticalAlignment="Center"/>
+            <StackPanel Margin="0,0,0,36">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Rectangle Width="4" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="Filmes de Ação e Aventura" Foreground="White" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid>
+                <Grid HorizontalAlignment="Stretch">
                     <ScrollViewer x:Name="ScrollAction" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding Actions}" 
-                                  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" 
-                                  Background="Transparent" 
-                                  BorderThickness="0">
-                            <ListView.ItemsPanel>
+                        <ItemsControl ItemsSource="{Binding Actions}">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    <StackPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding}"  Click="Button_Click" Focusable="False">
-                                        <Border Height="495" Width="325" 
-                                             Style="{StaticResource CardBorderStyle}"
-                                              Background="{StaticResource BackgroundColorLoginBrush}" 
-                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                                 BorderThickness="1" 
-                                            Cursor="Hand">
-                                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </Button>
+                                    <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
+                                            Command="{Binding}" 
+                                            Click="Button_Click"
+                                            ToolTip="{Binding Name}"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
 
-                    <Button x:Name="AScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollAction}">
-                        <TextBlock Text="‹" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="AScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollAction}">
+                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
-                    <Button x:Name="AScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollAction}">
-                        <TextBlock Text="›" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="AScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollAction}">
+                        <TextBlock TextAlignment="Center" Text="›" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -124,46 +224,36 @@
             <!-- ========================================= -->
             <!-- FICÇÃO CIENTÍFICA -->
             <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,24">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Rectangle Width="3" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="1.5" RadiusY="1.5" Margin="0,0,8,0" VerticalAlignment="Center"/>
+            <StackPanel Margin="0,0,0,36">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Rectangle Width="4" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="Ficção Científica e Futuro" Foreground="White" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid>
+                <Grid HorizontalAlignment="Stretch">
                     <ScrollViewer x:Name="ScrollSciFi" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding ScienceFictions}" 
-                                  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" 
-                                  Background="Transparent" 
-                                  BorderThickness="0">
-                            <ListView.ItemsPanel>
+                        <ItemsControl ItemsSource="{Binding ScienceFictions}">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    <StackPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding}"  Click="Button_Click" Focusable="False">
-                                        <Border Height="495" Width="325" 
-                                             Style="{StaticResource CardBorderStyle}"
-                                              Background="{StaticResource BackgroundColorLoginBrush}" 
-                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                                 BorderThickness="1" 
-                                            Cursor="Hand">
-                                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </Button>
+                                    <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
+                                            Command="{Binding}" 
+                                            Click="Button_Click"
+                                            ToolTip="{Binding Name}"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
 
-                    <Button x:Name="FCScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollSciFi}">
-                        <TextBlock Text="‹" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="FCScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollSciFi}">
+                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
-                    <Button x:Name="FCScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollSciFi}">
-                        <TextBlock Text="›" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="FCScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollSciFi}">
+                        <TextBlock TextAlignment="Center" Text="›" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -171,46 +261,35 @@
             <!-- ========================================= -->
             <!-- DOCUMENTÁRIOS -->
             <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,24">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Rectangle Width="3" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="1.5" RadiusY="1.5" Margin="0,0,8,0" VerticalAlignment="Center"/>
+            <StackPanel Margin="0,0,0,36">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Rectangle Width="4" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="Documentários" Foreground="White" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid>
+                <Grid HorizontalAlignment="Stretch">
                     <ScrollViewer x:Name="ScrollComedy" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding Documentaries}" 
-                                  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" 
-                                  Background="Transparent" 
-                                  BorderThickness="0">
-                            <ListView.ItemsPanel>
+                        <ItemsControl ItemsSource="{Binding Documentaries}">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    <StackPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding}" Focusable="False">
-                                        <Border Height="495" Width="325"  
-                                             Style="{StaticResource CardBorderStyle}"
-                                              Background="{StaticResource BackgroundColorLoginBrush}" 
-                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                                 BorderThickness="1" 
-                                            Cursor="Hand">
-                                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </Button>
+                                    <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
+                                            Command="{Binding}" 
+                                            ToolTip="{Binding Name}"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
 
-                    <Button x:Name="CMScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollComedy}">
-                        <TextBlock Text="‹" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="CMScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollComedy}">
+                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
-                    <Button x:Name="CMScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollComedy}">
-                        <TextBlock Text="›" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="CMScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollComedy}">
+                        <TextBlock TextAlignment="Center" Text="›" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -218,46 +297,36 @@
             <!-- ========================================= -->
             <!-- DRAMA -->
             <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,24">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Rectangle Width="3" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="1.5" RadiusY="1.5" Margin="0,0,8,0" VerticalAlignment="Center"/>
+            <StackPanel Margin="0,0,0,36">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Rectangle Width="4" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="Dramas e Histórias Emocionantes" Foreground="White" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid>
+                <Grid HorizontalAlignment="Stretch">
                     <ScrollViewer x:Name="ScrollDrama" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding Dramas}" 
-                                  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" 
-                                  Background="Transparent" 
-                                  BorderThickness="0">
-                            <ListView.ItemsPanel>
+                        <ItemsControl ItemsSource="{Binding Dramas}">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    <StackPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding}"  Click="Button_Click" Focusable="False">
-                                        <Border Height="495" Width="325" 
-                                             Style="{StaticResource CardBorderStyle}"
-                                              Background="{StaticResource BackgroundColorLoginBrush}" 
-                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                                 BorderThickness="1" 
-                                            Cursor="Hand">
-                                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </Button>
+                                    <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
+                                            Command="{Binding}" 
+                                            Click="Button_Click"
+                                            ToolTip="{Binding Name}"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
 
-                    <Button x:Name="DRScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollDrama}">
-                        <TextBlock Text="‹" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="DRScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollDrama}">
+                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
-                    <Button x:Name="DRScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollDrama}">
-                        <TextBlock Text="›" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="DRScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollDrama}">
+                        <TextBlock TextAlignment="Center" Text="›" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -265,46 +334,36 @@
             <!-- ========================================= -->
             <!-- ANIMAÇÃO -->
             <!-- ========================================= -->
-            <StackPanel Margin="0,0,0,24">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Rectangle Width="3" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="1.5" RadiusY="1.5" Margin="0,0,8,0" VerticalAlignment="Center"/>
+            <StackPanel Margin="0,0,0,36">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                    <Rectangle Width="4" Height="18" Fill="{StaticResource PrimaryPurpleLoginBrush}" RadiusX="2" RadiusY="2" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <TextBlock Text="Animação" Foreground="White" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <Grid>
+                <Grid HorizontalAlignment="Stretch">
                     <ScrollViewer x:Name="ScrollTerror" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Left" 
-                                  ItemsSource="{Binding Animations}" 
-                                  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" 
-                                  Background="Transparent" 
-                                  BorderThickness="0">
-                            <ListView.ItemsPanel>
+                        <ItemsControl ItemsSource="{Binding Animations}">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    <StackPanel Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Background="Transparent" BorderThickness="0" Command="{Binding}"  Click="Button_Click" Focusable="False">
-                                        <Border Height="495" Width="325" 
-                                             Style="{StaticResource CardBorderStyle}"
-                                              Background="{StaticResource BackgroundColorLoginBrush}" 
-                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                                 BorderThickness="1" 
-                                            Cursor="Hand">
-                                            <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </Button>
+                                    <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
+                                            Command="{Binding}" 
+                                            Click="Button_Click"
+                                            ToolTip="{Binding Name}"/>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </ScrollViewer>
 
-                    <Button x:Name="TRScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="2,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollTerror}">
-                        <TextBlock Text="‹" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="TRScrollLeft_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollLeft_Click" Tag="{Binding ElementName=ScrollTerror}">
+                        <TextBlock TextAlignment="Center" Text="‹" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
-                    <Button x:Name="TRScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,2,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollTerror}">
-                        <TextBlock Text="›" Foreground="White" FontSize="32" FontWeight="Bold" Margin="0,-4,0,0"/>
+                    <Button x:Name="TRScrollRight_Click" Style="{StaticResource ScrollArrowButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" Click="ScrollRight_Click" Tag="{Binding ElementName=ScrollTerror}">
+                        <TextBlock Text="›" TextAlignment="Center" Foreground="White" FontSize="36" FontWeight="Bold" Margin="0,-10,0,0"/>
                     </Button>
                 </Grid>
             </StackPanel>
