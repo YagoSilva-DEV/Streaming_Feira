@@ -28,7 +28,7 @@ namespace Streamall.Views
         }
 
 
-        private void SearchResult_Click(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = sender as FrameworkElement;
 
@@ -55,6 +55,5 @@ namespace Streamall.Views
 
             detailsWindow.ShowDialog();
         }
-
     }
 }

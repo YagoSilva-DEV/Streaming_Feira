@@ -31,7 +31,7 @@
 
     <!-- ITEM DO LISTVIEW (Versão limpa sem template/fundo de seleção padrão) -->
     <Style x:Key="CleanListViewItemStyle" TargetType="ListViewItem">
-        <Setter Property="Margin" Value="0,0,16,0"/>
+        <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -40,6 +40,7 @@
                 <ControlTemplate TargetType="ListViewItem">
                     <ContentPresenter/>
                 </ControlTemplate>
+                
             </Setter.Value>
         </Setter>
     </Style>
@@ -72,4 +73,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

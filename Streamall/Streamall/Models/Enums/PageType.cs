@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Streamall.Models.Enums
 {
-    internal enum PageType
+    public enum PageType
     {
         START,
         SEARCH,
         FAVORITES,
-
+        CONTENTHERO
     }
 }

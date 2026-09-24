@@ -135,6 +135,7 @@ namespace Streamall.ViewModels
                 else
                 {
                     UserDTO clientDTO = userData as ClientDTO;
+                    _userBLL.KeepUserActive(userData.UserId);
                     _navigationService.Navigate<Home>(userData);
                 }
             }

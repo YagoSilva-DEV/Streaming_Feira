@@ -101,7 +101,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Width="210" Height="370" 
+                    <Border Width="220" Height="370" 
                             Background="{StaticResource BackgroundColorLoginBrush}" 
                             BorderBrush="{StaticResource BorderColorLoginBrush}" 
                             BorderThickness="1" 

@@ -7,8 +7,9 @@ namespace Streamall.ViewModels.Contents
 {
     public class CarroselViewModel : ViewModelBase
     {
+        private MainViewModel _viewModel;
         private readonly IContentBLL _contentBLL;
-
+        public RelayCommand GoToContentHeroCommand { get; set; }
         public ObservableCollection<ContentDTO> Recommendations { get; set; }
         public ObservableCollection<ContentDTO> Actions { get; set; }
         public ObservableCollection<ContentDTO> Dramas { get; set; }
@@ -16,7 +17,7 @@ namespace Streamall.ViewModels.Contents
         public ObservableCollection<ContentDTO> Animations { get; set; }
         public ObservableCollection<ContentDTO> Documentaries { get; set; }
 
-        public CarroselViewModel(IContentBLL contentBLL)
+        public CarroselViewModel(IContentBLL contentBLL, MainViewModel viewModel)
         {
             _contentBLL = contentBLL;
 
@@ -37,6 +38,15 @@ namespace Streamall.ViewModels.Contents
 
             Documentaries = new ObservableCollection<ContentDTO>(
                 _contentBLL.GetDocumentaryContens());
+
+            _viewModel = viewModel;
+
+            GoToContentHeroCommand = new RelayCommand(execute => GoToContentHero(execute as ContentDTO));
+        }
+
+        private void GoToContentHero(ContentDTO contentDTO) 
+        {
+            _viewModel.Navigate(Models.Enums.PageType.CONTENTHERO);
         }
     }
 }

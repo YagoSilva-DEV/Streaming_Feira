@@ -580,7 +580,6 @@ namespace Streamall.DAL.Repository.Contents
             return contents;
         }
         //Metodos carrosel
-        //new Genre(id, genderName), new FilmMaker(id, filmmakerName) caso de erro
 
     }
 }

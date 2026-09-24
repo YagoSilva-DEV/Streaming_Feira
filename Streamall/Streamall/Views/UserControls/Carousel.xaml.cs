@@ -46,7 +46,7 @@ namespace Streamall.Views.UserControls
             e.Handled = true;
         }
 
-        private void Content_Click(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = sender as FrameworkElement;
 
@@ -73,5 +73,6 @@ namespace Streamall.Views.UserControls
 
             detailsWindow.ShowDialog();
         }
+
     }
 }

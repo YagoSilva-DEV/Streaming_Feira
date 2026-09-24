@@ -6,47 +6,126 @@
       xmlns:local="clr-namespace:Streamall.Views"
       xmlns:userControls="clr-namespace:Streamall.Views.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="900"
       Title="Pesquisa">
+    <Page.Resources>
+        <!-- Paleta de Cores e Pincéis -->
+        <SolidColorBrush x:Key="BgCard" Color="#131622"/>
+        <SolidColorBrush x:Key="BgHover" Color="#1C2132"/>
+        <SolidColorBrush x:Key="BgSelected" Color="#252A3E"/>
+        <SolidColorBrush x:Key="BorderSubtle" Color="#23283B"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#8C93A8"/>
+        <SolidColorBrush x:Key="AccentPurple" Color="#8B5CF6"/>
+        <SolidColorBrush x:Key="StatusActiveBg" Color="#102E26"/>
+        <SolidColorBrush x:Key="StatusActiveFg" Color="#10B981"/>
+        <SolidColorBrush x:Key="StatusInactiveBg" Color="#282026"/>
+        <SolidColorBrush x:Key="StatusInactiveFg" Color="#EF4444"/>
 
-    <Grid>
+        <!-- Estilo Customizado da Caixa de Busca -->
+        <Style x:Key="ModernSearchBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+            <Setter Property="Background" Value="{StaticResource BgCard}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderSubtle}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="38,10,14,10"/>
+            <Setter Property="CaretBrush" Value="{StaticResource AccentPurple}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border x:Name="SearchBorder" 
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10" 
+                                    SnapsToDevicePixels="True">
+                                <Grid>
+                                    <!-- Ícone de Lupa em SVG -->
+                                    <Path Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" 
+                                          Fill="{StaticResource TextSecondary}" 
+                                          Width="16" Height="16" 
+                                          HorizontalAlignment="Left" 
+                                          Margin="14,0,0,0" 
+                                          Stretch="Uniform"/>
+
+                                    <!-- Placeholder (Texto quando vazio) -->
+                                    <TextBlock x:Name="PlaceholderText" 
+                                               Text="Buscar por nome de filme..." 
+                                               Foreground="{StaticResource TextSecondary}" 
+                                               FontSize="13" 
+                                               Margin="38,0,0,0" 
+                                               VerticalAlignment="Center" 
+                                               IsHitTestVisible="False" 
+                                               Visibility="Collapsed"/>
+
+                                    <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="SearchBorder" Property="BorderBrush" Value="{StaticResource AccentPurple}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0"
-             Width="500"
-             Margin="10"
-             HorizontalAlignment="Left"
-             Style="{StaticResource StyleTextBoxLogin}"
-             Background="{StaticResource LogoPurpleLoginBrush}"
-             Foreground="{StaticResource SurfaceColorLoginBrush}"
-             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+        <!-- Barra de Busca Superior -->
+        <Grid Grid.Row="0" Margin="0,0,0,24">
+            <TextBox Style="{StaticResource ModernSearchBox}"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                     ToolTip="Digite o nome do filme para filtrar"/>
+        </Grid>
 
-        <ScrollViewer Grid.Row="1"
-                  VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Results}">
+        <!-- Grade de Resultados (estilo catálogo de streaming) -->
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding Results}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Layout em Grade Responsiva (WrapPanel) -->
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <!-- Template do Card de Conteúdo -->
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="10"
-                            Padding="10"
-                            Background="{StaticResource BackgroundColorLoginBrush}"
-                            Cursor="Hand"
-                            MouseLeftButtonUp="SearchResult_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding PathCover}"
-                                   Width="80"
-                                   Height="115"
-                                   Stretch="UniformToFill"
-                                   Margin="0,0,12,0"/>
-
-                                <TextBlock Text="{Binding Name}"
-                                       Foreground="White"
-                                       FontSize="18"
-                                       VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Border>
+                        <Button Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Margin="5" Click="Button_Click">
+                            <Border Height="505" Width="325" 
+                                             Style="{StaticResource CardBorderStyle}"
+                                              Background="{StaticResource BackgroundColorLoginBrush}" 
+                                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
+                                                 BorderThickness="1" 
+                                            Cursor="Hand" 
+ 
+                                ToolTip="{Binding Name}">
+                                <Grid ClipToBounds="True">
+                                    <!-- Capa com proporção de pôster (2:3) -->
+                                    <Border Grid.Row="0"  Background="#1A1A1A">
+                                        <Image Source="{Binding PathCover}"
+                                           Stretch="UniformToFill"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

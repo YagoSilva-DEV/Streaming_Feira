@@ -253,8 +253,9 @@
     <Compile Include="MVVM\ViewModelBase.cs" />
     <Compile Include="Navigation\Interface\INavigationService.cs" />
     <Compile Include="Navigation\Service\NavigationService.cs" />
-    <Compile Include="ViewModels\Contents\Carrosel.cs" />
+    <Compile Include="ViewModels\Contents\CarroselViewModel.cs" />
     <Compile Include="ViewModels\Contents\ConfirmEditContentViewModel.cs" />
+    <Compile Include="ViewModels\Contents\ContentHeroViewModel.cs" />
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
@@ -332,9 +333,6 @@
     </Compile>
     <Compile Include="Views\UserControls\Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\SideBar.xaml.cs">
-      <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ClientManagement.xaml.cs">
       <DependentUpon>ClientManagement.xaml</DependentUpon>
@@ -448,10 +446,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\Header.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\SideBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

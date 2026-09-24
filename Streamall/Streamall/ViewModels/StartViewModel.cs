@@ -15,9 +15,9 @@ namespace Streamall.ViewModels
     {
         public CarroselViewModel Carrosel { get; set; }
 
-        public StartViewModel(IContentBLL contentBLL)
+        public StartViewModel(IContentBLL contentBLL, MainViewModel viewModel)
         {
-            Carrosel = new CarroselViewModel(contentBLL);
+            Carrosel = new CarroselViewModel(contentBLL, viewModel);
         }
     }
 }

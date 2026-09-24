@@ -67,7 +67,7 @@ namespace Streamall.Navigation.Service
                 loginView.Close();
             }
         }
-        public void Navigate<TView>(UserDTO admDTO)
+        public void Navigate<TView>(UserDTO userDTO)
         {
             if (typeof(TView) == typeof(SignUp))
             {
@@ -95,9 +95,19 @@ namespace Streamall.Navigation.Service
                 Window loginView = Application.Current.Windows
                 .OfType<Window>()
                 .FirstOrDefault(w => w.IsActive);
-                AdministratorHome admHome = new AdministratorHome(admDTO);
+                AdministratorHome admHome = new AdministratorHome(userDTO);
                 admHome.WindowState = WindowState.Maximized;
                 admHome.Show();
+                loginView.Close();
+            }
+            if(typeof(TView) == typeof(Home))
+            {
+                Window loginView = Application.Current.Windows
+                .OfType<Window>()
+                .FirstOrDefault(w => w.IsActive);
+                Home home = new Home(userDTO);
+                home.WindowState = WindowState.Maximized;
+                home.Show();
                 loginView.Close();
             }
 
