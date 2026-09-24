@@ -293,6 +293,9 @@
     <Compile Include="Views\Modals\EditContentModal.xaml.cs">
       <DependentUpon>EditContentModal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Modals\ContentDetailsModal.xaml.cs">
+      <DependentUpon>ContentDetailsModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Pesquisa.xaml.cs">
       <DependentUpon>Pesquisa.xaml</DependentUpon>
     </Compile>
@@ -406,6 +409,10 @@
     <Page Include="Views\Modals\EditContentModal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Modals\ContentDetailsModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pesquisa.xaml">
       <Generator>MSBuild:Compile</Generator>

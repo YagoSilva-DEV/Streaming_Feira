@@ -3,6 +3,8 @@ using Streamall.DAL.Repository.Contents;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Streamall.Models.DTO;
+using Streamall.Views.Modals;
 
 
 namespace Streamall.Views.UserControls
@@ -42,6 +44,34 @@ namespace Streamall.Views.UserControls
         {
             MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset - e.Delta);
             e.Handled = true;
+        }
+
+        private void Content_Click(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement element = sender as FrameworkElement;
+
+            if (element == null)
+            {
+                return;
+            }
+
+            ContentDTO contentDTO = element.DataContext as ContentDTO;
+
+            if (contentDTO == null)
+            {
+                return;
+            }
+
+            ContentDetailsModal detailsWindow = new ContentDetailsModal(contentDTO);
+
+            Window ownerWindow = Window.GetWindow(this);
+
+            if (ownerWindow != null)
+            {
+                detailsWindow.Owner = ownerWindow;
+            }
+
+            detailsWindow.ShowDialog();
         }
     }
 }

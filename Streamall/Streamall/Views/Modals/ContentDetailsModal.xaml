@@ -1,0 +1,89 @@
+﻿<Window x:Class="Streamall.Views.Modals.ContentDetailsModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalhes do filme"
+        Height="600"
+        Width="900"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        BorderBrush="White"
+        BorderThickness="1"
+        Background="{StaticResource BackgroundColorLoginBrush}">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              MouseLeftButtonDown="Header_MouseLeftButtonDown">
+            <TextBlock Text="Detalhes do filme"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+
+            <Button Content="Fechar"
+                Width="90"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Click="CloseButton_Click">
+    
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="#30333A"
+                        CornerRadius="10"
+                        Padding="10,5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    ClipToBounds="True"
+                    Margin="0,0,20,0">
+                <Image Source="{Binding PathCover}"
+                       Stretch="UniformToFill"/>
+            </Border>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding Name}"
+                           Foreground="White"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           TextWrapping="Wrap"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <TextBlock Text="{Binding ReleaseDate.Year}"
+                               Foreground="White"
+                               Margin="0,0,16,0"/>
+
+                    <TextBlock Text="{Binding Genre.Name}"
+                               Foreground="White"
+                               Margin="0,0,16,0"/>
+
+                    <TextBlock Text="{Binding FilmMaker.Name}"
+                               Foreground="White"/>
+                </StackPanel>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Margin="0,20,0,0">
+                    <TextBlock Text="{Binding Synopsis}"
+                               Foreground="White"
+                               FontSize="14"
+                               TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

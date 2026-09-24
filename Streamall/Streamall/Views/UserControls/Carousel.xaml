@@ -27,7 +27,7 @@
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="350px" Width="210px">
+                                    <Border Height="350px" Width="210px" Cursor="Hand" MouseLeftButtonUp="Content_Click">
                                         <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </DataTemplate>
@@ -59,7 +59,7 @@
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="250px" Width="150px">
+                                    <Border Height="250px" Width="150px" Cursor="Hand" MouseLeftButtonUp="Content_Click">
                                         <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </DataTemplate>
@@ -89,7 +89,7 @@
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="250px" Width="150px">
+                                    <Border Height="250px" Width="150px" Cursor="Hand" MouseLeftButtonUp="Content_Click">
                                         <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </DataTemplate>
@@ -119,7 +119,7 @@
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="250px" Width="150px">
+                                    <Border Height="250px" Width="150px" Cursor="Hand" MouseLeftButtonUp="Content_Click">
                                         <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </DataTemplate>
@@ -149,7 +149,7 @@
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="250px" Width="150px">
+                                    <Border Height="250px" Width="150px" Cursor="Hand" MouseLeftButtonUp="Content_Click">
                                         <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </DataTemplate>
@@ -179,7 +179,7 @@
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Border Height="250px" Width="150px">
+                                    <Border Height="250px" Width="150px" Cursor="Hand" MouseLeftButtonUp="Content_Click">
                                         <Image Source="{Binding PathCover}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                 </DataTemplate>
