@@ -165,9 +165,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource FeaturedNetflixCardButtonStyle}"
-                                            Command="{Binding GoToContentHeroCommand}" 
+                                            Command="{Binding DataContext.GoToContentHeroCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                                             CommandParameter="{Binding}" 
-                                            Click="Button_Click"
                                             ToolTip="{Binding Name}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -204,8 +203,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
-                                            Command="{Binding}" 
-                                            Click="Button_Click"
+                                            Command="{Binding DataContext.GoToContentHeroCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
                                             ToolTip="{Binding Name}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -241,8 +240,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
-                                            Command="{Binding}" 
-                                            Click="Button_Click"
+                                            Command="{Binding DataContext.GoToContentHeroCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
                                             ToolTip="{Binding Name}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -278,8 +277,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
-                                            Command="{Binding}" 
-                                            Click="Button_Click"
+                                            Command="{Binding DataContext.GoToContentHeroCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
                                             ToolTip="{Binding Name}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -315,8 +314,8 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource StandardNetflixCardButtonStyle}"
-                                            Command="{Binding}" 
-                                            Click="Button_Click"
+                                            Command="{Binding DataContext.GoToContentHeroCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                        CommandParameter="{Binding}"
                                             ToolTip="{Binding Name}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

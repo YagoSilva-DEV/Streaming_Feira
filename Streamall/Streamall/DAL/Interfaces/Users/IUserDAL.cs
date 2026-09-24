@@ -13,5 +13,6 @@ namespace Streamall.DAL.Interfaces
         User UserData(string userName);
         void KeepUserActive(int id);
         void KeepUserInactive(int id);
+        void AddFavoriteContent(int contentId, int userId);
     }
 }

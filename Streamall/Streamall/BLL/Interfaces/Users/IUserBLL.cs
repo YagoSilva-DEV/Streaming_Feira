@@ -12,5 +12,6 @@ namespace Streamall.BLL.Interfaces
         UserDTO LoginBLL(UserDTO userDTO);
         void KeepUserActive(int id);
         void KeepUserInactive(int id);
+        void AddFavoriteContent(int contentId, int userId);
     }
 }

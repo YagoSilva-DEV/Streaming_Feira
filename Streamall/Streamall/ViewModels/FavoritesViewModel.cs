@@ -14,11 +14,13 @@ namespace Streamall.ViewModels
 
         public FavoritesViewModel(IContentBLL contentBLL)
         {
+            /*
             List<int> favoriteIds = FavoritesStorage.LoadFavoriteIds();
 
             Favorites = new ObservableCollection<ContentDTO>(
                 contentBLL.GetContentDTOs()
                     .Where(content => favoriteIds.Contains(content.Id)));
+            */
         }
     }
 }

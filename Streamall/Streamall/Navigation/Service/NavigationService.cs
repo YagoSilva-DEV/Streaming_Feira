@@ -133,6 +133,25 @@ namespace Streamall.Navigation.Service
             }
         }
 
+        public void Navigate<TView>(ContentDTO contentDTO, UserDTO userDTO)
+        {
+            if(typeof(TView) == typeof(ContentDetailsModal))
+            {
+                Window owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);
+                ContentDetailsModal detailsContentModal = new ContentDetailsModal(contentDTO, userDTO);
+                if (owner != null)
+                {
+                    detailsContentModal.Owner = owner;
+                    detailsContentModal.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    owner.Opacity = 0.3;
+                }
+
+                var detailsModalIsActive = detailsContentModal.ShowDialog();
+                if (detailsModalIsActive == false)
+                    owner.Opacity = 1;
+            }
+        }
+
         public bool ShowCatalogItemModal(CatalogItemType itemType)
         {
             Window owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive);

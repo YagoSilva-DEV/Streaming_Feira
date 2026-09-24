@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Streamall.Navigation.Service;
 
 namespace Streamall.ViewModels
 {
@@ -15,9 +16,9 @@ namespace Streamall.ViewModels
     {
         public CarroselViewModel Carrosel { get; set; }
 
-        public StartViewModel(IContentBLL contentBLL, MainViewModel viewModel)
+        public StartViewModel(IContentBLL contentBLL, UserDTO user)
         {
-            Carrosel = new CarroselViewModel(contentBLL, viewModel);
+            Carrosel = new CarroselViewModel(contentBLL, user, new NavigationService());
         }
     }
 }

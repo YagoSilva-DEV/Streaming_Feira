@@ -23,6 +23,34 @@ namespace Streamall.DAL.Repository
             _connectionDAL = new DataBaseConnectionDAL();
         }
 
+        public void AddFavoriteContent(int contentId, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"INSERT INTO Tb_Content_Fav (fk_id_User_content_fav, fk_id_content_fav)
+                                    VALUES(@fk_id_User_content_fav ,@fk_id_content_fav)";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@fk_id_User_content_fav", SqlDbType.Int).Value = userId;
+                        cmd.Parameters.Add("@fk_id_content_fav", SqlDbType.Int).Value = contentId;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex) when (ex.Number == 2627)
+            {
+                throw new DataBaseException("Esse filme já foi favoritado.", ex);
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.", ex);
+            }
+        }
+
         public void KeepUserActive(int id)
         {
             try

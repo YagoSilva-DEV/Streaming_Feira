@@ -46,35 +46,6 @@ namespace Streamall.Views.UserControls
             MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset - e.Delta);
             e.Handled = true;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement element = sender as FrameworkElement;
-
-            if (element == null)
-            {
-                return;
-            }
-
-            ContentDTO contentDTO = element.DataContext as ContentDTO;
-
-            if (contentDTO == null)
-            {
-                return;
-            }
-
-            ContentDetailsModal detailsWindow = new ContentDetailsModal(contentDTO);
-
-            Window ownerWindow = Window.GetWindow(this);
-
-            if (ownerWindow != null)
-            {
-                detailsWindow.Owner = ownerWindow;
-            }
-
-            detailsWindow.ShowDialog();
-        }
-
         private void ScrollFeatured_Loaded(object sender, RoutedEventArgs e)
         {
             if (sender is ScrollViewer scrollViewer)
@@ -90,5 +61,6 @@ namespace Streamall.Views.UserControls
                 }), System.Windows.Threading.DispatcherPriority.Loaded);
             }
         }
+
     }
 }

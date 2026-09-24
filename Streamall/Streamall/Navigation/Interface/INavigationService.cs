@@ -16,6 +16,7 @@ namespace Streamall.Navigation.Interface
         void Navigate<TView>();
         void Navigate<TView>(UserDTO admDTO);
         void Navigate<TView>(ContentDTO contentDTO);
+        void Navigate<TView>(ContentDTO contentDTO, UserDTO userDTO);
         void ViewModelNavigation<TViewModel>();
         bool ShowCatalogItemModal(CatalogItemType itemType);
     }

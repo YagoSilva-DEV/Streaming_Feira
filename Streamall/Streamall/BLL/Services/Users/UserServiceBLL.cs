@@ -20,6 +20,11 @@ namespace Streamall.BLL.Services
             _userDAL = userDAL;
         }
 
+        public void AddFavoriteContent(int contentId, int userId)
+        {
+            _userDAL.AddFavoriteContent(contentId, userId);
+        }
+
         public void KeepUserActive(int id)
         {
             _userDAL.KeepUserActive(id);

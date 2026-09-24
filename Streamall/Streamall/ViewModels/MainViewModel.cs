@@ -77,16 +77,13 @@ namespace Streamall.ViewModels
             switch (pageType)
             {
                 case PageType.START:
-                    return new StartViewModel(_contentBLL, this);
+                    return new StartViewModel(_contentBLL, _userDTO);
 
                 case PageType.SEARCH:
                     return new SearchViewModel(_contentBLL);
 
                 case PageType.FAVORITES:
                     return new FavoritesViewModel(_contentBLL);
-
-                case PageType.CONTENTHERO:
-                    return new ContentHeroViewModel();
 
                 default:
                     throw new ArgumentException(

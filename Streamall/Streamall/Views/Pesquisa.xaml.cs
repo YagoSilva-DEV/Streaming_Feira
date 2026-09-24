@@ -43,8 +43,8 @@ namespace Streamall.Views
             {
                 return;
             }
-
-            ContentDetailsModal detailsWindow = new ContentDetailsModal(contentDTO);
+            /*
+            //ContentDetailsModal detailsWindow = new ContentDetailsModal(contentDTO);
 
             Window ownerWindow = Window.GetWindow(this);
 
@@ -54,6 +54,7 @@ namespace Streamall.Views
             }
 
             detailsWindow.ShowDialog();
+            */
         }
     }
 }

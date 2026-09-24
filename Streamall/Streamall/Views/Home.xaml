@@ -29,10 +29,6 @@
             <views:Favorites/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vmc:ContentHeroViewModel}">
-            <userControls:ContentHero/>
-        </DataTemplate>
-
         <!-- ESTILOS DOS BOTÕES DA JANELA -->
         <Style x:Key="WindowControlButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>

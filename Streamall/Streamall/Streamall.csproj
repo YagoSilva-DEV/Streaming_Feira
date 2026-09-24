@@ -219,7 +219,6 @@
     <Compile Include="Exceptions\InvalidPasswordException.cs" />
     <Compile Include="Exceptions\InvalidSignUpException.cs" />
     <Compile Include="Helpers\BitMapHelper.cs" />
-    <Compile Include="Helpers\FavouritesStorage.cs" />
     <Compile Include="Helpers\FileDialogHelper.cs" />
     <Compile Include="Helpers\MessageBoxHelper.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
@@ -255,7 +254,7 @@
     <Compile Include="Navigation\Service\NavigationService.cs" />
     <Compile Include="ViewModels\Contents\CarroselViewModel.cs" />
     <Compile Include="ViewModels\Contents\ConfirmEditContentViewModel.cs" />
-    <Compile Include="ViewModels\Contents\ContentHeroViewModel.cs" />
+    <Compile Include="ViewModels\Contents\ContentDetailsViewModel.cs" />
     <Compile Include="ViewModels\Contents\ContentManagementViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentControlViewModel.cs" />
     <Compile Include="ViewModels\Contents\EditContentModalViewModel.cs" />
