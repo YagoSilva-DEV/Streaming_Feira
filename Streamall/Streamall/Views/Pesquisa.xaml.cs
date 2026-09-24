@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Streamall.Models.DTO;
+using Streamall.Views.Modals;
 
 namespace Streamall.Views
 {
@@ -25,6 +27,34 @@ namespace Streamall.Views
             InitializeComponent();
         }
 
+
+        private void SearchResult_Click(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement element = sender as FrameworkElement;
+
+            if (element == null)
+            {
+                return;
+            }
+
+            ContentDTO contentDTO = element.DataContext as ContentDTO;
+
+            if (contentDTO == null)
+            {
+                return;
+            }
+
+            ContentDetailsModal detailsWindow = new ContentDetailsModal(contentDTO);
+
+            Window ownerWindow = Window.GetWindow(this);
+
+            if (ownerWindow != null)
+            {
+                detailsWindow.Owner = ownerWindow;
+            }
+
+            detailsWindow.ShowDialog();
+        }
 
     }
 }

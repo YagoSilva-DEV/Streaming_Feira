@@ -70,10 +70,10 @@ namespace Streamall.ViewModels
                     return new StartViewModel(_contentBLL);
 
                 case PageType.SEARCH:
-                    return new SearchViewModel();
+                    return new SearchViewModel(_contentBLL);
 
                 case PageType.FAVORITES:
-                    return new FavoritesViewModel();
+                    return new FavoritesViewModel(_contentBLL);
 
                 default:
                     throw new ArgumentException(

@@ -53,7 +53,7 @@
                     ClipToBounds="True"
                     Margin="0,0,20,0">
                 <Image Source="{Binding PathCover}"
-                       Stretch="UniformToFill"/>
+                       Stretch="Uniform"/>
             </Border>
 
             <StackPanel Grid.Column="1">
@@ -75,6 +75,54 @@
                     <TextBlock Text="{Binding FilmMaker.Name}"
                                Foreground="White"/>
                 </StackPanel>
+
+                <ToggleButton x:Name="FavoriteToggle"
+              Width="44"
+              Height="44"
+              HorizontalAlignment="Left"
+              Margin="0,20,0,0"
+              Cursor="Hand"
+              ToolTip="Adicionar ou remover dos favoritos"
+              Click="FavoriteButton_Click">
+
+                    <ToggleButton.Template>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border x:Name="Circle"
+                                Width="44"
+                                Height="44"
+                                CornerRadius="22"
+                                Background="#30333A"
+                                BorderBrush="#666666"
+                                BorderThickness="1">
+
+                                <TextBlock x:Name="StarIcon"
+                                           Text="☆"
+                                           FontFamily="Segoe UI Symbol"
+                                           FontSize="25"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Circle"
+                            Property="Background"
+                            Value="#454A54"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="StarIcon"
+                            Property="Text"
+                            Value="★"/>
+                                    <Setter TargetName="StarIcon"
+                            Property="Foreground"
+                            Value="#FFD700"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </ToggleButton.Template>
+                </ToggleButton>
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               Margin="0,20,0,0">

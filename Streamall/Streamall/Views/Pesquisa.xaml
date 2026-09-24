@@ -15,7 +15,41 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBox Width="500" Margin="10"  Style="{StaticResource StyleTextBoxLogin}" Background="{StaticResource LogoPurpleLoginBrush}" Foreground="{StaticResource SurfaceColorLoginBrush}"/>
-        <UserControl Grid.Row="1"/>
+        <TextBox Grid.Row="0"
+             Width="500"
+             Margin="10"
+             HorizontalAlignment="Left"
+             Style="{StaticResource StyleTextBoxLogin}"
+             Background="{StaticResource LogoPurpleLoginBrush}"
+             Foreground="{StaticResource SurfaceColorLoginBrush}"
+             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <ScrollViewer Grid.Row="1"
+                  VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Results}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="10"
+                            Padding="10"
+                            Background="{StaticResource BackgroundColorLoginBrush}"
+                            Cursor="Hand"
+                            MouseLeftButtonUp="SearchResult_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding PathCover}"
+                                   Width="80"
+                                   Height="115"
+                                   Stretch="UniformToFill"
+                                   Margin="0,0,12,0"/>
+
+                                <TextBlock Text="{Binding Name}"
+                                       Foreground="White"
+                                       FontSize="18"
+                                       VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Page>
