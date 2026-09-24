@@ -140,6 +140,31 @@ namespace Streamall.DAL.Repository
             }
         }
 
+        public void RemoveFavoriteContent(int contentId, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"DELETE FROM Tb_Content_Fav
+                                   WHERE fk_id_User_content_fav = @fk_id_User_content_fav
+                                   AND fk_id_content_fav = @fk_id_content_fav";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@fk_id_User_content_fav", SqlDbType.Int).Value = userId;
+                        cmd.Parameters.Add("@fk_id_content_fav", SqlDbType.Int).Value = contentId;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.", ex);
+            }
+        }
+
         public User UserData(string userName)
         {
             using (SqlConnection conn = _connectionDAL.Connect())

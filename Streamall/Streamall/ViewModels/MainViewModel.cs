@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Streamall.ViewModels.Contents;
 using Streamall.Models.DTO;
 using Streamall.BLL.Interfaces;
+using Streamall.Navigation.Service;
 
 namespace Streamall.ViewModels
 {
@@ -80,7 +81,7 @@ namespace Streamall.ViewModels
                     return new StartViewModel(_contentBLL, _userDTO);
 
                 case PageType.SEARCH:
-                    return new SearchViewModel(_contentBLL);
+                    return new SearchViewModel(_contentBLL, new NavigationService(), _userDTO);
 
                 case PageType.FAVORITES:
                     return new FavoritesViewModel(_contentBLL);

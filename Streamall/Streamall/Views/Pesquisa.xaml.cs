@@ -26,35 +26,5 @@ namespace Streamall.Views
         {
             InitializeComponent();
         }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement element = sender as FrameworkElement;
-
-            if (element == null)
-            {
-                return;
-            }
-
-            ContentDTO contentDTO = element.DataContext as ContentDTO;
-
-            if (contentDTO == null)
-            {
-                return;
-            }
-            /*
-            //ContentDetailsModal detailsWindow = new ContentDetailsModal(contentDTO);
-
-            Window ownerWindow = Window.GetWindow(this);
-
-            if (ownerWindow != null)
-            {
-                detailsWindow.Owner = ownerWindow;
-            }
-
-            detailsWindow.ShowDialog();
-            */
-        }
     }
 }

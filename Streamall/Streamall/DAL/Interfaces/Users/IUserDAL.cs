@@ -14,5 +14,6 @@ namespace Streamall.DAL.Interfaces
         void KeepUserActive(int id);
         void KeepUserInactive(int id);
         void AddFavoriteContent(int contentId, int userId);
+        void RemoveFavoriteContent(int contentId, int userId);
     }
 }

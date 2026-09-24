@@ -11,10 +11,34 @@ using System.Windows;
 
 namespace Streamall.ViewModels.Contents
 {
-    public class ContentDetailsViewModel
+    public class ContentDetailsViewModel : ViewModelBase
     {
         private UserDTO _userDTO;
         private ContentDTO _contentDTO;
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set 
+            {
+                _errorMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _successMessage;
+
+        public string SuccessMessage
+        {
+            get { return _successMessage; }
+            set 
+            {
+                _successMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public ContentDTO ContentDTO
         {
@@ -30,19 +54,23 @@ namespace Streamall.ViewModels.Contents
             _userService = userBLL;
             ContentDTO = contentDTO;
             _userDTO = userDTO;
-            AddFavoriteCommand = new RelayCommand(execute => AddFavoriteContent());
+            AddFavoriteCommand = new RelayCommand(async execute => {await AddFavoriteContent(); });
         }
 
-        private void AddFavoriteContent()
+        private async Task AddFavoriteContent()
         {
             try
             {
                 _userService.AddFavoriteContent(_contentDTO.Id, _userDTO.UserId);
-                MessageBox.Show("tudo certo");
+                SuccessMessage = "Adicionado aos favoritos";
+                await Task.Delay(1500);
+                SuccessMessage = string.Empty;
             }
             catch (DataBaseException ex)
             {
-                MessageBox.Show(ex.Message);
+                ErrorMessage = ex.Message;
+                await Task.Delay(1500);
+                ErrorMessage = string.Empty;
             }
         }
     }

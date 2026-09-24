@@ -1,10 +1,13 @@
 ﻿using Streamall.BLL.Interfaces.Contents;
 using Streamall.Models.DTO;
 using Streamall.MVVM;
+using Streamall.Navigation.Interface;
+using Streamall.Views.Modals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace Streamall.ViewModels
 {
@@ -12,7 +15,9 @@ namespace Streamall.ViewModels
     {
         private readonly List<ContentDTO> _allContents;
         private string _searchText;
-
+        private INavigationService _navigationService;
+        private UserDTO _userDTO;
+        public RelayCommand GoToContentHeroCommand { get; set; }
         public ObservableCollection<ContentDTO> Results { get; private set; }
 
         public string SearchText
@@ -29,8 +34,11 @@ namespace Streamall.ViewModels
             }
         }
 
-        public SearchViewModel(IContentBLL contentBLL)
+        public SearchViewModel(IContentBLL contentBLL, INavigationService navigationService, UserDTO userDTO)
         {
+            GoToContentHeroCommand = new RelayCommand(execute => GoToContentHero(execute as ContentDTO));
+            _navigationService = navigationService;
+            _userDTO = userDTO;
             _allContents = contentBLL.GetContentDTOs().ToList();
             Results = new ObservableCollection<ContentDTO>(_allContents);
         }
@@ -54,6 +62,11 @@ namespace Streamall.ViewModels
             {
                 Results.Add(content);
             }
+        }
+
+        private void GoToContentHero(ContentDTO contentDTO)
+        {
+            _navigationService.Navigate<ContentDetailsModal>(contentDTO, _userDTO);
         }
     }
 }

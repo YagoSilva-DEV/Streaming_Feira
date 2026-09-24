@@ -46,5 +46,10 @@ namespace Streamall.BLL.Services
 
             return new UserDTO(userData);
         }
+
+        public void RemoveFavoriteContent(int contentId, int userId)
+        {
+            _userDAL.RemoveFavoriteContent(contentId, userId);
+        }
     }
 }

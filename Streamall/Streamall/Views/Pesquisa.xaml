@@ -175,7 +175,8 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Style="{StaticResource NetflixCardButtonStyle}" 
-                                Click="Button_Click"
+                                Command="{Binding DataContext.GoToContentHeroCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                CommandParameter="{Binding}"
                                 ToolTip="{Binding Name}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
