@@ -42,6 +42,10 @@ namespace Streamall.Helpers
             {
                 return null;
             }
+            catch (NotSupportedException)
+            {
+                return null;
+            }
         }
 
         public object ConvertBack(
