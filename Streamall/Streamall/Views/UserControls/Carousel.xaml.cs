@@ -2,6 +2,7 @@
 using Streamall.DAL.Repository.Contents;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 
 namespace Streamall.Views.UserControls
@@ -35,6 +36,12 @@ namespace Streamall.Views.UserControls
                 scroll.ScrollToHorizontalOffset(
                     scroll.HorizontalOffset + 240);
             }
+        }
+
+        private void MainScroll_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            MainScroll.ScrollToVerticalOffset(MainScroll.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }

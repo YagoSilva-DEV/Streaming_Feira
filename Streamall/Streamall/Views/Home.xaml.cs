@@ -20,7 +20,7 @@ namespace Streamall.Views
         {
             InitializeComponent();
 
-            DataContext = new CarroselViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
+            DataContext = new MainViewModel(new ContentServiceBLL(new ContentRepositoryDAL()));
         }
         private void SideBar_Loaded(object sender, RoutedEventArgs e)
         {

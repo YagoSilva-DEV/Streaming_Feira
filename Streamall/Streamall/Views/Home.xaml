@@ -8,7 +8,9 @@
         xmlns:local="clr-namespace:Streamall.Views"
         xmlns:userControls="clr-namespace:Streamall.Views.UserControls"
         mc:Ignorable="d"
-        Title="Home" Height="1080" Width="1920">
+        Title="Home" Height="1080" Width="1920"
+        Background="{StaticResource BackgroundColorLoginBrush}">
+        
 
     <Window.Resources>
 <!-- caminhos/views que são frames, irao aparecer ao click de cada button respectivamente-->
@@ -45,8 +47,7 @@
             <userControls:SideBar Grid.Column="0" />
 
             <!--frame sera "caixa" que contera as views aparti do click-->
-            <userControls:Carousel Grid.Column="1"/>
-            <Frame Grid.Column="1" Background="{StaticResource BackgroundColorLoginBrush}" NavigationUIVisibility="Hidden" Content="{Binding CurrentViewModel}"/>
+            <Frame Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding CurrentViewModel}"/>
         </Grid>
     </Grid>
 </Window>

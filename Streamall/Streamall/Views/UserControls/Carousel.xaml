@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Streamall.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="1800" d:DesignWidth="1820">
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+    <ScrollViewer x:Name="MainScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" PreviewMouseWheel="MainScroll_PreviewMouseWheel">
         <StackPanel Margin="30,24,30,40">
             <!-- ========================================= -->
             <!-- RECOMENDAÇÕES -->
@@ -51,7 +51,7 @@
                 <TextBlock Text="Filmes de Ação e Aventura" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <Grid>
                     <ScrollViewer x:Name="ScrollAction" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding CurrentViewModel.Actions}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
+                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding Actions}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
@@ -81,7 +81,7 @@
                 <TextBlock Text="Ficção Científica e Futuro" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <Grid>
                     <ScrollViewer x:Name="ScrollSciFi" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding CurrentViewModel.ScienceFictions}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
+                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding ScienceFictions}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
@@ -111,7 +111,7 @@
                 <TextBlock Text="Documentários" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <Grid>
                     <ScrollViewer x:Name="ScrollComedy" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding CurrentViewModel.Documentaries}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
+                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding Documentaries}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
@@ -141,7 +141,7 @@
                 <TextBlock Text="Dramas e Histórias Emocionantes" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <Grid>
                     <ScrollViewer x:Name="ScrollDrama" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding CurrentViewModel.Dramas}"  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
+                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding Dramas}"  ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
@@ -171,7 +171,7 @@
                 <TextBlock Text="Animação" Foreground="White" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
                 <Grid>
                     <ScrollViewer x:Name="ScrollTerror" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding CurrentViewModel.Animations}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
+                        <ListView HorizontalAlignment="Center" ItemsSource="{Binding Animations}" ItemContainerStyle="{StaticResource CleanListViewItemStyle}" Background="Transparent" BorderThickness="0">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
