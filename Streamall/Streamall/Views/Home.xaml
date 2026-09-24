@@ -9,18 +9,17 @@
         xmlns:local="clr-namespace:Streamall.Views"
         xmlns:userControls="clr-namespace:Streamall.Views.UserControls"
         mc:Ignorable="d"
-        Title="Home" Height="1080" Width="1920"
+        Title="Home" Height="550" Width="850"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
         Background="{StaticResource BackgroundColorLoginBrush}"
-        WindowState="Maximized">
-        
+        WindowState="Maximized"
+        WindowStyle="None">
 
     <Window.Resources>
-<!-- caminhos/views que são frames, irao aparecer ao click de cada button respectivamente-->
-    <!--tela default-->
+        <!-- DataTemplates existentes -->
         <DataTemplate DataType="{x:Type vm:StartViewModel}">
             <views:Start/>
         </DataTemplate>
-    <!--tela default-->
 
         <DataTemplate DataType="{x:Type vm:SearchViewModel}">
             <views:Pesquisa/>
@@ -32,38 +31,115 @@
 
         <DataTemplate DataType="{x:Type vmc:ContentHeroViewModel}">
             <userControls:ContentHero/>
-        </DataTemplate> 
+        </DataTemplate>
+
+        <!-- ESTILOS DOS BOTÕES DA JANELA -->
+        <Style x:Key="WindowControlButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="46"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2A2E3D"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#3A3F52"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Estilo do botão fechar com hover suave/destacado -->
+        <Style x:Key="WindowCloseButtonStyle" TargetType="Button" BasedOn="{StaticResource WindowControlButtonStyle}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#8B5CF6"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#7C3AED"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <!-- Altura fixa e reduzida para a TitleBar -->
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- CABEÇALHO DA JANELA (HEADER COMPACTA) -->
         <Grid Background="{StaticResource SurfaceColorLoginBrush}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--<TextBox Grid.Column="0" Background="Transparent" Foreground="White" BorderThickness="0" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center"> Nivel assinatura </TextBox>-->
-            <TextBlock Grid.Column="1" Style="{StaticResource StyleTextBlockLogoLogin}" FontSize="60"  VerticalAlignment="Center" > STREAMALL</TextBlock>
+            <!-- Lado Esquerdo (Espaço para Título do App ou Filtros Se Precisar) -->
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="60,0,0,0">
+                <TextBlock Text="STREAMALL" 
+                           Style="{StaticResource StyleTextBlockLogoLogin}" 
+                           FontWeight="Bold" 
+                           VerticalAlignment="Center"/>
+            </StackPanel>
 
-            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-                <TextBlock  Foreground="White" Margin="5"  VerticalAlignment="Center"/>
-                <TextBlock  Foreground="White" Margin="5"  VerticalAlignment="Center"/>
+            <!-- Área Superior Direita: Controles da Janela -->
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                <!-- BOTÃO MINIMIZAR -->
+                <Button Style="{StaticResource WindowControlButtonStyle}" 
+                        x:Name="btnMinimize"
+                        Click="btnMinimize_Click"
+                        ToolTip="Minimizar">
+                    <Path Data="M 0,5 H 10 V 7 H 0 Z" 
+                          Fill="White" 
+                          Stretch="Uniform" 
+                          Width="10" Height="10"/>
+                </Button>
+
+                <!-- BOTÃO MAXIMIZAR / RESTAURAR -->
+                <Button Style="{StaticResource WindowControlButtonStyle}" 
+                        x:Name="btnMaximize"
+                        Click="btnMaximize_Click" 
+                        ToolTip="Maximizar / Restaurar">
+                    <Path Data="M 0,0 H 10 V 10 H 0 Z M 1.5,1.5 V 8.5 H 8.5 V 1.5 Z" 
+                          Fill="White" 
+                          Stretch="Uniform" 
+                          Width="10" Height="10"/>
+                </Button>
+
+                <!-- BOTÃO FECHAR -->
+                <Button Style="{StaticResource WindowCloseButtonStyle}" 
+                        ToolTip="Fechar"
+                        Command="{Binding ExitCommand}">
+                    <Path Data="M 0.7,0 L 0,0.7 L 4.3,5 L 0,9.3 L 0.7,10 L 5,5.7 L 9.3,10 L 10,9.3 L 5.7,5 L 10,0.7 L 9.3,0 L 5,4.3 Z" 
+                          Fill="White" 
+                          Stretch="Uniform" 
+                          Width="10" Height="10"/>
+                </Button>
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1" >
+        <!-- CONTEÚDO PRINCIPAL (SIDEBAR + FRAME) -->
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Background="{StaticResource SurfaceColorLoginBrush}" >
+            <Grid Background="{StaticResource SurfaceColorLoginBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.1*"/>
                     <RowDefinition Height="0.1*"/>
@@ -72,43 +148,24 @@
                     <RowDefinition Height="0.1*"/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0"  Style="{StaticResource StyleButtonSideBar}"  Command="{Binding HomeCommand}">
-                    <Path 
-                Style="{StaticResource IconsGlobalConfigs}"
-                Data="{StaticResource IconHome}"
-            />
+                <Button Grid.Row="0" Style="{StaticResource StyleButtonSideBar}" Command="{Binding HomeCommand}">
+                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconHome}"/>
                 </Button>
 
                 <Button Grid.Row="1" Style="{StaticResource StyleButtonSideBar}" Command="{Binding SearchCommand}">
-                    <Path 
-                Style="{StaticResource IconsGlobalConfigs}"
-                Data="{StaticResource IconSearch}"
-            />
+                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconSearch}"/>
                 </Button>
 
-                <Button Grid.Row="2" Style="{StaticResource StyleButtonSideBar}"  Command="{Binding FavoritesCommand}">
-                    <Path 
-                Style="{StaticResource IconsGlobalConfigs}"
-                Data="{StaticResource IconStar}"
-             />
+                <Button Grid.Row="2" Style="{StaticResource StyleButtonSideBar}" Command="{Binding FavoritesCommand}">
+                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconStar}"/>
                 </Button>
 
-                <!-- ENGRENAGEM INICIO-->
-
-   
-                    <!-- ENGRENAGEM FIM-->
-
-                <Button  Grid.Row="6" Style="{StaticResource StyleButtonSideBar}" Command="{Binding ExitCommand}">
-                    <Path
-                Style="{StaticResource IconsGlobalConfigs}"
-                Data="{StaticResource IconExit}"
-            />
+                <Button Grid.Row="4" Style="{StaticResource StyleButtonSideBar}" Command="{Binding ExitCommand}">
+                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconExit}"/>
                 </Button>
-
-
             </Grid>
 
-            <!--frame sera "caixa" que contera as views aparti do click-->
+            <!-- Frame Principal -->
             <Frame Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding CurrentViewModel}"/>
         </Grid>
     </Grid>

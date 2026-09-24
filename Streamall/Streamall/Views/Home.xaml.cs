@@ -24,9 +24,20 @@ namespace Streamall.Views
 
             DataContext = new MainViewModel(new ContentServiceBLL(new ContentRepositoryDAL()), userDTO, () => Close(), new UserServiceBLL(new UserRepositoryDAL()));
         }
-        private void SideBar_Loaded(object sender, RoutedEventArgs e)
-        {
 
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = (this.WindowState == WindowState.Normal) ? WindowState.Maximized : WindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }
