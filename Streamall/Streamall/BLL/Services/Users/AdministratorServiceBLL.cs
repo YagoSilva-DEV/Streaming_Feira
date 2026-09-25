@@ -26,6 +26,7 @@ namespace Streamall.BLL.Services
 
         public void RemoveClient(int id)
         {
+            _adminDAL.RemoveUserFromTbFav(id);
             _adminDAL.RemoveClient(id);
             _adminDAL.RemoveUser(id);
         }

@@ -102,5 +102,26 @@ namespace Streamall.DAL.Repository
             }
         }
 
+        public void RemoveUserFromTbFav(int id)
+        {
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM Tb_Content_Fav WHERE fk_id_User_content_fav = @fk_id_User_content_fav";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@fk_id_User_content_fav", SqlDbType.Int).Value = id;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou", ex);
+            }
+        }
     }
 }
