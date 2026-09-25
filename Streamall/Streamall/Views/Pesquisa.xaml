@@ -84,7 +84,7 @@
             </Setter>
         </Style>
 
-        <!-- Estilo do Botão do Card do Filme -->
+        <!-- Estilo do Botão do Card do Filme com Arredondamento Perfeito via OpacityMask -->
         <Style x:Key="NetflixCardButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -93,43 +93,54 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="CardContainer"
-                                Width="220" Height="330"
-                                Background="{StaticResource BackgroundColorLoginBrush}" 
-                                BorderBrush="{StaticResource BorderColorLoginBrush}" 
-                                BorderThickness="1" 
-                                CornerRadius="10"
-                                ClipToBounds="True"
-                                SnapsToDevicePixels="True">
-                            <Grid>
-                                <!-- Imagem do Pôster -->
-                                <Image Source="{Binding PathCover}"
-                                       Stretch="UniformToFill"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
+                        <Grid Width="220" Height="330">
+                            <!-- MÁSCARA DE RECORTE: Recorta tudo o que estiver dentro em 12px -->
+                            <Grid.OpacityMask>
+                                <VisualBrush>
+                                    <VisualBrush.Visual>
+                                        <Border Width="220" Height="330" CornerRadius="12" Background="Black"/>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Grid.OpacityMask>
 
-                                <!-- Gradiente Escuro para destacar o Título -->
-                                <Border VerticalAlignment="Bottom" Height="80">
-                                    <Border.Background>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                            <GradientStop Color="#00000000" Offset="0.0"/>
-                                            <GradientStop Color="#CC131622" Offset="0.5"/>
-                                            <GradientStop Color="#FF131622" Offset="1.0"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
+                            <!-- Card Container Principal -->
+                            <Border x:Name="CardContainer"
+                            Background="{StaticResource BackgroundColorLoginBrush}" 
+                            BorderBrush="{StaticResource BorderColorLoginBrush}" 
+                            BorderThickness="1" 
+                            CornerRadius="12"
+                            SnapsToDevicePixels="True">
+                                <Grid>
+                                    <!-- Imagem da Capa -->
+                                    <Image Source="{Binding PathCover}" 
+                                   Stretch="UniformToFill" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                                    <!-- Nome do Filme -->
-                                    <TextBlock Text="{Binding Name}" 
-                                               Foreground="{StaticResource TextPrimary}" 
-                                               FontSize="13" 
-                                               FontWeight="SemiBold"
-                                               TextTrimming="CharacterEllipsis"
-                                               TextWrapping="NoWrap"
-                                               Margin="12,0,12,10" 
-                                               VerticalAlignment="Bottom"/>
-                                </Border>
-                            </Grid>
-                        </Border>
+                                    <!-- Gradiente Escuro no Rodapé -->
+                                    <Border VerticalAlignment="Bottom" Height="80">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#00000000" Offset="0.0"/>
+                                                <GradientStop Color="#CC131622" Offset="0.5"/>
+                                                <GradientStop Color="#FF131622" Offset="1.0"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+
+                                        <!-- Nome do Filme -->
+                                        <TextBlock Text="{Binding Name}" 
+                                           Foreground="{StaticResource TextPrimary}" 
+                                           FontSize="13" 
+                                           FontWeight="SemiBold"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap"
+                                           Margin="12,0,12,12" 
+                                           VerticalAlignment="Bottom"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Grid>
 
                         <ControlTemplate.Triggers>
                             <!-- Hover Style -->

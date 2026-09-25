@@ -13,6 +13,7 @@ namespace Streamall.DAL.Interfaces
         User UserData(string userName);
         void KeepUserActive(int id);
         void KeepUserInactive(int id);
+        IEnumerable<Content> GetFavoriteContents(int userId);
         void AddFavoriteContent(int contentId, int userId);
         void RemoveFavoriteContent(int contentId, int userId);
     }

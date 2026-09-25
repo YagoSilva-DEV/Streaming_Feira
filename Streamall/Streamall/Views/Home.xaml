@@ -34,7 +34,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Width" Value="46"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Height" Value="38"/>
             <Setter Property="Focusable" Value="False"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -48,22 +48,22 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2A2E3D"/>
+                    <Setter Property="Background" Value="#222634"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#3A3F52"/>
+                    <Setter Property="Background" Value="#2D3245"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <!-- Estilo do botão fechar com hover suave/destacado -->
+        <!-- Estilo do botão fechar -->
         <Style x:Key="WindowCloseButtonStyle" TargetType="Button" BasedOn="{StaticResource WindowControlButtonStyle}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#8B5CF6"/>
+                    <Setter Property="Background" Value="#E81123"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="#7C3AED"/>
+                    <Setter Property="Background" Value="#BF1020"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -71,62 +71,69 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <!-- Altura fixa e reduzida para a TitleBar -->
-            <RowDefinition Height="40"/>
+            <!-- TitleBar Compacta -->
+            <RowDefinition Height="38"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- CABEÇALHO DA JANELA (HEADER COMPACTA) -->
-        <Grid Background="{StaticResource SurfaceColorLoginBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <!-- CABEÇALHO DA JANELA (HEADER) -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource SurfaceColorLoginBrush}" 
+                BorderBrush="#1AFFFFFF" 
+                BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- Lado Esquerdo (Espaço para Título do App ou Filtros Se Precisar) -->
-            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="60,0,0,0">
-                <TextBlock Text="STREAMALL" 
+                <!-- Área do Logo (Alinhada com a largura da Sidebar) -->
+                <TextBlock Grid.Column="0" 
+                           Grid.ColumnSpan="2"
+                           Text="STREAMALL" 
                            Style="{StaticResource StyleTextBlockLogoLogin}" 
                            FontWeight="Bold" 
+                           FontSize="18"
+                           Margin="16,0,0,0"
                            VerticalAlignment="Center"/>
-            </StackPanel>
 
-            <!-- Área Superior Direita: Controles da Janela -->
-            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                <!-- BOTÃO MINIMIZAR -->
-                <Button Style="{StaticResource WindowControlButtonStyle}" 
-                        x:Name="btnMinimize"
-                        Click="btnMinimize_Click"
-                        ToolTip="Minimizar">
-                    <Path Data="M 0,5 H 10 V 7 H 0 Z" 
-                          Fill="White" 
-                          Stretch="Uniform" 
-                          Width="10" Height="10"/>
-                </Button>
+                <!-- Controles de Janela -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <!-- MINIMIZAR -->
+                    <Button Style="{StaticResource WindowControlButtonStyle}" 
+                            x:Name="btnMinimize"
+                            Click="btnMinimize_Click"
+                            ToolTip="Minimizar">
+                        <Path Data="M 0,5 H 10 V 6 H 0 Z" 
+                              Fill="#A0A5B5" 
+                              Stretch="Uniform" 
+                              Width="10" Height="10"/>
+                    </Button>
 
-                <!-- BOTÃO MAXIMIZAR / RESTAURAR -->
-                <Button Style="{StaticResource WindowControlButtonStyle}" 
-                        x:Name="btnMaximize"
-                        Click="btnMaximize_Click" 
-                        ToolTip="Maximizar / Restaurar">
-                    <Path Data="M 0,0 H 10 V 10 H 0 Z M 1.5,1.5 V 8.5 H 8.5 V 1.5 Z" 
-                          Fill="White" 
-                          Stretch="Uniform" 
-                          Width="10" Height="10"/>
-                </Button>
+                    <!-- MAXIMIZAR / RESTAURAR -->
+                    <Button Style="{StaticResource WindowControlButtonStyle}" 
+                            x:Name="btnMaximize"
+                            Click="btnMaximize_Click" 
+                            ToolTip="Maximizar / Restaurar">
+                        <Path Data="M 0,0 H 9 V 9 H 0 Z M 1,1 V 8 H 8 V 1 Z" 
+                              Fill="#A0A5B5" 
+                              Stretch="Uniform" 
+                              Width="9" Height="9"/>
+                    </Button>
 
-                <!-- BOTÃO FECHAR -->
-                <Button Style="{StaticResource WindowCloseButtonStyle}" 
-                        ToolTip="Fechar"
-                        Command="{Binding ExitCommand}">
-                    <Path Data="M 0.7,0 L 0,0.7 L 4.3,5 L 0,9.3 L 0.7,10 L 5,5.7 L 9.3,10 L 10,9.3 L 5.7,5 L 10,0.7 L 9.3,0 L 5,4.3 Z" 
-                          Fill="White" 
-                          Stretch="Uniform" 
-                          Width="10" Height="10"/>
-                </Button>
-            </StackPanel>
-        </Grid>
+                    <!-- FECHAR -->
+                    <Button Style="{StaticResource WindowCloseButtonStyle}" 
+                            ToolTip="Fechar"
+                            Command="{Binding ExitCommand}">
+                        <Path Data="M 0.7,0 L 0,0.7 L 4.3,5 L 0,9.3 L 0.7,10 L 5,5.7 L 9.3,10 L 10,9.3 L 5.7,5 L 10,0.7 L 9.3,0 L 5,4.3 Z" 
+                              Fill="#A0A5B5" 
+                              Stretch="Uniform" 
+                              Width="10" Height="10"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
 
         <!-- CONTEÚDO PRINCIPAL (SIDEBAR + FRAME) -->
         <Grid Grid.Row="1">
@@ -135,34 +142,51 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Background="{StaticResource SurfaceColorLoginBrush}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.1*"/>
-                    <RowDefinition Height="0.1*"/>
-                    <RowDefinition Height="0.1*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.1*"/>
-                </Grid.RowDefinitions>
+            <!-- SIDEBAR BARRA LATERAL -->
+            <Border Grid.Column="0" 
+                    Background="{StaticResource SurfaceColorLoginBrush}" 
+                    BorderBrush="#1AFFFFFF" 
+                    BorderThickness="0,0,1,0">
+                <DockPanel LastChildFill="False">
+                    <!-- Agrupamento de Botões Superiores -->
+                    <StackPanel DockPanel.Dock="Top" Margin="0,12,0,0">
+                        <Button Style="{StaticResource StyleButtonSideBar}" 
+                                Command="{Binding HomeCommand}"
+                                Margin="0,4"
+                                ToolTip="Início">
+                            <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconHome}"/>
+                        </Button>
 
-                <Button Grid.Row="0" Style="{StaticResource StyleButtonSideBar}" Command="{Binding HomeCommand}">
-                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconHome}"/>
-                </Button>
+                        <Button Style="{StaticResource StyleButtonSideBar}" 
+                                Command="{Binding SearchCommand}"
+                                Margin="0,4"
+                                ToolTip="Pesquisar">
+                            <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconSearch}"/>
+                        </Button>
 
-                <Button Grid.Row="1" Style="{StaticResource StyleButtonSideBar}" Command="{Binding SearchCommand}">
-                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconSearch}"/>
-                </Button>
+                        <Button Style="{StaticResource StyleButtonSideBar}" 
+                                Command="{Binding FavoritesCommand}"
+                                Margin="0,4"
+                                ToolTip="Favoritos">
+                            <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconStar}"/>
+                        </Button>
+                    </StackPanel>
 
-                <Button Grid.Row="2" Style="{StaticResource StyleButtonSideBar}" Command="{Binding FavoritesCommand}">
-                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconStar}"/>
-                </Button>
+                    <!-- Botão de Sair Fixo no Rodapé -->
+                    <Button DockPanel.Dock="Bottom" 
+                            Style="{StaticResource StyleButtonSideBar}" 
+                            Command="{Binding ExitCommand}"
+                            Margin="0,0,0,12"
+                            ToolTip="Sair">
+                        <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconExit}"/>
+                    </Button>
+                </DockPanel>
+            </Border>
 
-                <Button Grid.Row="4" Style="{StaticResource StyleButtonSideBar}" Command="{Binding ExitCommand}">
-                    <Path Style="{StaticResource IconsGlobalConfigs}" Data="{StaticResource IconExit}"/>
-                </Button>
-            </Grid>
-
-            <!-- Frame Principal -->
-            <Frame Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding CurrentViewModel}"/>
+            <!-- FRAME PRINCIPAL DE CONTEÚDO -->
+            <Frame Grid.Column="1" 
+                   NavigationUIVisibility="Hidden" 
+                   Content="{Binding CurrentViewModel}"/>
         </Grid>
     </Grid>
 </Window>

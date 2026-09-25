@@ -11,6 +11,8 @@ using Microsoft.Data.SqlClient;
 using Streamall.Helpers;
 using System.Data;
 using Streamall.Models.Enums;
+using System.Windows;
+using System.IO;
 
 namespace Streamall.DAL.Repository
 {
@@ -49,6 +51,46 @@ namespace Streamall.DAL.Repository
             {
                 throw new DataBaseException("A conexão com o banco de dados falhou.", ex);
             }
+        }
+
+        public IEnumerable<Content> GetFavoriteContents(int userId)
+        {
+            List<Content> contents = new List<Content>();
+            try
+            {
+                using (SqlConnection conn = _connectionDAL.Connect())
+                {
+                    conn.Open();
+                    string sql = @"SELECT 
+                                    pk_id_content,
+                                    name_content,
+                                    path_cover_content
+                                    FROM Tb_Content_Fav cf
+                                    INNER JOIN Tb_Content c
+                                    ON cf.fk_id_content_fav = c.pk_id_content
+                                    WHERE cf.fk_id_User_content_fav = @fk_id_User_content_fav";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@fk_id_User_content_fav", SqlDbType.Int).Value = userId;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = (int)reader["pk_id_content"];
+                                string name = reader["name_content"].ToString();
+                                string pathCover = Path.Combine(AppContext.BaseDirectory ,reader["path_cover_content"].ToString());
+                                contents.Add(new Content(id, name, pathCover));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DataBaseException("A conexão com o banco de dados falhou.", ex);
+            }
+            return contents;
         }
 
         public void KeepUserActive(int id)

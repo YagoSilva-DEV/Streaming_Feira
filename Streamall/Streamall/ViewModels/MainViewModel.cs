@@ -7,6 +7,8 @@ using Streamall.ViewModels.Contents;
 using Streamall.Models.DTO;
 using Streamall.BLL.Interfaces;
 using Streamall.Navigation.Service;
+using Streamall.BLL.Services;
+using Streamall.DAL.Repository;
 
 namespace Streamall.ViewModels
 {
@@ -84,7 +86,7 @@ namespace Streamall.ViewModels
                     return new SearchViewModel(_contentBLL, new NavigationService(), _userDTO);
 
                 case PageType.FAVORITES:
-                    return new FavoritesViewModel(_contentBLL);
+                    return new FavoritesViewModel(new UserServiceBLL(new UserRepositoryDAL()), _userDTO);
 
                 default:
                     throw new ArgumentException(

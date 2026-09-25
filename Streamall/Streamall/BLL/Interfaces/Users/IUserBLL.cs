@@ -1,4 +1,5 @@
 ﻿using Streamall.Models.DTO;
+using Streamall.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace Streamall.BLL.Interfaces
         void KeepUserInactive(int id);
         void AddFavoriteContent(int contentId, int userId);
         void RemoveFavoriteContent(int contentId, int userId);
+        IEnumerable<ContentDTO> GetFavoriteContents(int userId);
     }
 }

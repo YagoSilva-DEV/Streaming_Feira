@@ -1,8 +1,9 @@
-using System;
-using Streamall.Models.Enums;
+using Streamall.Models.DTO.ContentsDTO;
 using Streamall.Models.Entities;
 using Streamall.Models.Entities.Contents;
-using Streamall.Models.DTO.ContentsDTO;
+using Streamall.Models.Enums;
+using System;
+using System.Windows;
 
 namespace Streamall.Models.DTO
 {
@@ -19,6 +20,12 @@ namespace Streamall.Models.DTO
 
         public ContentDTO()
         {
+        }
+        public ContentDTO(int id, string name, string pathCover)
+        {
+            Id = id;
+            Name = name;
+            PathCover = pathCover;
         }
 
         public ContentDTO(Content content)

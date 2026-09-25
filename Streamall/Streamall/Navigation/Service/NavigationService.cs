@@ -98,7 +98,6 @@ namespace Streamall.Navigation.Service
                 AdministratorHome admHome = new AdministratorHome(userDTO);
                 admHome.WindowState = WindowState.Maximized;
                 admHome.Show();
-                loginView.Close();
             }
             if(typeof(TView) == typeof(Home))
             {
@@ -108,10 +107,7 @@ namespace Streamall.Navigation.Service
                 Home home = new Home(userDTO);
                 home.WindowState = WindowState.Maximized;
                 home.Show();
-                loginView.Close();
-            }
-
-            
+            }  
         }
 
         public void Navigate<TView>(ContentDTO contentDTO)

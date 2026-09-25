@@ -4,6 +4,7 @@ using Streamall.Models.DTO.ContentsDTO;
 using Streamall.Models.Entities.Contents;
 using Streamall.Models.Enums;
 using System;
+using System.Windows;
 
 namespace Streamall.Models.Entities
 {
@@ -17,6 +18,13 @@ namespace Streamall.Models.Entities
         public Genre Genre { get; set; }
         public FilmMaker FilmMaker { get; set; }
         public ContentType ContentType { get; set; }
+
+        public Content(int id, string name, string pathCover)
+        {
+            Id = id;
+            Name = name;
+            PathCover = pathCover;
+        }
 
         public Content(string name, string synopsis, string pathCover, DateTime releaseDate, Genre genre, FilmMaker filmMaker, ContentType contentType)
         {

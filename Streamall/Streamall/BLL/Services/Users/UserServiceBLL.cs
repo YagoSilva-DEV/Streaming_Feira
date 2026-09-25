@@ -25,6 +25,11 @@ namespace Streamall.BLL.Services
             _userDAL.AddFavoriteContent(contentId, userId);
         }
 
+        public IEnumerable<ContentDTO> GetFavoriteContents(int userId)
+        {
+            return _userDAL.GetFavoriteContents(userId).Select(fc => new ContentDTO(fc.Id, fc.Name, fc.PathCover));
+        }
+
         public void KeepUserActive(int id)
         {
             _userDAL.KeepUserActive(id);
